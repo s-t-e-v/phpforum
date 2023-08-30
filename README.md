@@ -26,7 +26,16 @@ Check out the live demo [here](https://your-demo-link.com).
 
 ## Installation
 
-Include step-by-step instructions for setting up the project on a local machine. Specify prerequisites, dependencies, and any configuration needed.
+_Include step-by-step instructions for setting up the project on a local machine. Specify prerequisites, dependencies, and any configuration needed._
+
+**Guide for local install**
+
+1. Install XAMPP
+2. clone the project within htdocs
+3. create the database from `dbmodel.sql`. Set it up with your own credentatials.
+4. Launch by running the following steps:
+   - Ensure you have xampp running. You can start the process with `/opt/lampp/lampp start`
+   - go to http://localhost and go to the htdocs folder, the projects folder. In the project folder, access the public folder. This is the folder where the `index.php` is. The website should load automatically after accessing the public folder.
 
 ## Usage
 
