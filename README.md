@@ -26,22 +26,37 @@ Check out the live demo [here](https://your-demo-link.com).
 
 ## Installation
 
-_Include step-by-step instructions for setting up the project on a local machine. Specify prerequisites, dependencies, and any configuration needed._
+<!-- Include step-by-step instructions for setting up the project on a local machine. Specify prerequisites, dependencies, and any configuration needed. -->
 
 **Guide for local install**
 
 1. Install XAMPP
-2. clone the project within htdocs
+2. clone the project within **htdocs/**
 3. create the database from `dbmodel.sql`. Set it up with your own credentatials.
 4. Launch by running the following steps:
    - Ensure you have xampp running. You can start the process with `/opt/lampp/lampp start`
-   - go to http://localhost and go to the htdocs folder, the projects folder. In the project folder, access the public folder. This is the folder where the `index.php` is. The website should load automatically after accessing the public folder.
+   - go to http://localhost and go to the **htdocs/** folder, the projects folder. In the project folder, access the **public/** folder. This is the folder where the `index.php` is. The website should load automatically after accessing the **public/** folder.
 
 ## Usage
 
+<!--
 - Describe how to use the project, including how to navigate the interface, create topics, and send messages.
 - Explain user registration and authentication.
 - Mention any special features like user profiles, topic deletion, etc.
+-->
+
+### Website launching
+
+- if you cloned the project on your local machine, ensure you followed the install steps
+- launch xampp and access in your browser the following url: https://localhost/your_project_folder_name/public/
+- you can also access the website on live demo throught the following link: [link to demo](https://example.com)
+
+### Navigation
+
+- when you arrive on the homepage, you can view every topics created in the default forum
+- the navbar contains a link to the home page and the website logo. login/logout - sign up button are included in the navbar on the right hand side
+- you can also view links to every created forums between the navbar and the list of topics. Not all links are viewable at first sight. You may need to click on a drop down to display every links
+-
 
 ## Screenshots
 
