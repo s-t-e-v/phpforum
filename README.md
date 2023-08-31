@@ -54,7 +54,7 @@ Check out the live demo [here](https://your-demo-link.com).
 ### Navigation
 
 - when you arrive on the homepage, you can view every topics created in the default forum
-- the navbar contains a link to the home page and the website logo. login/logout - sign up button are included in the navbar on the right hand side
+- the navbar contains a link to the home page and the website logo. Login/logout - sign up button are included in the navbar on the right hand side. When the user is logged, a profile link is shown besides the home page link.
 - you can also view links to every created forums between the navbar and the list of topics. Not all links are viewable at first sight. You may have to click on a drop down to display every links
 
 ### Topics creation and messages
@@ -75,6 +75,16 @@ Check out the live demo [here](https://your-demo-link.com).
 - authentication is done by clicking on the button 'login'. Email and password are asked.
 
 ### User profil
+
+- When the user is logged, a profile link is besided the home page link. When clicking it, it accesses to the the profile management. The use can view
+  - Its profile picture
+  - Its name, surename and pseudo
+  - A list of created topics
+  - A list of created forums. A tag _default_ is along the default forum
+- At the bottom, there is a 'change' button to proceed to some changes. When clicking on the button, a special for changes is loaded. Here are the possible changes:
+  - delete a created topics (delete button along the name)
+  - change default forum (radio button on the names with default in green. When a button is cheked, it is blue with a check symbol inside)
+  - delete a forum (delete button along the name)
 
 ### Topics, messages and forum deletion
 
