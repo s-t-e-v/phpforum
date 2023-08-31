@@ -159,7 +159,17 @@ _optional_
 
 ## Code Organization
 
-Briefly explain the organization of your codebase, where to find key files, and how to navigate the structure.
+<!-- Briefly explain the organization of your codebase, where to find key files, and how to navigate the structure. -->
+
+The code adopt an Model View Controller (MVC) architecture. The main folders are:
+
+- **config/**: contains the configuration of the web app: database, routes, app name, etc.
+- **public/**: contains `index.php`, the main files of the project. This is by this file that the webpage is generated in the browser. The folder also contains the error 404 page and a folder containing uploaded files
+- **src/**: contains the controllers and the models (respectivelly in **src/controllers** and **src/models/**). Models are interfaces between the database and the app. Controllers are functions triggered by the web app which perform actions like page loading, database requests, etc.
+- **views/**: contains the views of the web app. Views are the webpages of the websites. There are organized within subfolders by common themes / purposes. For example, _user_ related pages, _connection_ related pages, etc.
+  - All webpages are structured like so : header - main - footer. The main can vary throughout pages, yet pages have (almost) the same header and footer. Therefore, to follow the DRY principle, the header and footer are coded in separate files within **views/\_partials/** and included with PHP following the structure stated above.
+
+## Database architecture
 
 ## Deployment
 
@@ -184,5 +194,3 @@ Share any challenges you faced and how you overcame them during development.
 ## Feedback and Impact
 
 Share any feedback you've received from users and how the project has made a positive impact.
-
-Regarding your idea for a live demonstration using a classical web host:
