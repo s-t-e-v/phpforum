@@ -176,7 +176,9 @@ The code adopt an Model View Controller (MVC) architecture. The main folders are
 
 <!-- INSERT HERE the diagram of the db archi -->
 
-The database contains **3 tables**:
+![Db architecture diagram](readme_media/php_forum.svg)
+
+The database contains **4 tables**:
 
 - `user`: stores information about the users of the forum, such as their nickname, email address and password.
 - `topic`: stores information about the topics in the forum, such as their title, the creator (user id) and creation date.
@@ -188,8 +190,6 @@ The database contains **3 tables**:
   - the `topic` table: this means that each user can create many topics, but each topic can only be created by one user.
   - the `message` table: analog explanations as above.
 - The `topic` table has a **one-to-many** relationship with the `message` table: this means that each topic can have many messages, but each message can only belong to one topic.
-
-
 
 ## Routes structure
 
