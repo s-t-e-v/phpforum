@@ -173,16 +173,33 @@ The code adopt an Model View Controller (MVC) architecture. The main folders are
 
 ## Deployment
 
+<!--
 - Provide instructions for deploying the project on a web host if applicable.
 - If you have a live version, share the URL.
+-->
+
+**With a webhost**
+
+- Send the files with filezilla for example
+- Integration
+  - Incorporate it to an existing domain:
+  - Dedicated domain:
+
+**Live version**
+
+Live version of the website is available [here](https://example.com).
 
 ## Demo
 
-If possible, include a link to a live demo of the project.
+<!-- If possible, include a link to a live demo of the project. -->
+
+Here is live demo of the project: [live demo](https://example.com).
 
 ## Challenges and Solutions
 
+<!--
 Share any challenges you faced and how you overcame them during development.
+-->
 
 ## Future Enhancements
 
@@ -193,4 +210,6 @@ Share any challenges you faced and how you overcame them during development.
 
 ## Feedback and Impact
 
+<!--
 Share any feedback you've received from users and how the project has made a positive impact.
+-->
