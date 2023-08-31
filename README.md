@@ -60,7 +60,27 @@ Check out the live demo [here](https://your-demo-link.com).
 ### Topics creation and messages
 
 - To create a topic, you need to be connected. You will see just above the list of created topics a "create" button. Clicking on that button will lead you to topic creation page
-- To send a messsage related to a topic, you also need to be connected
+- To send a messsage related to a topic, you also need to be connected. Just access a topic, write a message in the text area and send it by clicking on the button.
+
+### Forum creation
+
+- Anybody can create its own forum, as long as it is registered. The website can host up to 20 supplementary forums, for 24h starting the creation time.
+- To create a forum, you need to be connected. A button 'Create a forum' will be on display within the "others forum" area.
+- Once you click on the button, you will be redirected to a creation page, where you can choose the forum name.
+- During the creation, you can asked to make this new forum the default forum when you login
+
+### User registration and authentication
+
+- Registration is done by clicking on the button 'signup', leading to a form. To register, the user needs to provide an email and a password. The use can also provide a profile picture.
+- authentication is done by clicking on the button 'login'. Email and password are asked.
+
+### User profil
+
+### Topics, messages and forum deletion
+
+- Topics: a button bellow the topic enable the creator of it to delete it. Topics can also be deleted via the list of topics created on the user profile. Confirmation before deletion.
+- Messages: a button bellow the message enable its author to delete it. No confirmation before deletion.
+- Forums: a small trash button along the forum name in the list of created forum enables the creator to delete its forum. Confirmation before deletion.
 
 ## Screenshots
 
