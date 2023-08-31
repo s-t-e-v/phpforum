@@ -117,7 +117,8 @@ _main_
 - GIF Reveal other forums
 - GIF Forum creation
 - GIF change default forum
-  _optional_
+
+_optional_
 
 ### Mobile
 
@@ -135,15 +136,26 @@ _main_
 - GIF Reveal other forums
 - GIF Forum creation
 - GIF change default forum
-  _optional_
+
+_optional_
 
 ## Security Measures
 
-Briefly mention any security practices you've implemented.
+<!-- Briefly mention any security practices you've implemented. -->
+
+- Protection against:
+  - SQL injection
+  - CSS attacks
+- Password hashing
 
 ## Technologies Used
 
-List the technologies and frameworks used in your project.
+<!-- List the technologies and frameworks used in your project. -->
+
+- PHP
+- Bootstrap
+- Bootswatch themes
+- SQL
 
 ## Code Organization
 
