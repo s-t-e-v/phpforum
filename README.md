@@ -99,7 +99,7 @@ Check out the live demo [here](https://your-demo-link.com).
 - TODO:
    - Select main screenshots to show case
    - create a gallery to let the viewer see more
--->
+   -->
 
 ### Desktop
 
@@ -159,7 +159,10 @@ _optional_
 
 ## Code Organization
 
-<!-- Briefly explain the organization of your codebase, where to find key files, and how to navigate the structure. -->
+<!--
+- Briefly explain the organization of your codebase, where to find key files, and how to navigate the structure.
+- TODO: include a simplify tree of the project
+-->
 
 The code adopt an Model View Controller (MVC) architecture. The main folders are:
 
@@ -170,6 +173,25 @@ The code adopt an Model View Controller (MVC) architecture. The main folders are
   - All webpages are structured like so : header - main - footer. The main can vary throughout pages, yet pages have (almost) the same header and footer. Therefore, to follow the DRY principle, the header and footer are coded in separate files within **views/\_partials/** and included with PHP following the structure stated above.
 
 ## Database architecture
+
+<!-- INSERT HERE the diagram of the db archi -->
+
+The database contains **3 tables**:
+
+- `user`: stores information about the users of the forum, such as their nickname, email address and password.
+- `topic`: stores information about the topics in the forum, such as their title, the creator (user id) and creation date.
+- `message`: stores information about the messages in the forum, such as their content, their author (user id), the related topic (topic id) and the creation date.
+
+**Relationships** between tables are as follows:
+
+- The `user` table has a **one-to-many** relationship with:
+  - the `topic` table: this means that each user can create many topics, but each topic can only be created by one user.
+  - the `message` table: analog explanations as above.
+- The `topic` table has a **one-to-many** relationship with the `message` table: this means that each topic can have many messages, but each message can only belong to one topic.
+
+
+
+## Routes structure
 
 ## Deployment
 
