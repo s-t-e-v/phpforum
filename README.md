@@ -94,7 +94,48 @@ Check out the live demo [here](https://your-demo-link.com).
 
 ## Screenshots
 
-Embed screenshots or GIFs to visually showcase different parts of your application.
+<!--
+- Embed screenshots or GIFs to visually showcase different parts of your application.
+- TODO:
+   - Select main screenshots to show case
+   - create a gallery to let the viewer see more
+-->
+
+### Desktop
+
+_main_
+
+- Home (disconnected)
+- Home (connected)
+- Topic discussion (disconnected)
+- Topic discussion (connected)
+- Connection
+- Registration
+- User settings
+- GIF Topic creation
+- GIF Topic deletion
+- GIF Reveal other forums
+- GIF Forum creation
+- GIF change default forum
+  _optional_
+
+### Mobile
+
+_main_
+
+- Home (disconnected)
+- Home (connected)
+- Topic discussion (disconnected)
+- Topic discussion (connected)
+- Connection
+- Registration
+- User settings
+- GIF Topic creation
+- GIF Topic deletion
+- GIF Reveal other forums
+- GIF Forum creation
+- GIF change default forum
+  _optional_
 
 ## Security Measures
 
