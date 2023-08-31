@@ -55,8 +55,12 @@ Check out the live demo [here](https://your-demo-link.com).
 
 - when you arrive on the homepage, you can view every topics created in the default forum
 - the navbar contains a link to the home page and the website logo. login/logout - sign up button are included in the navbar on the right hand side
-- you can also view links to every created forums between the navbar and the list of topics. Not all links are viewable at first sight. You may need to click on a drop down to display every links
--
+- you can also view links to every created forums between the navbar and the list of topics. Not all links are viewable at first sight. You may have to click on a drop down to display every links
+
+### Topics creation and messages
+
+- To create a topic, you need to be connected. You will see just above the list of created topics a "create" button. Clicking on that button will lead you to topic creation page
+- To send a messsage related to a topic, you also need to be connected
 
 ## Screenshots
 
@@ -89,7 +93,10 @@ Share any challenges you faced and how you overcame them during development.
 
 ## Future Enhancements
 
-Mention any planned improvements or features you'd like to add in the future.
+<!-- Mention any planned improvements or features you'd like to add in the future. -->
+
+- adding a pages interface for topics display and messages as well
+- Refactor the project with symphony or laravel
 
 ## Feedback and Impact
 
