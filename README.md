@@ -176,12 +176,13 @@ The code adopt an Model View Controller (MVC) architecture. The main folders are
 
 <!-- INSERT HERE the diagram of the db archi -->
 
-![Db architecture diagram](readme_media/php_forum.svg)
+![Db architecture diagram](readme_media/db_archi.svg)
 
 The database contains **4 tables**:
 
-- `user`: stores information about the users of the forum, such as their nickname, email address and password.
-- `topic`: stores information about the topics in the forum, such as their title, the creator (user id) and creation date.
+- `user`: stores information about the users of the forum, such as their nickname, email address, password, profile picture and default forum.
+- `forum`: stores information about the forums in the forum, such as their name, creator (user id) and creation date.
+- `topic`: stores information about the topics in the forum, such as their title, the creator (user id), the forum (forum id) and creation date.
 - `message`: stores information about the messages in the forum, such as their content, their author (user id), the related topic (topic id) and the creation date.
 
 **Relationships** between tables are as follows:
@@ -189,6 +190,11 @@ The database contains **4 tables**:
 - The `user` table has a **one-to-many** relationship with:
   - the `topic` table: this means that each user can create many topics, but each topic can only be created by one user.
   - the `message` table: analog explanations as above.
+  - the `forum` table: analog explanations as above.
+- The `forum` table has a **one-to-many** relationship with:
+  - the `topic` table: this means that each forum can have many topics, but each topic can only belong to one forum.
+  - the `user` table: this means that each forum can be set as default for many users, but each users can only have one forum set as default.
+
 - The `topic` table has a **one-to-many** relationship with the `message` table: this means that each topic can have many messages, but each message can only belong to one topic.
 
 ## Routes structure
