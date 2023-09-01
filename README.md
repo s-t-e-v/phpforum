@@ -1,5 +1,7 @@
 # phpforum
 
+<!-- Add a cover image of the website here -->
+
 ## Project Overview
 
 This project is a discussion forum inspired by platforms like Stack Overflow. Users can create topics, participate in discussions, and exchange messages related to specific topics. The forum allows for user registration, authentication, and topic management. It is built using PHP and follows an MVC architecture, with Bootstrap and Bootswatch for styles and responsive design.
@@ -172,6 +174,8 @@ The code adopt an Model View Controller (MVC) architecture. The main folders are
 - **views/**: contains the views of the web app. Views are the webpages of the websites. There are organized within subfolders by common themes / purposes. For example, _user_ related pages, _connection_ related pages, etc.
   - All webpages are structured like so : header - main - footer. The main can vary throughout pages, yet pages have (almost) the same header and footer. Therefore, to follow the DRY principle, the header and footer are coded in separate files within **views/\_partials/** and included with PHP following the structure stated above.
 
+This code structure is directly taken from a course I followed at Doranco on PHP. I then made adjustment to the project requirements if it was necessary.
+
 ## Database architecture
 
 <!-- INSERT HERE the diagram of the db archi -->
@@ -192,6 +196,7 @@ The database contains **4 tables**:
   - the `message` table: analog explanations as above.
   - the `forum` table: analog explanations as above.
 - The `forum` table has a **one-to-many** relationship with:
+
   - the `topic` table: this means that each forum can have many topics, but each topic can only belong to one forum.
   - the `user` table: this means that each forum can be set as default for many users, but each users can only have one forum set as default.
 
@@ -211,8 +216,6 @@ Here are the main routes:
 - `phpforum/add` route is the forum creation page.
 - `phpforum/delete` route deletes a topic. The forum ID is passed to this route as a parameter.
 - `phpforum/name_of_a_forum/` route displays the homepage of a hosted forum. The route logic is the same as the original forum, except for `name_of_a_forum` which adds in between.
-
-
 
 ## Deployment
 
