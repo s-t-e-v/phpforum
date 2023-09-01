@@ -199,6 +199,21 @@ The database contains **4 tables**:
 
 ## Routes structure
 
+Here are the main routes:
+
+- `phpforum/` is the root of the website. This route serves the default forum as homepage
+- `phpforum/index.php/` route is equivalent to the route above. Further information: it displays a list of all the topics in the current forum, ordered by the most recent creation date. A list of all accessible forums is also displayed, above the topic list. When a forum ID is passed as a parameter, this refer to the default forum of the connected user. The adequate forum is then displayed.
+- `phpforum/chat/`route displays the messages for a specific topic. The topic ID is passed to this route as a parameter.
+- `phpforum/user/profil` route displays the user information, such as the topics it created, the forum it created, its default forum, etc. The user ID is passed to this route as a parameter.
+- `phpforum/user/setting` route displays the user profile setting version. The page becomes a form.
+- `phpforum/topic/add` route is the topic creation page.
+- `phpforum/topic/delete` route deletes a topic. The topic ID is passed to this route as a parameter.
+- `phpforum/add` route is the forum creation page.
+- `phpforum/delete` route deletes a topic. The forum ID is passed to this route as a parameter.
+- `phpforum/name_of_a_forum/` route displays the homepage of a hosted forum. The route logic is the same as the original forum, except for `name_of_a_forum` which adds in between.
+
+
+
 ## Deployment
 
 <!--
