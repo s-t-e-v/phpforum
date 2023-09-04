@@ -4,8 +4,8 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 13:12:05 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-04 13:12:46
- * @Description: Instanciate a PDO object to communicate with the database
+ * @Last Modified time: 2023-09-04 13:29:00
+ * @Description: Instanciate a PDO object to connect with database
  */
 
 try {
