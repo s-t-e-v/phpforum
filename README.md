@@ -28,6 +28,8 @@ Check out the live demo [here](https://your-demo-link.com).
 
 ## Development planning
 
+<!-- TODO: if you can, make this section in two columns for more readability -->
+
 ![](https://geps.dev/progress/6)
 
 - [x] 0. Minimal project setup + README first version
