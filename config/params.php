@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-01 17:54:43
+ * @Last Modified time: 2023-09-01 23:43:10
  * @Description: App configuration
  */
 
@@ -41,7 +41,7 @@ const CONTROLLERS = BASE_DIR . 'src/controllers/';
 
 
 /**
- * List of possible actions/methodes (Routes configuration)
+ * List of possible actions/(methodes or other term in english?) (Routes configuration)
  */
 $routes = [
     ''                  => ['AppController', 'index'],
