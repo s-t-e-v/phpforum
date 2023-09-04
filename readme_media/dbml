@@ -1,0 +1,46 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table user {
+  id integer (11) [primary key]
+  nickname varchar (255)
+  email varchar (255)
+  password varchar (255)
+  picture_profil varchar (255)
+  default_forum integer (11)
+}
+
+Table forum {
+  id integer (11) [primary key]
+  name varchar (255)
+  id_user integer (255)
+  created_at timestamp
+}
+
+Table topic {
+  id integer (11) [primary key]
+  title varchar (255)
+  id_user integer (11)
+  id_forum integer (11)
+  created_at timestamp
+}
+
+Table message {
+  id integer (11) [primary key]
+  content text [note: 'Content of the message']
+  id_user integer (11)
+  id_topic integer (11)
+  created_at timestamp
+}
+
+Ref: topic.id_user < user.id // one-to-many
+
+Ref: message.id_user < user.id
+
+Ref: message.id_topic < topic.id
+
+Ref: forum.id_user < user.id
+
+Ref: topic.id_forum < forum.id
+
+Ref: user.default_forum < forum.id
