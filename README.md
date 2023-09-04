@@ -28,9 +28,9 @@ Check out the live demo [here](https://your-demo-link.com).
 
 ## Development planning
 
-**Front**
-![](https://geps.dev/progress/0)
+![](https://geps.dev/progress/6)
 
+- [x] 0. Minimal project setup + README first version
 - [ ] 1. Database setup
   - paying attention to constraints (can help for cascading deletion), `NULL` by default (or not), etc.
   - protect the database with password safely
