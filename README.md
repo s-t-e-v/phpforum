@@ -26,6 +26,36 @@ The forum provides a platform for users to engage in meaningful discussions, see
 **Demo:**
 Check out the live demo [here](https://your-demo-link.com).
 
+## Development planning
+
+<!-- TODO: if you can, make this section in two columns for more readability -->
+
+![](https://geps.dev/progress/6)
+
+- [x] 0. Minimal project setup + README first version
+- [ ] 1. Database setup
+  - paying attention to constraints (can help for cascading deletion), `NULL` by default (or not), etc.
+  - protect the database with password safely
+- [ ] 2. User registration page and theme choice
+- [ ] 3. User login
+- [ ] 4. User logout
+- [ ] 5. Topic creation form (in the home page)
+- [ ] 6. List of all topics on home page
+- [ ] 7. Topic deletion
+- [ ] 8. Chat page + message deletion
+- [ ] 9. Forum creation page
+- [ ] 10. List of all forum on home page (with the more dropdown button)
+- [ ] 11. Forum deletion
+- [ ] 12. User profil
+- [ ] 13. User profil management
+  - [ ] Topic deletion
+  - [ ] Forum deletion
+  - [ ] default forum
+- [ ] 14. Make default forum loaded when the user is connected
+- [ ] 15. Limit account creations from the same IP address (and chose the limit)
+- [ ] 16. Choose the limit of users, forums and messages
+- [ ] 17. Update README
+
 ## Installation
 
 <!-- Include step-by-step instructions for setting up the project on a local machine. Specify prerequisites, dependencies, and any configuration needed. -->
