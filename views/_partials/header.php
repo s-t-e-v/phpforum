@@ -1,12 +1,16 @@
+<?php
+/*
+ * @Author: Steven Bandaogo 
+ * @Email: steven@sbandaogo.com
+ * @Date: 2023-09-04 19:28:57 
+ * @Last Modified by:   undefined 
+ * @Last Modified time: 2023-09-04 19:28:57
+ * @Description: This is the header part of the webpages. Contains meta data, navbar and session message display.
+ */
+?>
+
 <!doctype html>
 <html lang="en">
-<!-- @Author: Steven Bandaogo
-  - @Email: steven@sbandaogo.com
-  - @Date: 2023-09-04 13:54:30
-  - @Last Modified by: undefined
-  - @Last Modified time: 2023-09-04 13:54:30
-  - @Description: This is the header part of the webpages. Contains meta data, navbar and session message display.
--->
 
 <head>
   <title><?= CONFIG['app']['name'] ?></title>
