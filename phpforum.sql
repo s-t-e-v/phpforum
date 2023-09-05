@@ -7,14 +7,25 @@ USE phpforum;
 
 # user table
 CREATE TABLE IF NOT EXISTS user(
-   id INT AUTO_INCREMENT PRIMARY KEY,
-   nickname VARCHAR(255) NOT NULL,
-   email VARCHAR(255) NOT NULL,
-   password VARCHAR(255) NOT NULL,
-   picture_profil VARCHAR(255) NOT NULL,
-   default_forum INT NOT NULL DEFAULT 0,
-   CONSTRAINT fk_default_forum
-   FOREIGN KEY (default_forum)
-    REFERENCES forum(id)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nickname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    picture_profil VARCHAR(255) NOT NULL,
+    default_forum INT NOT NULL DEFAULT 0,
+    CONSTRAINT fk_default_forum
+    FOREIGN KEY (default_forum)
+        REFERENCES forum(id)
+) ENGINE=INNODB;
+
+# forum table
+CREATE TABLE IF NOT EXISTS forum(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    created_at DATETIME,
+    id_user INT NOT NULL,
+    CONSTRAINT fk_id_user
+    FOREIGN KEY (id_user)
+        REFERENCES user(id)
 ) ENGINE=INNODB;
 
