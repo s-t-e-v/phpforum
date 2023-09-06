@@ -1,3 +1,12 @@
+/*
+ * @Author: Steven Bandaogo 
+ * @Email: steven@sbandaogo.com
+ * @Date: 2023-09-06 10:32:45 
+ * @Last Modified by: Steven Bandaogo
+ * @Last Modified time: 2023-09-06 10:45:39
+ * @Description: phpforum database
+ */
+
 -- Create the database if it doesn't exist
 CREATE DATABASE IF NOT EXISTS phpforum;
 
@@ -17,14 +26,19 @@ CREATE TABLE IF NOT EXISTS user(
 CREATE TABLE IF NOT EXISTS forum(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    created_at DATETIME NOT NULL
+    created_at DATETIME NOT NULL,
+    id_user INT NOT NULL, 
+    CONSTRAINT fk_id_user_forum
+    FOREIGN KEY (id_user)
+        REFERENCES user(id)
+        ON DELETE CASCADE
 ) ENGINE=INNODB;
 
 -- default_forum table
 CREATE TABLE IF NOT EXISTS default_forum(
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_user INT NOT NULL UNIQUE,
-    id_forum INT DEFAULT 1 NOT NULL,
+    id_forum INT, -- NULL value refers to the original forum 
     CONSTRAINT fk_id_user_default_forum
     FOREIGN KEY (id_user)
         REFERENCES user(id)
@@ -67,7 +81,3 @@ CREATE TABLE IF NOT EXISTS message(
         REFERENCES topic(id)
         ON DELETE CASCADE
 ) ENGINE=INNODB;
-
--- default forum entry
-INSERT INTO forum (name, created_at)
-VALUES ('default_forum', NOW());
