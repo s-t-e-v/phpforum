@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-01 23:43:10
+ * @Last Modified time: 2023-09-07 00:11:52
  * @Description: App configuration
  */
 
@@ -57,7 +57,7 @@ const CONTROLLERS = BASE_DIR . 'src/controllers/';
 $routes = [
     ''                  => ['AppController', 'index'],
     '/'                 => ['AppController', 'index'],
-
+    '/signup'           => ['SecurityController', 'signup'],
 
 
 
