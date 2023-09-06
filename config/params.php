@@ -12,13 +12,24 @@
 /**
  * General App configuration
  */
+require_once(__DIR__ . '/../vendor/autoload.php');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
+// Define the constants
+define('DB_HOST', $_ENV['DATABASE_HOST']);
+define('DB_PORT', $_ENV['DATABASE_PORT']);
+define('DB_NAME', $_ENV['DATABASE_NAME']);
+define('DB_USER', $_ENV['DATABASE_USER']);
+define('DB_PASSWORD', $_ENV['DATABASE_PASSWORD']);
+
 const CONFIG = [
     'db' => [
-        'DB_HOST' => 'localhost',
-        'DB_PORT' => '3306',
-        'DB_NAME' => 'phpforum',
-        'DB_USER' => 'root',
-        'DB_PSWD' => '',
+        'DB_HOST' => DB_HOST,
+        'DB_PORT' => DB_PORT,
+        'DB_NAME' => DB_NAME,
+        'DB_USER' => DB_USER,
+        'DB_PSWD' => DB_PASSWORD,
     ],
     'app' => [
         'name' => 'phpforum',

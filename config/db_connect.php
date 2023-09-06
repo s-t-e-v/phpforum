@@ -19,6 +19,8 @@ try {
     );
 } catch (Exception $e) {
     // TODO: Don't display var_dump on production
+    echo "<pre>";
     var_dump($e);
-    //die;
+    echo "</pre>";
+    die;
 }
