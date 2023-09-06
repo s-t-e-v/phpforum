@@ -30,10 +30,10 @@ Check out the live demo [here](https://your-demo-link.com).
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
-![](https://geps.dev/progress/6)
+![](https://geps.dev/progress/11)
 
 - [x] 0. Minimal project setup + README first version
-- [ ] 1. Database setup
+- [x] 1. Database setup
   - paying attention to constraints (can help for cascading deletion), `NULL` by default (or not), etc.
   - protect the database with password safely
 - [ ] 2. User registration page and theme choice
@@ -55,6 +55,10 @@ Check out the live demo [here](https://your-demo-link.com).
 - [ ] 15. Limit account creations from the same IP address (and chose the limit)
 - [ ] 16. Choose the limit of users, forums and messages
 - [ ] 17. Update README
+
+## Dependancies
+
+- `vlucas/phpdotenv` library for environment variable management (To install with [composer](https://getcomposer.org/download/))
 
 ## Installation
 
@@ -196,6 +200,8 @@ _optional_
 - TODO: include a simplify tree of the project
 -->
 
+**base**
+
 The code adopt an Model View Controller (MVC) architecture. The main folders are:
 
 - **config/**: contains the configuration of the web app: database, routes, app name, etc.
@@ -205,6 +211,10 @@ The code adopt an Model View Controller (MVC) architecture. The main folders are
   - All webpages are structured like so : header - main - footer. The main can vary throughout pages, yet pages have (almost) the same header and footer. Therefore, to follow the DRY principle, the header and footer are coded in separate files within **views/\_partials/** and included with PHP following the structure stated above.
 
 This code structure is directly taken from a course I followed at Doranco on PHP. I then made adjustment to the project requirements if it was necessary.
+
+**Additions**
+
+- `.env` file at the root of the project containing sensitive information like database credentials. The environment are loaded thanks to `vlucas/phpdotenv` library.
 
 ## Database architecture
 
@@ -255,6 +265,8 @@ Here are the main routes:
 -->
 
 **With a webhost**
+
+**/!\\ NB:** the `.env` file **MUST NOT** be accessible to the public. It contains sensitive information like database credentials.
 
 - Send the files with filezilla for example
 - Integration
