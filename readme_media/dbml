@@ -2,45 +2,53 @@
 // Docs: https://dbml.dbdiagram.io/docs
 
 Table user {
-  id integer (11) [primary key]
-  nickname varchar (255)
-  email varchar (255)
-  password varchar (255)
-  picture_profil varchar (255)
-  default_forum integer (11)
+  id integer (11) [increment, primary key]
+  nickname varchar (255) [not null, unique]
+  email varchar (255) [not null, unique]
+  password varchar (255) [not null]
+  picture_profil varchar (255) [default: 'default_pp.png', not null]
 }
 
 Table forum {
-  id integer (11) [primary key]
-  name varchar (255)
-  id_user integer (255)
-  created_at timestamp
+  id integer (11) [increment, primary key]
+  name varchar (255) [not null]
+  id_user integer (255) [not null]
+  created_at timestamp [not null]
+}
+
+Table default_forum {
+  id integer (11) [increment, primary key]
+  id_user integer [not null, unique]
+  id_forum integer
 }
 
 Table topic {
-  id integer (11) [primary key]
-  title varchar (255)
-  id_user integer (11)
-  id_forum integer (11)
-  created_at timestamp
+  id integer (11) [increment, primary key]
+  title varchar (255) [not null]
+  id_user integer (11) [not null]
+  id_forum integer (11) [not null]
+  created_at timestamp [not null]
 }
 
 Table message {
-  id integer (11) [primary key]
+  id integer (11) [increment, primary key]
   content text [note: 'Content of the message']
-  id_user integer (11)
-  id_topic integer (11)
-  created_at timestamp
+  id_user integer (11) [not null]
+  id_topic integer (11) [not null]
+  created_at timestamp [not null]
 }
 
-Ref: topic.id_user < user.id // one-to-many
+Ref: forum.id_user < user.id // one-to-many
+
+Ref: default_forum.id_user < user.id
+
+Ref: default_forum.id_forum < forum.id
+
+Ref: topic.id_user < user.id
+
+Ref: topic.id_forum < forum.id
 
 Ref: message.id_user < user.id
 
 Ref: message.id_topic < topic.id
 
-Ref: forum.id_user < user.id
-
-Ref: topic.id_forum < forum.id
-
-Ref: user.default_forum < forum.id

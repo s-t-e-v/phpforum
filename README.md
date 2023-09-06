@@ -210,12 +210,13 @@ This code structure is directly taken from a course I followed at Doranco on PHP
 
 <!-- INSERT HERE the diagram of the db archi -->
 
-![Db architecture diagram](readme_media/db_archi.svg)
+![Db architecture diagram](readme_media/db_archi_light.png)
 
-The database contains **4 tables**:
+The database contains **5 tables**:
 
-- `user`: stores information about the users of the forum, such as their nickname, email address, password, profile picture and default forum.
+- `user`: stores information about the users of the forum, such as their nickname, email address, password and profile picture.
 - `forum`: stores information about the forums in the forum, such as their name, creator (user id) and creation date.
+- `default_forum`: stores information about the default forums (forum id) of each users (user id). The forum id can be `NULL`, indicating that the user has the original forum as default one.
 - `topic`: stores information about the topics in the forum, such as their title, the creator (user id), the forum (forum id) and creation date.
 - `message`: stores information about the messages in the forum, such as their content, their author (user id), the related topic (topic id) and the creation date.
 
@@ -225,11 +226,10 @@ The database contains **4 tables**:
   - the `topic` table: this means that each user can create many topics, but each topic can only be created by one user.
   - the `message` table: analog explanations as above.
   - the `forum` table: analog explanations as above.
-- The `forum` table has a **one-to-many** relationship with:
-
-  - the `topic` table: this means that each forum can have many topics, but each topic can only belong to one forum.
-  - the `user` table: this means that each forum can be set as default for many users, but each users can only have one forum set as default.
-
+- the `default_forum` table has:
+  - a **one-to-one** relationship with the `user` table. This means that each user has a corresponding and unique entry in the `default_forum` table.
+  - a **one-to-many** relationship with the `forum` table. This means that each forum can be set as default for many users, but each users can only have one forum set as default.
+- The `forum` table has a **one-to-many** relationship with the `topic` table: this means that each forum can have many topics, but each topic can only belong to one forum.
 - The `topic` table has a **one-to-many** relationship with the `message` table: this means that each topic can have many messages, but each message can only belong to one topic.
 
 ## Routes structure
