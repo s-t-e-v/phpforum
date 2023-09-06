@@ -3,8 +3,8 @@
  * @Author: Steven Bandaogo 
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:28:57 
- * @Last Modified by:   undefined 
- * @Last Modified time: 2023-09-04 19:28:57
+ * @Last Modified by: Steven Bandaogo
+ * @Last Modified time: 2023-09-07 00:57:06
  * @Description: This is the header part of the webpages. Contains meta data, navbar and session message display.
  */
 ?>
@@ -18,6 +18,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.1/dist/pulse/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= ASSETS; ?>css/styles.css">
 
 </head>
 
