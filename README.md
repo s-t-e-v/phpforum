@@ -30,10 +30,10 @@ Check out the live demo [here](https://your-demo-link.com).
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
-![](https://geps.dev/progress/6)
+![](https://geps.dev/progress/11)
 
 - [x] 0. Minimal project setup + README first version
-- [ ] 1. Database setup
+- [x] 1. Database setup
   - paying attention to constraints (can help for cascading deletion), `NULL` by default (or not), etc.
   - protect the database with password safely
 - [ ] 2. User registration page and theme choice
@@ -55,6 +55,10 @@ Check out the live demo [here](https://your-demo-link.com).
 - [ ] 15. Limit account creations from the same IP address (and chose the limit)
 - [ ] 16. Choose the limit of users, forums and messages
 - [ ] 17. Update README
+
+## Dependancies
+
+- `vlucas/phpdotenv` library for environment variable management (To install with [composer](https://getcomposer.org/download/))
 
 ## Installation
 
@@ -196,6 +200,8 @@ _optional_
 - TODO: include a simplify tree of the project
 -->
 
+**base**
+
 The code adopt an Model View Controller (MVC) architecture. The main folders are:
 
 - **config/**: contains the configuration of the web app: database, routes, app name, etc.
@@ -206,16 +212,21 @@ The code adopt an Model View Controller (MVC) architecture. The main folders are
 
 This code structure is directly taken from a course I followed at Doranco on PHP. I then made adjustment to the project requirements if it was necessary.
 
+**Additions**
+
+- `.env` file at the root of the project containing sensitive information like database credentials. The environment are loaded thanks to `vlucas/phpdotenv` library.
+
 ## Database architecture
 
 <!-- INSERT HERE the diagram of the db archi -->
 
-![Db architecture diagram](readme_media/db_archi.svg)
+![Db architecture diagram](readme_media/db_archi_light.png)
 
-The database contains **4 tables**:
+The database contains **5 tables**:
 
-- `user`: stores information about the users of the forum, such as their nickname, email address, password, profile picture and default forum.
+- `user`: stores information about the users of the forum, such as their nickname, email address, password and profile picture.
 - `forum`: stores information about the forums in the forum, such as their name, creator (user id) and creation date.
+- `default_forum`: stores information about the default forums (forum id) of each users (user id). The forum id can be `NULL`, indicating that the user has the original forum as default one.
 - `topic`: stores information about the topics in the forum, such as their title, the creator (user id), the forum (forum id) and creation date.
 - `message`: stores information about the messages in the forum, such as their content, their author (user id), the related topic (topic id) and the creation date.
 
@@ -225,11 +236,10 @@ The database contains **4 tables**:
   - the `topic` table: this means that each user can create many topics, but each topic can only be created by one user.
   - the `message` table: analog explanations as above.
   - the `forum` table: analog explanations as above.
-- The `forum` table has a **one-to-many** relationship with:
-
-  - the `topic` table: this means that each forum can have many topics, but each topic can only belong to one forum.
-  - the `user` table: this means that each forum can be set as default for many users, but each users can only have one forum set as default.
-
+- the `default_forum` table has:
+  - a **one-to-one** relationship with the `user` table. This means that each user has a corresponding and unique entry in the `default_forum` table.
+  - a **one-to-many** relationship with the `forum` table. This means that each forum can be set as default for many users, but each users can only have one forum set as default.
+- The `forum` table has a **one-to-many** relationship with the `topic` table: this means that each forum can have many topics, but each topic can only belong to one forum.
 - The `topic` table has a **one-to-many** relationship with the `message` table: this means that each topic can have many messages, but each message can only belong to one topic.
 
 ## Routes structure
@@ -255,6 +265,8 @@ Here are the main routes:
 -->
 
 **With a webhost**
+
+**/!\\ NB:** the `.env` file **MUST NOT** be accessible to the public. It contains sensitive information like database credentials.
 
 - Send the files with filezilla for example
 - Integration
