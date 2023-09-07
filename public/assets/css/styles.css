@@ -14,6 +14,10 @@ body {
     color: #2b154e;
 }
 
+.form_title {
+    color: #3f2369;
+}
+
 @media screen and (min-width: 576px)  {
     
     .pp_input {

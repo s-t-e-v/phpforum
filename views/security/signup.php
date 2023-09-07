@@ -15,7 +15,7 @@
 
     <div class="form_container container p-5 rounded mx-auto bg-content text-primary ">
 
-        <h2 class="text-center">Sign Up</h2>
+        <h2 class="form_title text-center">Sign Up</h2>
 
         <form class="mt-5">
             <div class="my-4 py-2">
