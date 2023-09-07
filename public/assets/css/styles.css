@@ -3,7 +3,7 @@ body {
 }
 
 .bg-content {
-  background: linear-gradient(-45deg, #7942ca, #A991D4); 
+  background: linear-gradient(-45deg, #8247da, #A991D4); 
 }
 
 .form_container {
@@ -11,5 +11,5 @@ body {
 }
 
 .form-label {
-    color: #361a63;
+    color: #2b154e;
 }
