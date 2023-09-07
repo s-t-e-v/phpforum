@@ -11,7 +11,9 @@
 
 <?php include(VIEWS . '_partials/header.php'); ?>
 
+<main class="flex-grow-1">
 
+</main>
 
 
 

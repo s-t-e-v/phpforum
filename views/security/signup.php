@@ -11,7 +11,7 @@
 
 <?php include(VIEWS . '_partials/header.php'); ?>
 
-<main class="bg-main p-5">
+<main class="flex-grow-1 bg-main p-5">
 
     <div class="form_container container p-5 rounded mx-auto bg-content text-primary ">
 
