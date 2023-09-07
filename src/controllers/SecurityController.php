@@ -56,22 +56,22 @@ class SecurityController
             /* Error raising */
             // -- Email
             if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                $error['email'] = "The <em>email</em> email field is mandatory and the email entered must be valid";
+                $error['email'] = "The <em>email</em> field is required and the email entered must be valid";
             }
             // > TODO: check also if the email already exists
             // -- Password
             if (empty($_POST['password']) || !valid_pass($_POST['password'])) {
-                $error['password'] = "The <em>password</em> field is mandatory and the entered password must contain at least 5 characteres, whom at least 1 lowercase, 1 uppercase, 1 digit and 1 special character";
+                $error['password'] = "The <em>password</em> field is required and the entered password must contain at least 5 characteres, whom at least 1 lowercase, 1 uppercase, 1 digit and 1 special character";
             }
             // -- Password confirmation
             if (empty($_POST['confirmPassword'])) {
-                $error['confirmPassword'] = "The <em>password confirmation</em> field is mandatory";
+                $error['confirmPassword'] = "The <em>password confirmation</em> field is required";
             } elseif ($_POST['confirmPassword'] !== $_POST['password']) {
                 $error['confirmPassword'] = "The password must match with the one entered above";
             }
             // -- Pseudo
             if (empty($_POST['pseudo'])) {
-                $error['pseudo'] = "The <em>pseudo</em> pseudo filed is mandatory";
+                $error['pseudo'] = "The <em>pseudo</em> pseudo filed is required";
             }
             // > TODO: check also if the pseudo already exists
             // Profil picture
