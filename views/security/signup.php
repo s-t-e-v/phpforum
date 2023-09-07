@@ -15,9 +15,10 @@
 
     <div class="form_container container p-5 rounded mx-auto bg-content text-primary ">
 
-        <h2 class="form_title text-center">Sign Up</h2>
+        <h2 class="form_title text-center mb-5">Sign Up</h2>
 
-        <form class="mt-5">
+        <!-- Sign Up form -->
+        <form method="post" enctype="multipart/form-data">
             <div class="my-4 py-2">
                 <label for="email" class="form-label">Email address</label>
                 <input type="text" class="form-control rounded" id="email" aria-describedby="emailHelp">
