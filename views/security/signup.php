@@ -34,7 +34,7 @@
                 <label for="pseudo" class="form-label">Pseudo</label>
                 <input type="text" class="form-control rounded" id="pseudo" aria-describedby="pseudoHelp">
             </div>
-            <div class="my-4 py-2 w-75">
+            <div class="pp_input my-4 py-2">
                 <label for="pp" class="form-label">Profil picture</label>
                 <input type="file" class="form-control rounded" id="pp" aria-describedby="fileHelp">
             </div>

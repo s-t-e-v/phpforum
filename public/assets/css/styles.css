@@ -3,7 +3,7 @@ body {
 }
 
 .bg-content {
-  background: linear-gradient(-45deg, #8247da, #A991D4); 
+  background: linear-gradient(-45deg, #9356ee, #A991D4); 
 }
 
 .form_container {
@@ -12,4 +12,11 @@ body {
 
 .form-label {
     color: #2b154e;
+}
+
+@media screen and (min-width: 576px)  {
+    
+    .pp_input {
+        width: 75%;
+    }
 }
