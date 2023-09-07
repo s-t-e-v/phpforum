@@ -14,8 +14,22 @@ body {
     color: #2b154e;
 }
 
+.form_legend {
+    font-style: italic;
+    color: #2b154e;
+}
+
 .form_title {
     color: #3f2369;
+}
+
+.required::after {
+    content: " *";
+    color: #790000;
+}
+
+.required_symb, .text_error {
+    color: #790000;
 }
 
 @media screen and (min-width: 576px)  {

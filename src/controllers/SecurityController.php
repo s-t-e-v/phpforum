@@ -11,15 +11,22 @@
 class SecurityController
 {
     /*
-     * Loads the signup page.
+     * Perfom the user signup.
      */
     public static function signup()
     {
-        // If the user submitted data
-        if (!empty($_POST)) {
+        echo "<pre>";
+        var_dump($_POST);
+        echo "</pre>";
 
-            // error variable: stores error messages
-            $error = [];
+        echo "<br>SIGN UP<br>!";
+
+        if (!empty($_POST)) { // < Data submitted > 
+
+
+            echo "<h1>Data submtitted !</h1>";
+
+            $error = []; // stores error messages
 
             /*
              * Checks wether the entered password is valid or not
@@ -51,7 +58,7 @@ class SecurityController
             if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $error['email'] = "The <em>email</em> email field is mandatory and the email entered must be valid";
             }
-            // > TODO: check also if the user already exists
+            // > TODO: check also if the email already exists
             // -- Password
             if (empty($_POST['password']) || !valid_pass($_POST['password'])) {
                 $error['password'] = "The <em>password</em> field is mandatory and the entered password must contain at least 5 characteres, whom at least 1 lowercase, 1 uppercase, 1 digit and 1 special character";
@@ -66,6 +73,7 @@ class SecurityController
             if (empty($_POST['pseudo'])) {
                 $error['pseudo'] = "The <em>pseudo</em> pseudo filed is mandatory";
             }
+            // > TODO: check also if the pseudo already exists
             // Profil picture
             // if (empty($_FILES['pp']['name'])) {
             //     $error['pp'] = "le champs <em>Photo de profile</em> est obligatoire";
@@ -73,6 +81,16 @@ class SecurityController
 
             /* Submitted data processing */
             if (empty($error)) {
+                // If the uploaded image is valid
+                if (($_FILES['pp']['type'] == 'image/jpeg' || $_FILES['pp']['type'] == 'image/png' || $_FILES['pp']['type'] == 'image/webp' || $_FILES['pp']['type'] == 'image/gif')  && $_FILES['pp']['size'] < 3000000) {
+                    /** Upload */
+
+                    /** Success message */
+                    $_SESSION['messages']['success'][] = "Congratulations ! You are registered in our forum. Now you can connect!";
+                } else {
+                    /** Failure message */
+                    $_SESSION['messages']['danger'][] = "The image format doesn't belong to those accepted (.jpg, .png, .webp, .gif) and/or the image is too large (>= 3 mo)";
+                }
             }
         }
 
