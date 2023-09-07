@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 13:13:11 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-04 13:22:26
+ * @Last Modified time: 2023-09-07 22:26:18
  * @Description: Classes autoloading and router management 
  */
 
@@ -14,7 +14,7 @@
  */
 spl_autoload_register(function ($class) {
 
-    foreach (['config/', 'src/controllers/', 'src/models/'] as $folder) {
+    foreach (['config/', 'src/controllers/', 'src/models/', 'src/lib/'] as $folder) {
         $file = '../' . $folder . $class . '.php';
         if (file_exists($file)) {
             require_once($file);
