@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:07:32 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-07 01:19:04
+ * @Last Modified time: 2023-09-07 22:31:07
  * @Description: Signup page
  */
 ?>
@@ -12,11 +12,11 @@
 <?php include(VIEWS . '_partials/header.php'); ?>
 
 <?php
-echo "<pre>";
+echo "<pre style='color: white;'>";
 var_dump($_POST);
 echo "</pre>";
 echo "<br>";
-echo "<pre>";
+echo "<pre style='color: white;'>";
 var_dump($error);
 echo "</pre>";
 ?>

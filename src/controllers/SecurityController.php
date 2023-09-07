@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:13:49 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-07 22:24:30
+ * @Last Modified time: 2023-09-07 22:40:54
  * @Description: Manage login/signup features
  */
 
@@ -16,16 +16,16 @@ class SecurityController extends Security
      */
     public static function signup()
     {
-        echo "<pre>";
-        var_dump($_POST);
-        echo "</pre>";
+        // echo "<pre>";
+        // var_dump($_POST);
+        // echo "</pre>";
 
-        echo "<br>SIGN UP<br>!";
+        //echo "<br>SIGN UP<br>!";
 
         if (!empty($_POST)) { // < Data submitted > 
 
 
-            echo "<h1>Data submtitted !</h1>";
+            //echo "<h1>Data submtitted !</h1>";
 
             $error = []; // stores error messages
 
@@ -55,7 +55,25 @@ class SecurityController extends Security
             if (empty($error)) {
                 // If the uploaded image is valid
                 if (empty($_FILES['pp']['name']) || self::valid_image()) {
-                    /** Upload */
+
+                    $filename = "";
+                    if (!empty($_FILES['pp']['name'])) {
+                        /** Upload */
+                        $filename = date('dmYHis') . $_FILES['pp']['name'];
+                        $filename = str_replace(' ', '_', $filename); // we replace spaces by undescores
+                        copy($_FILES['pp']['tmp_name'], PUBLIC_FOLDER . DIRECTORY_SEPARATOR . "upload" . DIRECTORY_SEPARATOR . $filename); // transfer from temp -> upload folder
+                    }
+
+                    /** Password encryption */
+                    $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+                    /** Database processing */
+                    $data = [
+                        'email' => $_POST['email'],
+                        'password' => $mdp,
+                        'nickname' => $_POST['pseudo'],
+                        'picture_profil' => $filename,
+                    ];
 
                     /** Success message */
                     $_SESSION['messages']['success'][] = "Congratulations ! You are registered in our forum. Now you can log in!";
