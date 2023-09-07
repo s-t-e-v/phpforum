@@ -1,3 +1,15 @@
+body {
+  background: linear-gradient(45deg, #2d194b, #d332e8);
+}
+
+.bg-content {
+  background: linear-gradient(-45deg, #7942ca, #A991D4); 
+}
+
 .form_container {
     max-width: 700px;
+}
+
+.form-label {
+    color: #361a63;
 }
