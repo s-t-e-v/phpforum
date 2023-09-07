@@ -34,7 +34,7 @@ echo "</pre>";
             </div>
             <div class="py-2">
                 <label for="email" class="form-label required">Email address</label>
-                <input type="text" class="form-control rounded mb-1" name="email" id="email" aria-describedby="emailHelp">
+                <input type="text" class="form-control rounded mb-1" name="email" id="email" value="<?= $_POST["email"] ?? ""; ?>" aria-describedby="emailHelp">
                 <small class="text_error"><?= $error['email'] ?? ""; ?></small>
             </div>
             <div class="py-2">
@@ -49,7 +49,7 @@ echo "</pre>";
             </div>
             <div class="py-2">
                 <label for="pseudo" class="form-label required">Pseudo</label>
-                <input type="text" class="form-control rounded mb-1" name="pseudo" id="pseudo" aria-describedby="pseudoHelp">
+                <input type="text" class="form-control rounded mb-1" name="pseudo" id="pseudo" value="<?= $_POST["pseudo"] ?? ""; ?>" aria-describedby="pseudoHelp">
                 <small class="text_error"><?= $error['pseudo'] ?? ""; ?></small>
             </div>
             <div class="py-2 pp_input">

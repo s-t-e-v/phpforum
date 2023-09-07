@@ -10,7 +10,46 @@
 
 class SecurityController
 {
-    /*
+
+    /**
+     * Checks wether the entered password is valid or not
+     * @param string $candidate The password
+     * @return bool True if valid, False otherwise
+     */
+    private static function valid_pass($candidate): bool
+    {
+        $r1 = '/[A-Z]/';  //Uppercase
+        $r2 = '/[a-z]/';  //lowercase
+        $r3 = '/[!@#$%^&*()\-_=+{};:,<.>]/';  // whatever you mean by 'special char'
+        $r4 = '/[0-9]/';  //numbers
+
+        if (preg_match_all($r1, $candidate, $o) < 1) return FALSE;
+
+        if (preg_match_all($r2, $candidate, $o) < 1) return FALSE;
+
+        if (preg_match_all($r3, $candidate, $o) < 1) return FALSE;
+
+        if (preg_match_all($r4, $candidate, $o) < 1) return FALSE;
+
+        if (strlen($candidate) < 7) return FALSE;
+
+        return TRUE;
+    }
+
+    /**
+     * Checks wether the image is valid or not
+     * @return bool True if valid, False otherwise
+     */
+    private static function valid_image(): bool
+    {
+        return (($_FILES['pp']['type'] == 'image/jpeg' ||
+            $_FILES['pp']['type'] == 'image/png' ||
+            $_FILES['pp']['type'] == 'image/webp' ||
+            $_FILES['pp']['type'] == 'image/gif')  &&
+            $_FILES['pp']['size'] < 3000000);
+    }
+
+    /**
      * Perfom the user signup.
      */
     public static function signup()
@@ -28,31 +67,6 @@ class SecurityController
 
             $error = []; // stores error messages
 
-            /*
-             * Checks wether the entered password is valid or not
-             * @param string $candidate The password
-             * @return boolean True if valid, False otherwise
-             */
-            function valid_pass($candidate)
-            {
-                $r1 = '/[A-Z]/';  //Uppercase
-                $r2 = '/[a-z]/';  //lowercase
-                $r3 = '/[!@#$%^&*()\-_=+{};:,<.>]/';  // whatever you mean by 'special char'
-                $r4 = '/[0-9]/';  //numbers
-
-                if (preg_match_all($r1, $candidate, $o) < 1) return FALSE;
-
-                if (preg_match_all($r2, $candidate, $o) < 1) return FALSE;
-
-                if (preg_match_all($r3, $candidate, $o) < 1) return FALSE;
-
-                if (preg_match_all($r4, $candidate, $o) < 1) return FALSE;
-
-                if (strlen($candidate) < 7) return FALSE;
-
-                return TRUE;
-            }
-
             /* Error raising */
             // -- Email
             if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
@@ -60,7 +74,7 @@ class SecurityController
             }
             // > TODO: check also if the email already exists
             // -- Password
-            if (empty($_POST['password']) || !valid_pass($_POST['password'])) {
+            if (empty($_POST['password']) || !self::valid_pass($_POST['password'])) {
                 $error['password'] = "The <em>password</em> field is required and the entered password must contain at least 5 characteres, whom at least 1 lowercase, 1 uppercase, 1 digit and 1 special character";
             }
             // -- Password confirmation
@@ -82,7 +96,7 @@ class SecurityController
             /* Submitted data processing */
             if (empty($error)) {
                 // If the uploaded image is valid
-                if (($_FILES['pp']['type'] == 'image/jpeg' || $_FILES['pp']['type'] == 'image/png' || $_FILES['pp']['type'] == 'image/webp' || $_FILES['pp']['type'] == 'image/gif')  && $_FILES['pp']['size'] < 3000000) {
+                if (empty($_FILES['pp']['name']) || self::valid_image()) {
                     /** Upload */
 
                     /** Success message */
