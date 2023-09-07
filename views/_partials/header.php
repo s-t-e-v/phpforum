@@ -48,6 +48,11 @@
               </div>
             </li>
           </ul>
+          <div class="navbar-nav ms-auto">
+            <a href="<?= BASE . 'login'; ?>" class="btn btn-info mx-2 rounded">Login</a>
+            <a href="<?= BASE . 'signup'; ?>" class="btn btn-secondary mx-2 rounded">Sign Up</a>
+          </div>
+
         </div>
       </div>
     </nav>
