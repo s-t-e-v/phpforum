@@ -3,7 +3,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-06 10:32:45 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-08 00:21:59
+ * @Last Modified time: 2023-09-08 17:15:44
  * @Description: phpforum database
  */
 
@@ -16,7 +16,7 @@ USE phpforum;
 -- user table
 CREATE TABLE IF NOT EXISTS user(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nickname VARCHAR(255) NOT NULL UNIQUE,
+    nickname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     picture_profil VARCHAR(255) DEFAULT 'default_pp.png' NOT NULL
