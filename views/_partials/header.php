@@ -9,6 +9,16 @@
  */
 ?>
 
+<?php
+// echo "<pre style='color: white;'>";
+// var_dump($_SESSION);
+// echo "</pre>";
+// echo "<br>";
+// echo "<pre style='color: white;'>";
+// var_dump($error);
+// echo "</pre>";
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -49,10 +59,13 @@
             </li>
           </ul>
           <div class="navbar-nav ms-auto">
-            <a href="<?= BASE . 'login'; ?>" class="btn btn-info mx-2 rounded">Login</a>
-            <a href="<?= BASE . 'signup'; ?>" class="btn btn-secondary mx-2 rounded">Sign Up</a>
+            <?php if (!isset($_SESSION['user'])) : ?>
+              <a href="<?= BASE . 'login'; ?>" class="btn btn-info mx-2 rounded">Login</a>
+              <a href="<?= BASE . 'signup'; ?>" class="btn btn-secondary mx-2 rounded">Sign Up</a>
+            <?php else : ?>
+              <a href="<?= BASE . 'logout'; ?>" class="btn btn-danger mx-2 rounded">Log out</a>
+            <?php endif; ?>
           </div>
-
         </div>
       </div>
     </nav>

@@ -98,7 +98,7 @@ class SecurityController extends Security
 
 
     /**
-     * Perfom the user signup.
+     * Log the user in.
      */
     public static function login()
     {
@@ -158,5 +158,21 @@ class SecurityController extends Security
 
         // Page load
         include(VIEWS . 'security/login.php');
+    }
+
+    /**
+     * Log the user out.
+     */
+    public static  function logout()
+    {
+        // We clear the user session
+        unset($_SESSION['user']);
+
+        // Message logout
+        $_SESSION['messages']['info'][] = "See you soon !";
+
+        // Redirection home page
+        header("location:" . BASE);
+        exit();
     }
 }
