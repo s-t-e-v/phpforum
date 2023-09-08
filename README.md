@@ -66,12 +66,49 @@ Check out the live demo [here](https://your-demo-link.com).
 
 **Guide for local install**
 
-1. Install XAMPP
-2. clone the project within **htdocs/**
-3. create the database from `dbmodel.sql`. Set it up with your own credentatials.
-4. Launch by running the following steps:
-   - Ensure you have xampp running. You can start the process with `/opt/lampp/lampp start`
-   - go to http://localhost and go to the **htdocs/** folder, the projects folder. In the project folder, access the **public/** folder. This is the folder where the `index.php` is. The website should load automatically after accessing the **public/** folder.
+1.  Install XAMPP
+2.  clone the project within **htdocs/**
+3.  create the database from `dbmodel.sql`. Set it up with your own credentatials.
+4.  Ensure the web server user, normally `daemon`, has the permission of read & write for the folder `public/upload`. This is important for the profil picture upload feature. You can follow those steps:
+
+    - **Identify the webserver user**:
+      Use PHP to identify the web server user by using the posix_getpwuid function:
+
+      ```php
+      <?php
+      $uid = posix_geteuid();
+      $info = posix_getpwuid($uid);
+      echo "Web server user: " . $info['name'];
+      ?>
+      ```
+
+    - **Create a New Group**:
+      First, create a new group that both you and the daemon belong to. You can create a group using the groupadd command, for example:
+
+      ```bash
+      sudo groupadd phpforum
+      ```
+
+    - **Add Users to the Group**:
+      Add both your user and the daemon user to the newly created group:
+
+      ```bash
+      sudo usermod -aG phpforum your_user_name
+      sudo usermod -aG phpforum daemon
+      ```
+
+    - **Change Group Ownership**:
+      Change the group ownership of the upload directory to the new group (mygroup):
+
+      ```bash
+      sudo chown :phpforum public/upload
+      ```
+
+      **NB**: if you are running xampp for some reason, restart it to make the changes effective after the latter step.
+
+5.  Launch by running the following steps:
+    - Ensure you have xampp running. You can start the process with `/opt/lampp/lampp start`
+    - go to http://localhost and go to the **htdocs/** folder, the projects folder. In the project folder, access the **public/** folder. This is the folder where the `index.php` is. The website should load automatically after accessing the **public/** folder.
 
 ## Usage
 
