@@ -1,0 +1,40 @@
+body {
+  background: linear-gradient(45deg, #2d194b, #d332e8);
+}
+
+.bg-content {
+  background: linear-gradient(-45deg, #9356ee, #A991D4); 
+}
+
+.form_container {
+    max-width: 700px;
+}
+
+.form-label {
+    color: #2b154e;
+}
+
+.form_legend {
+    font-style: italic;
+    color: #2b154e;
+}
+
+.form_title {
+    color: #3f2369;
+}
+
+.required::after {
+    content: " *";
+    color: #790000;
+}
+
+.required_symb, .text_error {
+    color: #790000;
+}
+
+@media screen and (min-width: 576px)  {
+    
+    .pp_input {
+        width: 75%;
+    }
+}
