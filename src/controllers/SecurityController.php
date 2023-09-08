@@ -125,33 +125,34 @@ class SecurityController extends Security
                 $error['password'] = "The <em>password</em> field is required";
             }
 
-            // elseif (!User::findByEmail(['email' => $_POST['email']])) // Checking if the email doesn't exist
-            // {
-            //     $error['findByEmail'] = false;
-            //     $_SESSION['messages']['danger'][] = "No account with the entered email exists.";
-            // }
-
             /* Submitted data processing */
             if (empty($error)) {
-                // If the uploaded image is valid
-                // /** Password encryption */
-                // $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-                // /** Database processing */
-                // $data = [
-                //     'email' => $_POST['email'],
-                //     'password' => $mdp,
-                //     'nickname' => $_POST['pseudo'],
-                // ];
+                // Retrieve the user by email
+                $user = User::findByEmail(['email' => $_POST['email']]);
 
-                // User::add($data);
+                // If the user exists
+                if ($user) {
+                    // If the password is valid
+                    if (password_verify($_POST['password'], $user['password'])) // verify encrypted password
+                    {
+                        $_SESSION['user'] = $user; // We start a session for the use
 
-                /** Success message */
-                $_SESSION['messages']['success'][] = "You are logged!";
+                        $_SESSION['messages']['success'][] = "Welcome " . $user['nickname'] . "!!!"; // Welcome message
 
-                /** Redirection */
-                header("location:" . BASE);
-                exit();
+                        // Redirection home page
+                        header('location:' . BASE);
+                        exit();
+                    } else // The password isn't valid
+                    {
+                        // Failure message
+                        $_SESSION['messages']['danger'][] = "Error in the password";
+                    }
+                } else // no user was found
+                {
+                    // Failure message
+                    $_SESSION['messages']['danger'][] = "There is no existing account with the email address";
+                }
             }
         }
 
