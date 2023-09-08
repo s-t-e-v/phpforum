@@ -30,7 +30,7 @@ Check out the live demo [here](https://your-demo-link.com).
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
-![](https://geps.dev/progress/17)
+![](https://geps.dev/progress/28)
 
 - [x] 0. Minimal project setup + README first version
 - [x] 1. Database setup
