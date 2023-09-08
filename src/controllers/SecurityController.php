@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:13:49 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-08 02:07:50
+ * @Last Modified time: 2023-09-08 17:12:46
  * @Description: Manage login/signup features
  */
 
@@ -33,8 +33,7 @@ class SecurityController extends Security
             // -- Email
             if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $error['email'] = "The <em>email</em> field is required and the email entered must be valid";
-            } elseif (User::findByEmail(['email' => $_POST['email']])) // Checking if the email already exist
-            {
+            } elseif (User::findByEmail(['email' => $_POST['email']])) { // Checking if the email already exist 
                 $error['findByEmail'] = true;
                 $_SESSION['messages']['danger'][] = "An account with the entered email already exists.";
             }
@@ -51,10 +50,6 @@ class SecurityController extends Security
             // -- Pseudo
             if (empty($_POST['pseudo'])) {
                 $error['pseudo'] = "The <em>pseudo</em> pseudo filed is required";
-            } elseif (User::findByNickname(['nickname' => $_POST['pseudo']])) // Checking if the pseudo already exist
-            {
-                $error['findByNickname'] = true;
-                $_SESSION['messages']['danger'][] = "An account with the entered pseudo already exists.";
             }
 
             /* Submitted data processing */
