@@ -37,8 +37,8 @@ Check out the live demo [here](https://your-demo-link.com).
   - paying attention to constraints (can help for cascading deletion), `NULL` by default (or not), etc.
   - protect the database with password safely
 - [x] 2. User registration page and theme choice
-- [ ] 3. User login
-- [ ] 4. User logout
+- [x] 3. User login
+- [x] 4. User logout
 - [ ] 5. Topic creation form (in the home page)
 - [ ] 6. List of all topics on home page
 - [ ] 7. Topic deletion
