@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:07:32 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-07 22:31:07
+ * @Last Modified time: 2023-09-08 02:08:32
  * @Description: Signup page
  */
 ?>
@@ -12,14 +12,20 @@
 <?php include(VIEWS . '_partials/header.php'); ?>
 
 <?php
-echo "<pre style='color: white;'>";
-var_dump($_POST);
-echo "</pre>";
-echo "<br>";
-echo "<pre style='color: white;'>";
-var_dump($error);
-echo "</pre>";
+// echo "<pre style='color: white;'>";
+// var_dump($_POST);
+// echo "</pre>";
+// echo "<br>";
+// echo "<pre style='color: white;'>";
+// var_dump($error);
+// echo "</pre>";
 ?>
+<?php
+// $uid = posix_geteuid();
+// $info = posix_getpwuid($uid);
+// echo "Web server user: " . $info['name'];
+?>
+
 
 <main class="flex-grow-1 bg-main p-5">
 

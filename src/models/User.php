@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 22:47:26 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-07 23:33:35
+ * @Last Modified time: 2023-09-08 00:24:51
  * @Description: User database management
  */
 
@@ -19,7 +19,10 @@ class User extends Db
     public static function add(array $data): string
     {
         $pdo = self::getDb();
-        $request = "INSERT INTO user (email, password, nickname, picture_profil) VALUES (:email, :password, :nickname, :picture_profil)";
+        if ($data['picture_profil'])
+            $request = "INSERT INTO user (email, password, nickname, picture_profil) VALUES (:email, :password, :nickname, :picture_profil)";
+        else
+            $request = "INSERT INTO user (email, password, nickname) VALUES (:email, :password, :nickname)";
         $response = $pdo->prepare($request);
         $response->execute(self::htmlspecialchars($data));
 
@@ -27,12 +30,13 @@ class User extends Db
     }
 
     /**
-     * Find the user corresponding to the email
+     * Find the user corresponding to the email.
      * 
      * @param array $email
-     * @return array the row corresponding to the requested user
+     * @return mixed the row (associative array) corresponding to the requested user or 
+     * FALSE if nothing is found.
      */
-    public static function findByEmail(array $email): array
+    public static function findByEmail(array $email): mixed
     {
         $request = "SELECT * FROM user WHERE email=:email";
         $response = self::getDb()->prepare($request);
@@ -45,9 +49,10 @@ class User extends Db
      * Find the user corresponding to the nickname
      * 
      * @param array $nickname
-     * @return array the row corresponding to the requested user
+     * @return mixed the row (associative array) corresponding to the requested user or 
+     * FALSE if nothing is found.
      */
-    public static function findByNickname(array $nickname): array
+    public static function findByNickname(array $nickname): mixed
     {
         $request = "SELECT * FROM user WHERE nickname=:nickname";
         $response = self::getDb()->prepare($request);
