@@ -303,7 +303,8 @@ Here are the main routes:
 
 **With a webhost**
 
-**/!\\ NB:** the `.env` file **MUST NOT** be accessible to the public. It contains sensitive information like database credentials.
+- **/!\\ NB \#1:** the `.env` file **MUST NOT** be accessible to the public. It contains sensitive information like database credentials.
+- **/!\\ NB \#2:** the `public/upload` folder **MUST BE** be accessible to web server user with read & write rights. Otherwise, the profil picture upload won't work.
 
 - Send the files with filezilla for example
 - Integration
