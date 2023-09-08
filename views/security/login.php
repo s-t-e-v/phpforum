@@ -20,12 +20,12 @@
         <!-- Sign Up form -->
         <form method="post">
             <div class="py-2">
-                <label for="email" class="form-label">Email address</label>
+                <label for="email" class="form-label required">Email address</label>
                 <input type="text" class="form-control rounded mb-1" name="email" id="email" value="<?= $_POST["email"] ?? ""; ?>" aria-describedby="emailHelp">
                 <small class="text_error"><?= $error['email'] ?? ""; ?></small>
             </div>
             <div class="py-2">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label required">Password</label>
                 <input type="password" class="form-control rounded mb-1" name="password" id="password">
                 <small class="text_error"><?= $error['password'] ?? ""; ?></small>
             </div>

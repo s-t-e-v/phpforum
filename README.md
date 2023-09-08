@@ -331,7 +331,7 @@ Share any challenges you faced and how you overcame them during development.
 
 <!-- Mention any planned improvements or features you'd like to add in the future. -->
 
-- add pagination for topics display and messages as well
+- adding a pages interface for topics display and messages as well
 - Refactor the project with symphony or laravel
 
 ## Feedback and Impact
