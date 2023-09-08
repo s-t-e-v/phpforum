@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:13:49 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-08 17:12:46
+ * @Last Modified time: 2023-09-08 17:34:52
  * @Description: Manage login/signup features
  */
 
@@ -94,5 +94,85 @@ class SecurityController extends Security
 
         // Page load
         include(VIEWS . 'security/signup.php');
+    }
+
+
+    /**
+     * Log the user in.
+     */
+    public static function login()
+    {
+        // echo "<pre>";
+        // var_dump($_POST);
+        // echo "</pre>";
+
+        //echo "<br>SIGN UP<br>!";
+
+        if (!empty($_POST)) { // < Data submitted > 
+
+
+            //echo "<h1>Data submtitted !</h1>";
+
+            $error = []; // stores error messages
+
+            /* Error raising */
+            // -- Email
+            if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $error['email'] = "The <em>email</em> field is required and the email entered must be valid";
+            }
+            // -- Password
+            if (empty($_POST['password'])) {
+                $error['password'] = "The <em>password</em> field is required";
+            }
+
+            /* Submitted data processing */
+            if (empty($error)) {
+
+                // Retrieve the user by email
+                $user = User::findByEmail(['email' => $_POST['email']]);
+
+                // If the user exists
+                if ($user) {
+                    // If the password is valid
+                    if (password_verify($_POST['password'], $user['password'])) // verify encrypted password
+                    {
+                        $_SESSION['user'] = $user; // We start a session for the use
+
+                        $_SESSION['messages']['success'][] = "Welcome " . $user['nickname'] . "!!!"; // Welcome message
+
+                        // Redirection home page
+                        header('location:' . BASE);
+                        exit();
+                    } else // The password isn't valid
+                    {
+                        // Failure message
+                        $_SESSION['messages']['danger'][] = "Error in the password";
+                    }
+                } else // no user was found
+                {
+                    // Failure message
+                    $_SESSION['messages']['danger'][] = "There is no existing account with the email address";
+                }
+            }
+        }
+
+        // Page load
+        include(VIEWS . 'security/login.php');
+    }
+
+    /**
+     * Log the user out.
+     */
+    public static  function logout()
+    {
+        // We clear the user session
+        unset($_SESSION['user']);
+
+        // Message logout
+        $_SESSION['messages']['info'][] = "See you soon !";
+
+        // Redirection home page
+        header("location:" . BASE);
+        exit();
     }
 }

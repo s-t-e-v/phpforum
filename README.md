@@ -30,15 +30,15 @@ Check out the live demo [here](https://your-demo-link.com).
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
-![](https://geps.dev/progress/17)
+![](https://geps.dev/progress/28)
 
 - [x] 0. Minimal project setup + README first version
 - [x] 1. Database setup
   - paying attention to constraints (can help for cascading deletion), `NULL` by default (or not), etc.
   - protect the database with password safely
 - [x] 2. User registration page and theme choice
-- [ ] 3. User login
-- [ ] 4. User logout
+- [x] 3. User login
+- [x] 4. User logout
 - [ ] 5. Topic creation form (in the home page)
 - [ ] 6. List of all topics on home page
 - [ ] 7. Topic deletion
