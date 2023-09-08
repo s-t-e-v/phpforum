@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:13:49 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-08 02:07:50
+ * @Last Modified time: 2023-09-08 16:55:13
  * @Description: Manage login/signup features
  */
 
@@ -99,5 +99,68 @@ class SecurityController extends Security
 
         // Page load
         include(VIEWS . 'security/signup.php');
+    }
+
+
+    /**
+     * Perfom the user signup.
+     */
+    public static function login()
+    {
+        // echo "<pre>";
+        // var_dump($_POST);
+        // echo "</pre>";
+
+        //echo "<br>SIGN UP<br>!";
+
+        if (!empty($_POST)) { // < Data submitted > 
+
+
+            //echo "<h1>Data submtitted !</h1>";
+
+            $error = []; // stores error messages
+
+            /* Error raising */
+            // -- Email
+            if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $error['email'] = "The <em>email</em> field is required and the email entered must be valid";
+            }
+            // -- Password
+            if (empty($_POST['password'])) {
+                $error['password'] = "The <em>password</em> field is required";
+            }
+
+            // elseif (!User::findByEmail(['email' => $_POST['email']])) // Checking if the email doesn't exist
+            // {
+            //     $error['findByEmail'] = false;
+            //     $_SESSION['messages']['danger'][] = "No account with the entered email exists.";
+            // }
+
+            /* Submitted data processing */
+            if (empty($error)) {
+                // If the uploaded image is valid
+                // /** Password encryption */
+                // $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+                // /** Database processing */
+                // $data = [
+                //     'email' => $_POST['email'],
+                //     'password' => $mdp,
+                //     'nickname' => $_POST['pseudo'],
+                // ];
+
+                // User::add($data);
+
+                /** Success message */
+                $_SESSION['messages']['success'][] = "You are logged!";
+
+                /** Redirection */
+                header("location:" . BASE);
+                exit();
+            }
+        }
+
+        // Page load
+        include(VIEWS . 'security/login.php');
     }
 }

@@ -59,6 +59,7 @@ $routes = [
     ''                  => ['AppController', 'index'],
     '/'                 => ['AppController', 'index'],
     '/signup'           => ['SecurityController', 'signup'],
+    '/login'            => ['SecurityController', 'login'],
 
 
 
