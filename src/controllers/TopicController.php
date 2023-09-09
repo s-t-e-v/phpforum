@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-09 14:50:14 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-09 17:27:09
+ * @Last Modified time: 2023-09-09 18:09:47
  * @Description: Manages topics, including creating and deleting topics.
  */
 
@@ -18,18 +18,26 @@ class TopicController
         $_SESSION['error'] = [];
 
         /** Error raising */
-        if (empty($_POST['topic'])) {
-            $_SESSION['error']['topic'] = "The <em>topic</em> field is required.";
+        if (empty($_POST['title'])) {
+            $_SESSION['error']['title'] = "The <em>topic</em> field is required.";
         }
 
         /* Submitted data processing */
         if (empty($_SESSION['error'])) {
+            //* removing every errors saved of the current session.
+            unset($_SESSION['error']);
+
+
             $data = [
                 'title' => $_POST['title'],
                 'id_user' => $_SESSION['user']['id'],
                 'id_forum' => $_SESSION['default_forum']['id_forum'],
                 'created_at' => date_format(new DateTime(), 'Y-m-d H:i:s'),
             ];
+
+            // echo "<pre>";
+            // var_dump($data);
+            // echo "</pre>";
 
             Topic::add($data);
 
@@ -40,5 +48,8 @@ class TopicController
             header("location:" . BASE);
             exit();
         }
+
+        //* removing every errors saved of the current session.
+        unset($_SESSION['error']);
     }
 }

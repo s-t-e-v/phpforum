@@ -4,12 +4,12 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:35:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-09 15:25:43
+ * @Last Modified time: 2023-09-09 18:00:40
  * @Description: Home page.
  */
 ?>
 
-<?php $error = $_SESSION['error']; ?>
+<?php !isset($_SESSION['error']) ?: $error = $_SESSION['error']; ?>
 
 <?php include(VIEWS . '_partials/header.php'); ?>
 
@@ -21,9 +21,9 @@
             <h2 class="text-center text-light">Create a topic</h2>
             <form method="post" action="" class="topic_form mx-auto">
                 <div class="form-group d-flex align-items-md-center flex-column flex-md-row">
-                    <label for="topic" class="text-light mb-2 mb-md-0 fs-5">Topic name</label>
+                    <label for="title" class="text-light mb-2 mb-md-0 fs-5">Topic name</label>
                     <div class="flex-grow-1 mb-3 mb-md-0 ms-md-2">
-                        <input type="text" class="form-control rounded fs-5" name="topic" id="topic" value="<?= $_POST["topic"] ?? ""; ?>">
+                        <input type="text" class="form-control rounded fs-5" name="title" id="title" value="<?= $_POST["topic"] ?? ""; ?>">
                         <small class="text_error"><?= $error['topic'] ?? ""; ?></small>
                     </div>
                     <input type="submit" class="btn btn-info px-5 rounded fs-5" value="Create">
