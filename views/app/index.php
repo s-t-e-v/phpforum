@@ -3,11 +3,13 @@
  * @Author: Steven Bandaogo 
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:35:07 
- * @Last Modified by:   undefined 
- * @Last Modified time: 2023-09-04 19:35:07
+ * @Last Modified by: Steven Bandaogo
+ * @Last Modified time: 2023-09-09 15:25:43
  * @Description: Home page.
  */
 ?>
+
+<?php $error = $_SESSION['error']; ?>
 
 <?php include(VIEWS . '_partials/header.php'); ?>
 
