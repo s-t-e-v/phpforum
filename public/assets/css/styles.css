@@ -37,6 +37,10 @@ body {
     width: 100%;
 }
 
+.topic_form_label {
+    height: 44px;
+}
+
 @media screen and (min-width: 576px)  {
     
     .pp_input {
