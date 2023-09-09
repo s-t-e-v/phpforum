@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:13:49 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-08 17:34:52
+ * @Last Modified time: 2023-09-09 16:54:27
  * @Description: Manage login/signup features
  */
 
@@ -69,6 +69,7 @@ class SecurityController extends Security
                     $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
                     /** Database processing */
+                    // -- User
                     $data = [
                         'email' => $_POST['email'],
                         'password' => $mdp,
@@ -78,6 +79,14 @@ class SecurityController extends Security
                         $data['picture_profil'] = $filename;
 
                     User::add($data);
+                    // -- Default forum
+                    $user =  User::findByEmail(['email' => $_POST['email']]);
+                    $data = [
+                        'id_user' => $user['id'],
+                    ];
+                    if (isset($_GET['id_forum']))
+                        $data['id_forum'] = $_GET['id_forum'];
+                    Default_forum::update_db($data);
 
                     /** Success message */
                     $_SESSION['messages']['success'][] = "Congratulations ! You are registered in our forum. Now you can log in!";

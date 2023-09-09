@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 22:47:26 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-08 17:09:30
+ * @Last Modified time: 2023-09-09 16:25:33
  * @Description: User database management
  */
 
@@ -19,7 +19,7 @@ class User extends Db
     public static function add(array $data): string
     {
         $pdo = self::getDb();
-        if ($data['picture_profil'])
+        if (isset($data['picture_profil']))
             $request = "INSERT INTO user (email, password, nickname, picture_profil) VALUES (:email, :password, :nickname, :picture_profil)";
         else
             $request = "INSERT INTO user (email, password, nickname) VALUES (:email, :password, :nickname)";
