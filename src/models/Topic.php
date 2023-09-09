@@ -22,4 +22,13 @@ class Topic extends Db
 
         return $pdo->lastInsertId();
     }
+
+    public static function findAll()
+    {
+        $request = "SELECT topic.*, user.nickname, user.picture_profil FROM topic INNER JOIN user ON topic.id_user = user.id ORDER BY topic.created_at DESC";
+        $response = self::getDb()->prepare($request);
+        $response->execute();
+
+        return $response->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

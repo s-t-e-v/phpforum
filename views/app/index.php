@@ -35,6 +35,22 @@
             <p class="h2 text-center text-light">Login to create a new topic</p>
         <?php endif; ?>
 
+        <!-- Topics listing -->
+        <?php foreach ($topics as $topic) : ?>
+            <div class="mt-2">
+                <a href="<?= BASE . 'topic/chat?id=' . $topic['id']; ?>" class="btn btn-primary rounded text-center text-light p-2 mb-2 w-100">
+                    <img src="<?= UPLOAD . $topic['picture_profil']; ?>" alt="Photo de profil" class="rounded-circle profile_picture-75">
+                    <h3><?= $topic['title']; ?></h3>
+                    <p>by: <?= $topic['nickname']; ?></p>
+                    <p><?= date('d/m/Y H:i:s', strtotime($topic['created_at'])); ?></p>
+                </a>
+
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['id'] === $topic['id_user']) : ?>
+                    <a onclick="return confirm('Are you sure to delete this topic?')" href="<?= BASE . 'topic/delete?id=' . $topic['id']; ?>" class="btn btn-danger deleteTopic">Delete</a>
+                <?php endif; ?>
+
+            </div>
+        <?php endforeach; ?>
     </div>
 </main>
 
