@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 13:43:20 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-09 15:10:55
+ * @Last Modified time: 2023-09-09 17:20:55
  * @Description: AppController is a class containing the core methods to manage the app.
  */
 
