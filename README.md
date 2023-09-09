@@ -30,7 +30,7 @@ Check out the live demo [here](https://your-demo-link.com).
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
-![](https://geps.dev/progress/28)
+![](https://geps.dev/progress/33)
 
 - [x] 0. Minimal project setup + README first version
 - [x] 1. Database setup
@@ -39,7 +39,7 @@ Check out the live demo [here](https://your-demo-link.com).
 - [x] 2. User registration page and theme choice
 - [x] 3. User login
 - [x] 4. User logout
-- [ ] 5. Topic creation form (in the home page)
+- [x] 5. Topic creation form (in the home page)
 - [ ] 6. List of all topics on home page
 - [ ] 7. Topic deletion
 - [ ] 8. Chat page + message deletion
@@ -331,7 +331,7 @@ Share any challenges you faced and how you overcame them during development.
 
 <!-- Mention any planned improvements or features you'd like to add in the future. -->
 
-- adding a pages interface for topics display and messages as well
+- add pagination for topics display and messages as well
 - Refactor the project with symphony or laravel
 
 ## Feedback and Impact

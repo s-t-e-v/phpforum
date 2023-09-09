@@ -32,6 +32,15 @@ body {
     color: #790000;
 }
 
+.topic_form {
+    max-width: 1000px;
+    width: 100%;
+}
+
+.topic_form_label {
+    height: 44px;
+}
+
 @media screen and (min-width: 576px)  {
     
     .pp_input {

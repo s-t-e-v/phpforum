@@ -42,7 +42,8 @@ class Db
     protected static function htmlspecialchars(array $data): array
     {
         foreach ($data as $key => $value) {
-            $data[$key] = htmlspecialchars($value);
+            if ($value)
+                $data[$key] = htmlspecialchars($value);
             //* we transform the chevrons into an html entity that neutralizes the script or style tags that may be injected
             //* we talk about neutralizing css and xss vulnerabilities
         }

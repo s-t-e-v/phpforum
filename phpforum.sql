@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS topic(
     title VARCHAR(255) NOT NULL,
     created_at DATETIME NOT NULL,
     id_user INT NOT NULL,
-    id_forum INT NOT NULL,
+    id_forum INT,
     CONSTRAINT fk_id_user_topic
     FOREIGN KEY (id_user)
         REFERENCES user(id)
