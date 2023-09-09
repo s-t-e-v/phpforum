@@ -17,14 +17,14 @@
         <!-- Topic creation form -->
         <?php if (isset($_SESSION['user'])) : ?>
             <h2 class="text-center text-light">Create a topic</h2>
-            <form method="post" action="">
-                <div class="form-group">
-                    <div class="input-group">
-                        <label for="topic" class="input-group-text px-5 fs-5 form-label">Topic name</label>
-                        <input type="text" class="form-control rounded w-50 fs-5" name="topic" id="topic" value="<?= $_POST["topic"] ?? ""; ?>" aria-describedby="emailHelp">
-                        <input type="submit" class="mt-4 btn btn-info px-5 rounded fs-5" value="Create">
+            <form method="post" action="" class="topic_form mx-auto">
+                <div class="form-group d-flex align-items-md-center flex-column flex-md-row">
+                    <label for="topic" class="text-light mb-2 mb-md-0 fs-5">Topic name</label>
+                    <div class="flex-grow-1 mb-3 mb-md-0 ms-md-2">
+                        <input type="text" class="form-control rounded fs-5" name="topic" id="topic" value="<?= $_POST["topic"] ?? ""; ?>">
+                        <small class="text_error"><?= $error['topic'] ?? ""; ?></small>
                     </div>
-                    <small class="text_error"><?= $error['topic'] ?? ""; ?></small>
+                    <input type="submit" class="btn btn-info px-5 rounded fs-5" value="Create">
                 </div>
             </form>
         <?php else : ?>
