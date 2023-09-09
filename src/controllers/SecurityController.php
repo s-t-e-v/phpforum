@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:13:49 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-09 16:54:27
+ * @Last Modified time: 2023-09-09 17:35:51
  * @Description: Manage login/signup features
  */
 
@@ -145,7 +145,10 @@ class SecurityController extends Security
                     // If the password is valid
                     if (password_verify($_POST['password'], $user['password'])) // verify encrypted password
                     {
-                        $_SESSION['user'] = $user; // We start a session for the use
+                        $_SESSION['user'] = $user; // We start a session for the user
+
+                        $default_forum = Default_forum::findByUserId(['id' => $user['id']]);
+                        $_SESSION['default_forum'] = $default_forum; // We start a session for the default forum of the user
 
                         $_SESSION['messages']['success'][] = "Welcome " . $user['nickname'] . "!!!"; // Welcome message
 
@@ -176,6 +179,7 @@ class SecurityController extends Security
     {
         // We clear the user session
         unset($_SESSION['user']);
+        unset($_SESSION['default_forum']);
 
         // Message logout
         $_SESSION['messages']['info'][] = "See you soon !";
