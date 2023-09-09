@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-09 14:50:14 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-09 15:21:15
+ * @Last Modified time: 2023-09-09 17:27:09
  * @Description: Manages topics, including creating and deleting topics.
  */
 
@@ -27,6 +27,7 @@ class TopicController
             $data = [
                 'title' => $_POST['title'],
                 'id_user' => $_SESSION['user']['id'],
+                'id_forum' => $_SESSION['default_forum']['id_forum'],
                 'created_at' => date_format(new DateTime(), 'Y-m-d H:i:s'),
             ];
 
