@@ -24,7 +24,7 @@
                     <label for="title" class="text-light mb-2 mb-md-0 fs-5">Topic name</label>
                     <div class="flex-grow-1 mb-3 mb-md-0 ms-md-2">
                         <input type="text" class="form-control rounded fs-5" name="title" id="title" value="<?= $_POST["topic"] ?? ""; ?>">
-                        <small class="text_error"><?= $error['topic'] ?? ""; ?></small>
+                        <small class="text_error"><?= $error['title'] ?? ""; ?></small>
                     </div>
                     <input type="submit" class="btn btn-info px-5 rounded fs-5" value="Create">
                 </div>

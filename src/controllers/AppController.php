@@ -15,6 +15,9 @@ class AppController
      */
     public static function index()
     {
+        //* removing every errors saved of the current session.
+        unset($_SESSION['error']);
+
         /** topic creation */
         if (!empty($_POST)) {
             // echo "<pre style='color: white;'>";

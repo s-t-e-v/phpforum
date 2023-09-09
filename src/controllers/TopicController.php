@@ -15,7 +15,6 @@ class TopicController
      */
     public static function create()
     {
-        $_SESSION['error'] = [];
 
         /** Error raising */
         if (empty($_POST['title'])) {
@@ -24,10 +23,6 @@ class TopicController
 
         /* Submitted data processing */
         if (empty($_SESSION['error'])) {
-            //* removing every errors saved of the current session.
-            unset($_SESSION['error']);
-
-
             $data = [
                 'title' => $_POST['title'],
                 'id_user' => $_SESSION['user']['id'],
@@ -48,8 +43,5 @@ class TopicController
             header("location:" . BASE);
             exit();
         }
-
-        //* removing every errors saved of the current session.
-        unset($_SESSION['error']);
     }
 }
