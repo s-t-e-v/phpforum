@@ -1,3 +1,5 @@
+/* Backgrounds */
+
 body {
   background: linear-gradient(45deg, #2d194b, #d332e8);
 }
@@ -5,6 +7,8 @@ body {
 .bg-content {
   background: linear-gradient(-45deg, #9356ee, #A991D4); 
 }
+
+/* General style form */
 
 .form_container {
     max-width: 700px;
@@ -31,6 +35,8 @@ body {
 .required_symb, .text_error {
     color: #790000;
 }
+
+/* Topic creation form style */
 
 .topic_form {
     max-width: 1000px;
