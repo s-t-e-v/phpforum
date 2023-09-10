@@ -9,5 +9,5 @@
  */
 
 if (!session_status()) session_start();
-$_SESSION['messages']['danger'][] = "La page demandée n'existe pas.";
+$_SESSION['messages']['danger'][] = "The requested page doesn't exist";
 AppController::index();

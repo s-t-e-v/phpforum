@@ -25,8 +25,10 @@ class AppController
             // echo "</pre>";
             TopicController::create();
         }
-
         /** topics listing */
+        $topics = Topic::findAll(); // Retrieve topics
+
+
         include(VIEWS . 'app/index.php');
     }
 }
