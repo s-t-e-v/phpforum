@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS user(
     nickname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    picture_profil VARCHAR(255) DEFAULT 'default_pp.png' NOT NULL
+    picture_profil VARCHAR(255)
 ) ENGINE=INNODB;
 
 -- forum table
