@@ -23,7 +23,14 @@ class Topic extends Db
         return $pdo->lastInsertId();
     }
 
-    public static function findAll()
+    /**
+     * Get the list of all topics. Each topics data are combined with
+     *  their corresponding creator id and nickname.
+     * 
+     * @return mixed: associative array if no failure. If there is no rows, an
+     * empty array is returned. If there is failure, False is returned.
+     */
+    public static function findAll(): mixed
     {
         $request = "SELECT topic.*, user.nickname, user.picture_profil FROM topic INNER JOIN user ON topic.id_user = user.id ORDER BY topic.created_at DESC";
         $response = self::getDb()->prepare($request);
