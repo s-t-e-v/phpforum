@@ -41,6 +41,21 @@ body {
     height: 44px;
 }
 
+/* Profile pictures */
+.profile_picture-50 {
+    width: 50px;
+    height: 50px;
+
+    /* object-fit: cover; /* scale the image to cover the element */
+}
+
+.profile_picture-75 {
+    width: 75px;
+    height: 75px;
+
+    /* o0bject-fit: cover; /* scale the image to cover the element */
+}
+
 @media screen and (min-width: 576px)  {
     
     .pp_input {
