@@ -46,7 +46,7 @@
                 </a>
 
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['id'] === $topic['id_user']) : ?>
-                    <a onclick="return confirm('Are you sure to delete this topic?')" href="<?= BASE . 'topic/delete?id=' . $topic['id']; ?>" class="btn btn-danger deleteTopic">Delete</a>
+                    <a onclick="return confirm('Are you sure to delete this topic?')" href="<?= BASE . 'topic/delete?id=' . $topic['id']; ?>" class="btn btn-danger rounded">Delete</a>
                 <?php endif; ?>
 
             </div>
