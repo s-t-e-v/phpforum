@@ -42,7 +42,7 @@ Check out the live demo [here](https://your-demo-link.com).
 - [x] 5. Topic creation form (in the home page)
 - [x] 6. List of all topics on home page
 - [x] 7. Topic deletion
-- [ ] 8. Chat page + message deletion
+- [ ] 8. Chat page ~~+ message deletion~~
 - [ ] 9. Forum creation page
 - [ ] 10. List of all forum on home page (with the more dropdown button)
 - [ ] 11. Forum deletion
@@ -159,10 +159,10 @@ Check out the live demo [here](https://your-demo-link.com).
   - change default forum (radio button on the names with default in green. When a button is cheked, it is blue with a check symbol inside)
   - delete a forum (delete button along the name)
 
-### Topics, messages and forum deletion
+### Topics, ~~messages~~ and forum deletion
 
 - Topics: a button bellow the topic enable the creator of it to delete it. Topics can also be deleted via the list of topics created on the user profile. Confirmation before deletion.
-- Messages: a button bellow the message enable its author to delete it. No confirmation before deletion.
+- ~~Messages: a button bellow the message enable its author to delete it. No confirmation before deletion.~~
 - Forums: a small trash button along the forum name in the list of created forum enables the creator to delete its forum. Confirmation before deletion.
 
 ## Screenshots
