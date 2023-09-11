@@ -26,7 +26,7 @@ The forum provides a platform for users to engage in meaningful discussions, see
 **Demo:**
 Check out the live demo [here](https://your-demo-link.com).
 
-## Development planning ![](https://geps.dev/progress/50)
+## Development planning ![](https://geps.dev/progress/47)
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
