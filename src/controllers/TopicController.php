@@ -44,4 +44,22 @@ class TopicController
             exit();
         }
     }
+
+    /**
+     * Deletes a topic
+     */
+    public static function delete()
+    {
+        if (isset($_GET['id'])) {
+            /** Topic deletion */
+            Topic::delete(['id' => $_GET['id']]);
+
+            /** Success message */
+            $_SESSION['messages']['success'][] = "Your topic has been successfully deleted!";
+        }
+
+        /** Redirection */
+        header("location:" . BASE);
+        exit();
+    }
 }
