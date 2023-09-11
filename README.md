@@ -26,12 +26,15 @@ The forum provides a platform for users to engage in meaningful discussions, see
 **Demo:**
 Check out the live demo [here](https://your-demo-link.com).
 
-## Development planning
+## Development planning ![](https://geps.dev/progress/50)
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
-![](https://geps.dev/progress/50)
 
+
+**Core**
+
+![](https://geps.dev/progress/90)
 - [x] 0. Minimal project setup + README first version
 - [x] 1. Database setup
   - paying attention to constraints (can help for cascading deletion), `NULL` by default (or not), etc.
@@ -43,18 +46,23 @@ Check out the live demo [here](https://your-demo-link.com).
 - [x] 6. List of all topics on home page
 - [x] 7. Topic deletion
 - [x] 8. Chat page ~~+ message deletion~~
-- [ ] 9. Forum creation page
-- [ ] 10. List of all forum on home page (with the more dropdown button)
-- [ ] 11. Forum deletion
-- [ ] 12. User profil
-- [ ] 13. User profil management
+- [ ] 9. Robust error handling (GET parameters URL checks and handling, etc.)
+
+**Extra**
+
+![](https://geps.dev/progress/0)
+- [ ] 10. Forum creation page
+- [ ] 11. List of all forum on home page (with the more dropdown button)
+- [ ] 12. Forum deletion
+- [ ] 13. User profil
+- [ ] 14. User profil management
   - [ ] Topic deletion
   - [ ] Forum deletion
   - [ ] default forum
-- [ ] 14. Make default forum loaded when the user is connected
-- [ ] 15. Limit account creations from the same IP address (and chose the limit)
-- [ ] 16. Choose the limit of users, forums and messages
-- [ ] 17. Update README
+- [ ] 15. Make default forum loaded when the user is connected
+- [ ] 16. Limit account creations from the same IP address (and chose the limit)
+- [ ] 17. Choose the limit of users, forums and messages
+- [ ] 18. Update README
 
 ## Dependancies
 
