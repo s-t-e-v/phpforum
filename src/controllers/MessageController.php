@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-11 21:00:29 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 22:07:20
+ * @Last Modified time: 2023-09-11 22:17:15
  * @Description: Manages the creation of messages.
  */
 
@@ -17,9 +17,12 @@ class MessageController
      */
     public static function add_message()
     {
+        /** Error raising */
         if (empty($_POST['message']))
             $_SESSION['error'] = "The field <em>answer</em> is required.";
 
+
+        /* Submitted data processing */
         if (empty($_SESSION['error'])) {
             $data = [
                 'content' => $_POST['message'],
