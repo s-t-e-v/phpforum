@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-09 15:02:00 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 17:33:08
+ * @Last Modified time: 2023-09-11 23:27:04
  * @Description: Topic database management
  */
 
@@ -12,8 +12,11 @@ class Topic extends Db
 {
     /**
      * Add the topic to the database
+     * 
+     * @param array $data: title, id_user, id_forum and created_at (associative array)
+     * @return string last insert id message
      */
-    public static function add($data)
+    public static function add($data): string
     {
         $pdo = self::getDb();
         $request = "INSERT INTO topic (title, id_user, id_forum, created_at) VALUES (:title, :id_user, :id_forum, :created_at)";
@@ -40,8 +43,9 @@ class Topic extends Db
     }
 
     /**
-     * Get the requested topic
+     * Get the requested topic.
      * 
+     * @param array $id: topic id (associative array)
      * @return mixed: associative array if no failure. If there is no rows, an
      * empty array is returned. If there is failure, False is returned.
      */
@@ -59,6 +63,7 @@ class Topic extends Db
      * When a topic is deleted, all the related messages are deleted: 'message' 
      * and 'topic' are linked by a foreign key
      * 
+     * @param array $id: topic id (associative array)
      * @return mixed: PDO statement if success, False if failure.
      */
     public static function delete($id): mixed

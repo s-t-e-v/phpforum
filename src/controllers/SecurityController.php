@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:13:49 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-09 17:35:51
+ * @Last Modified time: 2023-09-11 23:36:53
  * @Description: Manage login/signup features
  */
 
@@ -84,7 +84,7 @@ class SecurityController extends Security
                     $data = [
                         'id_user' => $user['id'],
                     ];
-                    if (isset($_GET['id_forum']))
+                    if (isset($_GET['id']) && isset($_GET['id_forum']))
                         $data['id_forum'] = $_GET['id_forum'];
                     Default_forum::update_db($data);
 

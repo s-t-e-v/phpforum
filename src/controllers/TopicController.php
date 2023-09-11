@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-09 14:50:14 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 23:12:29
+ * @Last Modified time: 2023-09-11 23:36:51
  * @Description: Manages topics, including creating and deleting topics.
  */
 
@@ -50,7 +50,7 @@ class TopicController
      */
     public static function delete()
     {
-        if (isset($_GET['id'])) {
+        if (isset($_GET['id']) && isset($_GET['id'])) {
             /** Topic deletion */
             Topic::delete(['id' => $_GET['id']]);
 
@@ -73,13 +73,15 @@ class TopicController
         //* removing every errors saved of the current session.
         unset($_SESSION['error']);
 
-        if (isset($_GET['id'])) {
-            /* Submitted data processing */
+        //* if topic has been correctly transmitted
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+            /** Message sending */
             if (!empty($_POST)) {
                 MessageController::add_message();
             }
-
+            /** Get topic information */
             $topic = Topic::findById(['id' => $_GET['id']]);
+            /** Messages listing */
             $messages = Message::findByTopic(['id_topic' => $_GET['id']]);
 
             include(VIEWS . "app/chat.php");
