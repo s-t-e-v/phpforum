@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 22:47:26 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-09 16:25:33
+ * @Last Modified time: 2023-09-11 23:29:25
  * @Description: User database management
  */
 
@@ -13,7 +13,7 @@ class User extends Db
     /**
      * Add the new user to the database
      * 
-     * @param array $data
+     * @param array $data: email, password, nickname and picture_profile (associative array)
      * @return string last insert id message
      */
     public static function add(array $data): string
@@ -32,7 +32,7 @@ class User extends Db
     /**
      * Find the user corresponding to the email.
      * 
-     * @param array $email
+     * @param array $email (associative array)
      * @return mixed the row (associative array) corresponding to the requested user or 
      * FALSE if nothing is found.
      */

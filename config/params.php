@@ -62,6 +62,7 @@ $routes = [
     '/login'            => ['SecurityController', 'login'],
     '/logout'           => ['SecurityController', 'logout'],
     '/topic/delete'     => ['TopicController', 'delete'],
+    '/topic/chat'       => ['TopicController', 'chat'],
 
 
 
