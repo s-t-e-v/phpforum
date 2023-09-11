@@ -30,7 +30,7 @@ Check out the live demo [here](https://your-demo-link.com).
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
-![](https://geps.dev/progress/44)
+![](https://geps.dev/progress/50)
 
 - [x] 0. Minimal project setup + README first version
 - [x] 1. Database setup
@@ -42,7 +42,7 @@ Check out the live demo [here](https://your-demo-link.com).
 - [x] 5. Topic creation form (in the home page)
 - [x] 6. List of all topics on home page
 - [x] 7. Topic deletion
-- [ ] 8. Chat page ~~+ message deletion~~
+- [x] 8. Chat page ~~+ message deletion~~
 - [ ] 9. Forum creation page
 - [ ] 10. List of all forum on home page (with the more dropdown button)
 - [ ] 11. Forum deletion
