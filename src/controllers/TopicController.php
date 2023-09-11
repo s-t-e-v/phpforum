@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-09 14:50:14 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 17:34:02
+ * @Last Modified time: 2023-09-11 22:03:35
  * @Description: Manages topics, including creating and deleting topics.
  */
 
@@ -65,7 +65,14 @@ class TopicController
 
     public static function chat()
     {
+        //* removing every errors saved of the current session.
+        unset($_SESSION['error']);
+
         if (isset($_GET['id'])) {
+            /* Submitted data processing */
+            if (!empty($_POST)) {
+                MessageController::add_message();
+            }
 
             $topic = Topic::findById(['id' => $_GET['id']]);
 
