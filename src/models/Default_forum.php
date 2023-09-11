@@ -34,7 +34,7 @@ class Default_forum extends Db
         $response = $pdo->prepare($request);
         $response->execute(self::htmlspecialchars($data));
 
-        return $pdo->lastInsertId();
+        return $pdo->lastInsertId(); // TODO: This or just return responses?
     }
 
     /**

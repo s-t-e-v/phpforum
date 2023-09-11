@@ -38,4 +38,22 @@ class Topic extends Db
 
         return $response->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Deletes the requested forum.
+     * When a topic is deleted, all the related messages are deleted: 'message' 
+     * and 'topic' are linked by a foreign key
+     * 
+     * @return mixed: PDO statement if success, False if failure.
+     */
+    public static function delete($id): mixed
+    {
+        $pdo = self::getDb();
+
+        $request = "DELETE FROM topic WHERE id = :id";
+        $response = $pdo->prepare($request);
+        $response->execute(self::htmlspecialchars($id));
+
+        return $response;
+    }
 }
