@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-11 17:07:38 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 22:53:37
+ * @Last Modified time: 2023-09-11 23:16:34
  * @Description: Chat page
  */
 ?>
@@ -36,9 +36,11 @@
                 <form method="post">
                     <label for="message" class="form-label text-light">Answer</label>
                     <?php if (isset($_SESSION['user'])) : ?>
-                        <textarea name="message" id="message" cols="30" rows="5" class="form-control rounded mb-1" placeholder="Type your message here"></textarea>
-                        <small class="text_error"><?= $error['message'] ?? ""; ?></small>
-                        <button type="submit" class="mt-3 btn btn-info rounded">Send</button>
+                        <div class="pb-3">
+                            <textarea name="message" id="message" cols="30" rows="5" class="form-control rounded mb-1" placeholder="Type your message here"></textarea>
+                            <small class="text_error"><?= $error['message'] ?? ""; ?></small>
+                        </div>
+                        <button type="submit" class="btn btn-info rounded">Send</button>
                     <?php else : ?>
                         <p class="text-center text-light"><a href="<?= BASE . 'login'; ?>" class="text-light btn btn-primary rounded">Login to answer</a></p>
                     <?php endif; ?>
