@@ -40,7 +40,9 @@ class Topic extends Db
     }
 
     /**
-     * Deletes the requested forum
+     * Deletes the requested forum.
+     * When a topic is deleted, all the related messages are deleted: 'message' 
+     * and 'topic' are linked by a foreign key
      * 
      * @return mixed: PDO statement if success, False if failure.
      */
@@ -48,7 +50,7 @@ class Topic extends Db
     {
         $pdo = self::getDb();
 
-        $request = "DELETE FROM topic WHERE id = :id"; // When a topic is deleted, all the related messages are deleted: 'message' and 'topic' are linked by a foreign key
+        $request = "DELETE FROM topic WHERE id = :id";
         $response = $pdo->prepare($request);
         $response->execute(self::htmlspecialchars($id));
 
