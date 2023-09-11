@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-11 21:00:29 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 22:17:15
+ * @Last Modified time: 2023-09-11 23:10:11
  * @Description: Manages the creation of messages.
  */
 
@@ -19,7 +19,7 @@ class MessageController
     {
         /** Error raising */
         if (empty($_POST['message']))
-            $_SESSION['error'] = "The field <em>answer</em> is required.";
+            $_SESSION['error']['message'] = "The field <em>answer</em> is required.";
 
 
         /* Submitted data processing */
@@ -32,10 +32,11 @@ class MessageController
             ];
 
             Message::add($data);
-        }
 
-        // Chat page redirection
-        header("location:" . BASE . 'topic/chat');
-        exit();
+
+            // Chat page redirection
+            header("location:" . BASE . 'topic/chat?id=' . $_GET['id']);
+            exit();
+        }
     }
 }

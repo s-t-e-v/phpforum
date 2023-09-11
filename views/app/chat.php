@@ -4,10 +4,12 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-11 17:07:38 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 22:37:30
+ * @Last Modified time: 2023-09-11 22:53:37
  * @Description: Chat page
  */
 ?>
+
+<?php !isset($_SESSION['error']) ?: $error = $_SESSION['error']; ?>
 
 <?php include(VIEWS . '_partials/header.php'); ?>
 
