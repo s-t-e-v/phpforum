@@ -25,12 +25,12 @@
                 <!-- Message form -->
                 <form method="post">
                     <label for="message" class="form-label text-light">Answer</label>
-                    <?php if (!isset($_SESSION['user'])) : ?>
+                    <?php if (isset($_SESSION['user'])) : ?>
                         <textarea name="message" id="message" cols="30" rows="5" class="form-control rounded mb-1" placeholder="Type your message here"></textarea>
                         <small class="text_error"><?= $error['message'] ?? ""; ?></small>
-                        <button type="submit" class="mt-4 btn btn-info rounded">Send</button>
+                        <button type="submit" class="mt-3 btn btn-info rounded">Send</button>
                     <?php else : ?>
-                        <p class="text-center text-light">Login to answer</p>
+                        <p class="text-center text-light"><a href="<?= BASE . 'login'; ?>" class="text-light btn btn-primary rounded">Login to answer</a></p>
                     <?php endif; ?>
                 </form>
             </div>
