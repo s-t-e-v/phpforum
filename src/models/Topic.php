@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-09 15:02:00 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-09 15:32:23
+ * @Last Modified time: 2023-09-11 17:33:08
  * @Description: Topic database management
  */
 
@@ -37,6 +37,21 @@ class Topic extends Db
         $response->execute();
 
         return $response->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Get the requested topic
+     * 
+     * @return mixed: associative array if no failure. If there is no rows, an
+     * empty array is returned. If there is failure, False is returned.
+     */
+    public static function findById(array $id): mixed
+    {
+        $request = "SELECT * FROM topic WHERE id=:id";
+        $response = self::getDb()->prepare($request);
+        $response->execute(self::htmlspecialchars($id));
+
+        return $response->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
