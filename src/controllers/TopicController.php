@@ -75,15 +75,23 @@ class TopicController
 
         //* if topic has been correctly transmitted
         if (isset($_GET['id']) && !empty($_GET['id'])) {
-            /** Message sending */
-            if (!empty($_POST)) {
-                MessageController::add_message();
-            }
             /** Get topic information */
             $topic = Topic::findById(['id' => $_GET['id']]);
-            /** Messages listing */
-            $messages = Message::findByTopic(['id_topic' => $_GET['id']]);
 
+            if ($topic) {
+                /** Message sending */
+                if (!empty($_POST)) {
+                    MessageController::add_message();
+                }
+                /** Messages listing */
+                $messages = Message::findByTopic(['id_topic' => $_GET['id']]);
+            } else {
+                $_SESSION['messages']['danger'][] = "The requested page doesn't exist";
+
+                /** Redirection to home page*/
+                header('location:' . BASE);
+                exit();
+            }
             include(VIEWS . "app/chat.php");
         }
     }
