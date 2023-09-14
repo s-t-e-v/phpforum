@@ -51,11 +51,20 @@ class TopicController
     public static function delete()
     {
         if (isset($_GET['id']) && isset($_GET['id'])) {
-            /** Topic deletion */
-            Topic::delete(['id' => $_GET['id']]);
 
-            /** Success message */
-            $_SESSION['messages']['success'][] = "Your topic has been successfully deleted!";
+            $topic = Topic::findById(['id' => $_GET['id']]);
+
+            if ($topic && ($topic['id_user'] === $_SESSION['user']['id'])) {
+                /** Topic deletion */
+                Topic::delete(['id' => $_GET['id']]);
+
+                /** Success message */
+                $_SESSION['messages']['success'][] = "Your topic has been successfully deleted!";
+            } else {
+                /** Redirection to home page*/
+                header('location:' . BASE);
+                exit();
+            }
         }
 
         /** Redirection */
