@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-14 16:31:01
+ * @Last Modified time: 2023-09-14 16:33:52
  * @Description: App configuration
  */
 
@@ -65,6 +65,7 @@ define('DB_NAME', $_ENV['DATABASE_NAME']);
 define('DB_USER', $_ENV['DATABASE_USER']);
 define('DB_PASSWORD', $_ENV['DATABASE_PASSWORD']);
 
+// TODO: remove DB and use the define constant directly if at the end the array is no more necessary
 const DB = [
     'HOST' => DB_HOST,
     'PORT' => DB_PORT,
