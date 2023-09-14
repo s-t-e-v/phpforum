@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-14 13:58:56
+ * @Last Modified time: 2023-09-14 15:19:51
  * @Description: App configuration
  */
 
@@ -48,36 +48,37 @@ define('DB_PORT', $_ENV['DATABASE_PORT']);
 define('DB_NAME', $_ENV['DATABASE_NAME']);
 define('DB_USER', $_ENV['DATABASE_USER']);
 define('DB_PASSWORD', $_ENV['DATABASE_PASSWORD']);
-define('TEST', $_ENV['TEST']);
-define('NOVAL', $_ENV['NOVAL']);
-define('NOVAL2', $_ENV['NOVAL2']);
+// define('TEST', $_ENV['TEST']);
+// define('NOVAL', $_ENV['NOVAL']);
+// define('NOVAL2', $_ENV['NOVAL2']);
 
-echo "<pre>";
-var_dump(TEST);
-var_dump(NOVAL);
-var_dump(NOVAL2);
-var_dump(DB_HOST);
-echo "</pre>";
-die;
+//test if load from .env is successful or not
+// ...
+
+// echo "<pre>";
+// var_dump(TEST);
+// var_dump(NOVAL);
+// var_dump(NOVAL2);
+// var_dump(DB_HOST);
+// echo "</pre>";
+// die;
 // echo "<br>";
 // echo "<pre style='color: white;'>";
 // var_dump($error);
 // echo "</pre>";
 
-const CONFIG = [
-    'db' => [
-        'DB_HOST' => DB_HOST,
-        'DB_PORT' => DB_PORT,
-        'DB_NAME' => DB_NAME,
-        'DB_USER' => DB_USER,
-        'DB_PSWD' => DB_PASSWORD,
-    ]
+const DB = [
+    'HOST' => DB_HOST,
+    'PORT' => DB_PORT,
+    'NAME' => DB_NAME,
+    'USER' => DB_USER,
+    'PSWD' => DB_PASSWORD,
 ];
 
 
 
 /**
- * List of possible actions/(methodes or other term in english?) (Routes configuration)
+ * List of possible actions/methodes (Routes configuration)
  */
 $routes = [
     ''                  => ['AppController', 'index'],
