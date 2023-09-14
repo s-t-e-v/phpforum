@@ -1,5 +1,6 @@
 public/upload/*
 error_log/
+src/lib/App.php
 enonce/
 .env
 .qwerty

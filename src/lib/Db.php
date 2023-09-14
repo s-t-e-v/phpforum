@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 13:29:33 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-14 15:20:14
+ * @Last Modified time: 2023-09-14 16:18:02
  * @Description: Db is a class enabling connection with the database. It may be used in model classes.
  */
 
@@ -29,8 +29,8 @@ class Db
             return $bdd;
         } catch (Exception $e) {
             // TODO : remove the vardump and die, replace it by an error 404 for example
-            var_dump($e);
-            die;
+            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
+            throw $e;
         }
     }
 

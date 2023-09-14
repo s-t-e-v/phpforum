@@ -4,13 +4,25 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-14 15:19:51
+ * @Last Modified time: 2023-09-14 16:31:01
  * @Description: App configuration
  */
 
+/**
+ * CLASSES AUTOLOADING
+ */
+spl_autoload_register(function ($class) {
+
+    foreach (['src/controllers/', 'src/models/', 'src/lib/'] as $folder) {
+        $file = '../' . $folder . $class . '.php';
+        if (file_exists($file)) {
+            require_once($file);
+        }
+    }
+});
 
 /**
- * General App configuration
+ * GENERAL APP CONFIGURATION
  */
 const APP_NAME = 'phpforum';
 const APP_PROJECT_BASE_URL = 'http://localhost/phpforum';
@@ -29,10 +41,14 @@ const CONTROLLERS = BASE_DIR . 'src/controllers/';
 const UPLOAD = APP_PROJECT_BASE_URL . '/public/upload/';
 const ASSETS = APP_PROJECT_BASE_URL . '/public/assets/';
 
+/**
+ * Database parameters
+ */
+
 // init_set error log
 ini_set('error_log', __DIR__ . '/../error_log/error.log');
 
-
+// env var
 require_once(__DIR__ . '/../vendor/autoload.php');
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
 try {
@@ -48,24 +64,6 @@ define('DB_PORT', $_ENV['DATABASE_PORT']);
 define('DB_NAME', $_ENV['DATABASE_NAME']);
 define('DB_USER', $_ENV['DATABASE_USER']);
 define('DB_PASSWORD', $_ENV['DATABASE_PASSWORD']);
-// define('TEST', $_ENV['TEST']);
-// define('NOVAL', $_ENV['NOVAL']);
-// define('NOVAL2', $_ENV['NOVAL2']);
-
-//test if load from .env is successful or not
-// ...
-
-// echo "<pre>";
-// var_dump(TEST);
-// var_dump(NOVAL);
-// var_dump(NOVAL2);
-// var_dump(DB_HOST);
-// echo "</pre>";
-// die;
-// echo "<br>";
-// echo "<pre style='color: white;'>";
-// var_dump($error);
-// echo "</pre>";
 
 const DB = [
     'HOST' => DB_HOST,
@@ -74,7 +72,6 @@ const DB = [
     'USER' => DB_USER,
     'PSWD' => DB_PASSWORD,
 ];
-
 
 
 /**
