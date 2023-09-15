@@ -55,7 +55,8 @@ try {
     $dotenv->load();
 } catch (Exception $e) {
     $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
-    throw $e;
+    $err = new Err($e->getMessage());
+    throw $err;
 }
 
 // Define the constants

@@ -37,7 +37,14 @@ class Topic extends Db
     {
         $request = "SELECT topic.*, user.nickname, user.picture_profil FROM topic INNER JOIN user ON topic.id_user = user.id ORDER BY topic.created_at DESC";
         $response = self::getDb()->prepare($request);
-        $response->execute();
+        try {
+            $response->execute();
+        } catch (Exception $e) {
+            // TODO : remove the vardump and die, replace it by an error 404 for example
+            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
+            $err = new Err($e->getMessage());
+            throw $err;
+        }
 
         return $response->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -12,7 +12,7 @@ class Err extends Exception
 {
     private $errorType;
 
-    public function __construct($message, $errorType = 'non-fatal', $code = 0, Throwable $previous = null)
+    public function __construct($message, $errorType = 'fatal', $code = 0, Throwable $previous = null)
     {
         $this->errorType = $errorType;
         parent::__construct($message, $code, $previous);

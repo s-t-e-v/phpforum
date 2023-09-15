@@ -26,7 +26,7 @@ class Message extends Db
         } catch (Exception $e) {
             $_SESSION['messages']['danger'][] = "An error occured when sending the message. If the issue persists, please contact the admin staff.";
             // Create a custom Err instance with a 'fatal' error type
-            $err = new Err($e->getMessage());
+            $err = new Err($e->getMessage(), 'non-fatal');
 
             // echo "<pre>";
             // var_dump($err);
