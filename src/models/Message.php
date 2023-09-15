@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-11 20:58:09 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 23:27:40
+ * @Last Modified time: 2023-09-15 03:22:55
  * @Description: Messages database management
  */
 
@@ -21,7 +21,20 @@ class Message extends Db
         $pdo = self::getDb();
         $request = "INSERT INTO message (content, id_user, id_topic, created_at) VALUE (:content, :id_user, :id_topic, :created_at)";
         $response = $pdo->prepare($request);
-        $response->execute(self::htmlspecialchars($data));
+        try {
+            $response->execute(self::htmlspecialchars($data));
+        } catch (Exception $e) {
+            $_SESSION['messages']['danger'][] = "An error occured when sending the message. If the issue persists, please contact the admin staff.";
+            // Create a custom Err instance with a 'fatal' error type
+            $err = new Err($e->getMessage());
+
+            // echo "<pre>";
+            // var_dump($err);
+            // echo "</pre>";
+            // die;
+
+            throw $err;
+        }
 
         return $pdo->lastInsertId();
     }

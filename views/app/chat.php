@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-11 17:07:38 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 23:16:34
+ * @Last Modified time: 2023-09-15 02:58:41
  * @Description: Chat page
  */
 ?>
@@ -13,6 +13,19 @@
 
 <?php include(VIEWS . '_partials/header.php'); ?>
 
+<div class="text-light">
+
+    <?php
+
+    // echo "YO!!!";
+    // echo "<pre>";
+    // var_dump($messages);
+    // echo "</pre>";
+    // echo "<pre>";
+    // var_dump($_SESSION);
+    // echo "</pre>";
+    ?>
+</div>
 
 <main class="flex-grow-1">
     <div class="container mb-5">
@@ -23,6 +36,19 @@
             <div class="col-12 col-md-8">
                 <!-- Messages -->
                 <?php foreach ($messages as $message) : ?>
+                    <div class="text-light">
+
+                        <?php
+
+                        // echo "YO!!!";
+                        // echo "<pre>";
+                        // var_dump($message);
+                        // echo "</pre>";
+                        // echo "<pre>";
+                        // var_dump($_SESSION);
+                        // echo "</pre>";
+                        ?>
+                    </div>
                     <div class="bg-<?= isset($_SESSION['user']) ? ($_SESSION['user']['id'] === $message['id_user'] ? "info" : "secondary") : "secondary"; ?> text-dark rounded mb-3 p-2">
                         <img src="<?= $message['picture_profil'] ? UPLOAD . $message['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle profile_picture-50">
                         <p>par : <?= $message['nickname']; ?></p>
@@ -49,7 +75,6 @@
         </div>
     </div>
 
-    </div>
 </main>
 
 <?php include(VIEWS . '_partials/footer.php'); ?>

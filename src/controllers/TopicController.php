@@ -94,6 +94,11 @@ class TopicController
                 }
                 /** Messages listing */
                 $messages = Message::findByTopic(['id_topic' => $_GET['id']]);
+                // echo "YO!!!";
+                // echo "<pre>";
+                // var_dump($messages);
+                // echo "</pre>";
+                // die;
             } else {
                 $_SESSION['messages']['danger'][] = "The requested page doesn't exist";
 
@@ -101,6 +106,7 @@ class TopicController
                 header('location:' . BASE);
                 exit();
             }
+            // view load
             include(VIEWS . "app/chat.php");
         }
     }
