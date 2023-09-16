@@ -19,6 +19,8 @@ class TopicController
         /** Error raising */
         if (empty($_POST['title'])) {
             $_SESSION['error']['title'] = "The <em>topic</em> field is required.";
+        } elseif (strlen($_POST['title']) > 255) {
+            $_SESSION['error']['title'] = "The <em>topic name</em> input exceeds maximum length of 255 characters.";
         }
 
         /* Submitted data processing */
