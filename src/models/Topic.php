@@ -24,8 +24,7 @@ class Topic extends Db
         try {
             $response->execute(self::htmlspecialchars($data));
         } catch (Exception $e) {
-            $err = new Err($e->getMessage());
-            throw $err;
+            throw $e;
         }
 
         return $pdo->lastInsertId();
@@ -45,8 +44,7 @@ class Topic extends Db
         try {
             $response->execute();
         } catch (Exception $e) {
-            $err = new Err($e->getMessage());
-            throw $err;
+            throw $e;
         }
 
         return $response->fetchAll(PDO::FETCH_ASSOC);
@@ -66,8 +64,7 @@ class Topic extends Db
         try {
             $response->execute(self::htmlspecialchars($id));
         } catch (Exception $e) {
-            $err = new Err($e->getMessage());
-            throw $err;
+            throw $e;
         }
 
         return $response->fetch(PDO::FETCH_ASSOC);
@@ -90,8 +87,7 @@ class Topic extends Db
         try {
             $response->execute(self::htmlspecialchars($id));
         } catch (Exception $e) {
-            $err = new Err($e->getMessage());
-            throw $err;
+            throw $e;
         }
 
         return $response;

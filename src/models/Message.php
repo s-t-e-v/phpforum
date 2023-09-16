@@ -25,16 +25,7 @@ class Message extends Db
             $response->execute(self::htmlspecialchars($data));
         } catch (Exception $e) {
             $_SESSION['messages']['danger'][] = "An error occured when sending the message. If the issue persists, please contact the admin staff.";
-            // Create a custom Err instance with a 'fatal' error type
-            // $err = new Err($e->getMessage(), 'non-fatal');
-
             Err::err_report($e);
-            // echo "<pre>";
-            // var_dump($err);
-            // echo "</pre>";
-            // die;
-
-            // throw $err;
         }
 
         return $pdo->lastInsertId();
@@ -51,7 +42,12 @@ class Message extends Db
     {
         $request = "SELECT message.*, user.nickname, user.picture_profil FROM message INNER JOIN user ON message.id_user = user.id WHERE message.id_topic=:id_topic  ORDER BY message.created_at ASC";
         $response = self::getDb()->prepare($request);
-        $response->execute(self::htmlspecialchars($topic));
+        try {
+
+            $response->execute(self::htmlspecialchars($topic));
+        } catch (Exception $e) {
+            throw $e;
+        }
 
         return $response->fetchAll(PDO::FETCH_ASSOC);
     }

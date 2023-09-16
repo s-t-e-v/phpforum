@@ -16,34 +16,6 @@ try {
     require_once(__DIR__ . '/../config/config.php');
     require_once(__DIR__ . '/../config/router.php');
 } catch (Exception $e) {
-    // if ($e instanceof Err && $e->getErrorType() === 'fatal') {
-    //     // This is a fatal error, display a special message with alert
-    //     echo "<div class='alert alert-danger' role='alert'>";
-    //     echo "A fatal error occurred: " . $e->getMessage();
-    //     echo "</div>";
-    //     die;
-    // }
-    //  else {
-    // This is a non-fatal error, display a user-friendly error message
-
-    // var_dump($e->getErrorType());
-    // echo "ERRRRRRRRORRR!";
-    // Check the PHP.ini configuration for error display
-    // if (ini_get('display_errors') && $e) {
-    //     $_SESSION['debug'] = $e;
-    // }
-
-
-    // var_dump($e);
-    // echo $e->getErrorType();
-    // die;
-
-    // Log the error
-    // error_log('Exception: ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
-
     Err::err_report($e);
-
     require_once PUBLIC_FOLDER . 'error.php';
-    // }
-
 }
