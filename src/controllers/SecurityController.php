@@ -70,6 +70,33 @@ class SecurityController extends Security
                         $filename = date('dmYHis') . $_FILES['pp']['name'];
                         $filename = str_replace(' ', '_', $filename); // we replace spaces by undescores
 
+                        // Check if the file upload was successful
+                        if ($_FILES['pp']['error'] !== UPLOAD_ERR_OK) {
+                            // Handle the error
+                            $_SESSION['messages']['danger'][] = "An error occured during upload. If the issue persits, please contact the admin staff.";
+                            Err::err_report(new Exception("File upload failed with error code " . $_FILES['pp']['error']));
+                        }
+
+                        $tempFilePath = $_FILES['pp']['tmp_name'];
+                        $destinationDir = PUBLIC_FOLDER . "upload" . DIRECTORY_SEPARATOR;
+
+                        // Check if the temp file is readable
+                        if (!is_readable($tempFilePath)) {
+                            die("Can't read the uploaded file");
+                        }
+
+                        // Check if the destination directory is writable
+                        if (!is_writable($destinationDir)) {
+                            die("Can't write to the destination directory");
+                        }
+
+                        $destinationFile = $destinationDir . $filename;
+
+                        // Now copy the file
+                        if (!copy($tempFilePath, $destinationFile)) {
+                            die("Failed to copy file");
+                        }
+
                         $source = $_FILES['pp']['tmp_name'];
                         $destination = PUBLIC_FOLDER . "upload" . DIRECTORY_SEPARATOR . $filename;
                         // transfer from temp -> upload folder
