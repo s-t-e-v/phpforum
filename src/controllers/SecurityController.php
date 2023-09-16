@@ -50,7 +50,14 @@ class SecurityController extends Security
             // -- Pseudo
             if (empty($_POST['pseudo'])) {
                 $error['pseudo'] = "The <em>pseudo</em> pseudo filed is required";
+            } elseif (strlen($_POST['pseudo']) > 255) {
+                $error['pseudo'] = "The <em>pseudo</em> input exceeds maximum length of 255 characters.";
             }
+            // -- Profil picture
+            if (strlen($_FILES['pp']['name']) > 255) {
+                $error['pp'] = "The file name must not exceeds maximum length of 255 characters.";
+            }
+
 
             /* Submitted data processing */
             if (empty($error)) {
@@ -62,40 +69,51 @@ class SecurityController extends Security
                         /** Upload */
                         $filename = date('dmYHis') . $_FILES['pp']['name'];
                         $filename = str_replace(' ', '_', $filename); // we replace spaces by undescores
-                        copy($_FILES['pp']['tmp_name'], PUBLIC_FOLDER . "upload" . DIRECTORY_SEPARATOR . $filename); // transfer from temp -> upload folder
+
+                        $source = $_FILES['pp']['tmp_name'];
+                        $destination = PUBLIC_FOLDER . "upload" . DIRECTORY_SEPARATOR . $filename;
+                        // transfer from temp -> upload folder
+                        $upload_success = copy($source, $destination);
+                        if (!$upload_success) {
+                            // Handle the error
+                            $_SESSION['messages']['danger'][] = "An error occured during upload. If the issue persits, please contact the admin staff.";
+                            Err::err_report(new Exception("Failed to copy file from $source to $destination"));
+                        }
                     }
+                    if (!isset($upload_success) || $upload_success) {
 
-                    /** Password encryption */
-                    $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                        /** Password encryption */
+                        $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-                    /** Database processing */
-                    // -- User
-                    $data = [
-                        'email' => $_POST['email'],
-                        'password' => $mdp,
-                        'nickname' => $_POST['pseudo'],
-                    ];
-                    if ($filename)
-                        $data['picture_profil'] = $filename;
+                        /** Database processing */
+                        // -- User
+                        $data = [
+                            'email' => $_POST['email'],
+                            'password' => $mdp,
+                            'nickname' => $_POST['pseudo'],
+                        ];
+                        if ($filename)
+                            $data['picture_profil'] = $filename;
 
-                    $success1 = User::add($data);
-                    // -- Default forum
-                    $user =  User::findByEmail(['email' => $_POST['email']]);
-                    $data = [
-                        'id_user' => $user['id'],
-                    ];
-                    if (isset($_GET['id_forum']) && isset($_GET['id_forum']))
-                        $data['id_forum'] = $_GET['id_forum'];
-                    $success2 = Default_forum::update_db($data);
+                        $success1 = User::add($data);
+                        // -- Default forum
+                        $user =  User::findByEmail(['email' => $_POST['email']]);
+                        $data = [
+                            'id_user' => $user['id'],
+                        ];
+                        if (isset($_GET['id_forum']) && isset($_GET['id_forum']))
+                            $data['id_forum'] = $_GET['id_forum'];
+                        $success2 = Default_forum::update_db($data);
 
-                    /** Success message */
-                    $success = $success1 && $success2;
-                    if ($success)
-                        $_SESSION['messages']['success'][] = "Congratulations ! You are registered in our forum. Now you can log in!";
+                        /** Success message */
+                        $success = $success1 && $success2;
+                        if ($success)
+                            $_SESSION['messages']['success'][] = "Congratulations ! You are registered in our forum. Now you can log in!";
 
-                    /** Redirection */
-                    header("location:" . BASE);
-                    exit();
+                        /** Redirection */
+                        header("location:" . BASE);
+                        exit();
+                    }
                 } else {
                     /** Failure message */
                     $_SESSION['messages']['danger'][] = "The image format doesn't belong to those accepted (.jpg, .png, .webp, .gif) and/or the image is too large (>= 3 mo)";
