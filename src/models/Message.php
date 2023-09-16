@@ -26,14 +26,15 @@ class Message extends Db
         } catch (Exception $e) {
             $_SESSION['messages']['danger'][] = "An error occured when sending the message. If the issue persists, please contact the admin staff.";
             // Create a custom Err instance with a 'fatal' error type
-            $err = new Err($e->getMessage(), 'non-fatal');
+            // $err = new Err($e->getMessage(), 'non-fatal');
 
+            Err::err_report($e);
             // echo "<pre>";
             // var_dump($err);
             // echo "</pre>";
             // die;
 
-            throw $err;
+            // throw $err;
         }
 
         return $pdo->lastInsertId();

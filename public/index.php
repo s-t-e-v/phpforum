@@ -29,9 +29,9 @@ try {
     // var_dump($e->getErrorType());
     // echo "ERRRRRRRRORRR!";
     // Check the PHP.ini configuration for error display
-    if (ini_get('display_errors') && $e) {
-        $_SESSION['debug'] = $e;
-    }
+    // if (ini_get('display_errors') && $e) {
+    //     $_SESSION['debug'] = $e;
+    // }
 
 
     // var_dump($e);
@@ -39,7 +39,9 @@ try {
     // die;
 
     // Log the error
-    error_log('Exception: ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
+    // error_log('Exception: ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
+
+    Err::err_report($e);
 
     require_once PUBLIC_FOLDER . 'error.php';
     // }

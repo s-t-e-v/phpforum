@@ -26,7 +26,7 @@ class MessageController
             $data = [
                 'content' => $_POST['message'],
                 'id_user' => $_SESSION['user']['id'],
-                'id_topic' => 50, //$_GET['id'],
+                'id_topic' => $_GET['id'],
                 'created_at' => date_format(new DateTime(), 'Y-m-d H:i:s'),
             ];
 

@@ -24,7 +24,6 @@ class Topic extends Db
         try {
             $response->execute(self::htmlspecialchars($data));
         } catch (Exception $e) {
-            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
             $err = new Err($e->getMessage());
             throw $err;
         }
@@ -46,7 +45,6 @@ class Topic extends Db
         try {
             $response->execute();
         } catch (Exception $e) {
-            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
             $err = new Err($e->getMessage());
             throw $err;
         }
@@ -68,7 +66,6 @@ class Topic extends Db
         try {
             $response->execute(self::htmlspecialchars($id));
         } catch (Exception $e) {
-            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
             $err = new Err($e->getMessage());
             throw $err;
         }
@@ -93,7 +90,6 @@ class Topic extends Db
         try {
             $response->execute(self::htmlspecialchars($id));
         } catch (Exception $e) {
-            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
             $err = new Err($e->getMessage());
             throw $err;
         }

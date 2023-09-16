@@ -22,4 +22,14 @@ class Err extends Exception
     {
         return $this->errorType;
     }
+
+    public static function err_report(Exception $e)
+    {
+        // Check the PHP.ini configuration for error display
+        if (ini_get('display_errors') && $e) {
+            $_SESSION['debug'] = $e;
+        }
+        // Log the error
+        error_log('Exception: ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine());
+    }
 }
