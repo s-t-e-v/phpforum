@@ -78,7 +78,7 @@ class SecurityController extends Security
                     if ($filename)
                         $data['picture_profil'] = $filename;
 
-                    User::add($data);
+                    $success1 = User::add($data);
                     // -- Default forum
                     $user =  User::findByEmail(['email' => $_POST['email']]);
                     $data = [
@@ -86,10 +86,12 @@ class SecurityController extends Security
                     ];
                     if (isset($_GET['id_forum']) && isset($_GET['id_forum']))
                         $data['id_forum'] = $_GET['id_forum'];
-                    Default_forum::update_db($data);
+                    $success2 = Default_forum::update_db($data);
 
                     /** Success message */
-                    $_SESSION['messages']['success'][] = "Congratulations ! You are registered in our forum. Now you can log in!";
+                    $success = $success1 && $success2;
+                    if ($success)
+                        $_SESSION['messages']['success'][] = "Congratulations ! You are registered in our forum. Now you can log in!";
 
                     /** Redirection */
                     header("location:" . BASE);

@@ -34,10 +34,11 @@ class TopicController
             // var_dump($data);
             // echo "</pre>";
 
-            Topic::add($data);
+            $success = Topic::add($data);
 
             /** Success message */
-            $_SESSION['messages']['success'][] = "Your topic has been successfully created!";
+            if ($success)
+                $_SESSION['messages']['success'][] = "Your topic has been successfully created!";
 
             /** Redirection */
             header("location:" . BASE);
@@ -56,10 +57,11 @@ class TopicController
 
             if ($topic && ($topic['id_user'] === $_SESSION['user']['id'])) {
                 /** Topic deletion */
-                Topic::delete(['id' => $_GET['id']]);
+                $success = Topic::delete(['id' => $_GET['id']]);
 
                 /** Success message */
-                $_SESSION['messages']['success'][] = "Your topic has been successfully deleted!";
+                if ($success)
+                    $_SESSION['messages']['success'][] = "Your topic has been successfully deleted!";
             } else {
                 /** Redirection to home page*/
                 header('location:' . BASE);
