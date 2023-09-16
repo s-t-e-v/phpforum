@@ -61,9 +61,11 @@ class SecurityController extends Security
 
             /* Submitted data processing */
             if (empty($error)) {
-                // If the uploaded image is valid
-                if (empty($_FILES['pp']['name']) || self::valid_image()) {
 
+                try {
+                    if (!empty($_FILES['pp']['name']) && !self::valid_image())
+                        throw new Err("The image format doesn't belong to those accepted (.jpg, .png, .webp, .gif) and/or the image is too large (>= 3 mo)", Err::NOTICE);
+                    // File upload handling
                     $filename = "";
                     if (!empty($_FILES['pp']['name'])) {
                         /** Upload */
@@ -73,8 +75,9 @@ class SecurityController extends Security
                         // Check if the file upload was successful
                         if ($_FILES['pp']['error'] !== UPLOAD_ERR_OK) {
                             // Handle the error
-                            $_SESSION['messages']['danger'][] = "An error occured during upload. If the issue persits, please contact the admin staff.";
-                            Err::err_report(new Exception("File upload failed with error code " . $_FILES['pp']['error']));
+                            $err = new Err("File upload failed with error code " . $_FILES['pp']['error']);
+                            $err->setUserMessage("An error occured during upload. If the issue persits, please contact the admin staff.");
+                            throw $err;
                         }
 
                         $tempFilePath = $_FILES['pp']['tmp_name'];
@@ -82,73 +85,78 @@ class SecurityController extends Security
 
                         // Check if the temp file is readable
                         if (!is_readable($tempFilePath)) {
-                            die("Can't read the uploaded file");
+                            throw new Err("Web server can't read the uploaded file", Err::CRITICAL);
                         }
 
                         // Check if the destination directory is writable
                         if (!is_writable($destinationDir)) {
-                            die("Can't write to the destination directory");
+                            throw new Err("Web server can't write to the destination directory", Err::CRITICAL);
                         }
 
                         $destinationFile = $destinationDir . $filename;
 
                         // Now copy the file
                         if (!copy($tempFilePath, $destinationFile)) {
-                            die("Failed to copy file");
-                        }
-
-                        $source = $_FILES['pp']['tmp_name'];
-                        $destination = PUBLIC_FOLDER . "upload" . DIRECTORY_SEPARATOR . $filename;
-                        // transfer from temp -> upload folder
-                        $upload_success = copy($source, $destination);
-                        if (!$upload_success) {
-                            // Handle the error
-                            $_SESSION['messages']['danger'][] = "An error occured during upload. If the issue persits, please contact the admin staff.";
-                            Err::err_report(new Exception("Failed to copy file from $source to $destination"));
+                            $err = new Err("Web server failed to copy file from $tempFilePath to $destinationFile.");
+                            $err->setUserMessage("An error occured during upload. If the issue persits, please contact the admin staff.");
+                            throw $err;
                         }
                     }
-                    if (!isset($upload_success) || $upload_success) {
 
-                        /** Password encryption */
-                        $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-                        /** Database processing */
-                        // -- User
-                        $data = [
-                            'email' => $_POST['email'],
-                            'password' => $mdp,
-                            'nickname' => $_POST['pseudo'],
-                        ];
-                        if ($filename)
-                            $data['picture_profil'] = $filename;
+                    /** Password encryption */
+                    $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-                        $success1 = User::add($data);
-                        // -- Default forum
-                        $user =  User::findByEmail(['email' => $_POST['email']]);
-                        $data = [
-                            'id_user' => $user['id'],
-                        ];
-                        if (isset($_GET['id_forum']) && isset($_GET['id_forum']))
-                            $data['id_forum'] = $_GET['id_forum'];
-                        $success2 = Default_forum::update_db($data);
+                    /** Database processing */
+                    // -- User
+                    $data = [
+                        'email' => $_POST['email'],
+                        'password' => $mdp,
+                        'nickname' => $_POST['pseudo'],
+                    ];
+                    if ($filename)
+                        $data['picture_profil'] = $filename;
 
-                        /** Success message */
-                        $success = $success1 && $success2;
-                        if ($success)
-                            $_SESSION['messages']['success'][] = "Congratulations ! You are registered in our forum. Now you can log in!";
+                    $success_add_user = User::add($data);
+                    // -- Default forum
+                    $user =  User::findByEmail(['email' => $_POST['email']]);
+                    $data = [
+                        'id_user' => $user['id'],
+                    ];
+                    if (isset($_GET['id_forum']) && isset($_GET['id_forum']))
+                        $data['id_forum'] = $_GET['id_forum'];
+                    $success_up_default_forum = Default_forum::update_db($data);
 
-                        /** Redirection */
-                        header("location:" . BASE);
-                        exit();
+                    /** Success message */
+                    $success = $success_add_user && $success_up_default_forum;
+                    if ($success) {
+                        $_SESSION['messages']['success'][] = "Congratulations! You are registered in our forum. Now you can log in!";
                     }
-                } else {
-                    /** Failure message */
-                    $_SESSION['messages']['danger'][] = "The image format doesn't belong to those accepted (.jpg, .png, .webp, .gif) and/or the image is too large (>= 3 mo)";
+
+                    /** Redirection */
+                    header("location:" . BASE);
+                    exit();
+                } catch (Err $e) {
+                    // Handle the error based on severity
+                    if ($e->isCriticalError()) {
+                        throw $e; // Redirect to dedicated error page
+                    } else {
+                        // Display user-friendly error message
+                        $_SESSION['messages']['danger'][] = $e->getUserMessage();
+
+                        if ($e->isSeriousError()) {
+                            // Log the error
+                            error_log($e->getMessage());
+                        }
+                    }
+                } catch (Exception $e) {
+                    // Handle the exception as needed
+                    throw $e;
                 }
             }
         }
 
-        // Page load
+        // View load
         include(VIEWS . 'security/signup.php');
     }
 
