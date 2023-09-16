@@ -21,7 +21,13 @@ class Topic extends Db
         $pdo = self::getDb();
         $request = "INSERT INTO topic (title, id_user, id_forum, created_at) VALUES (:title, :id_user, :id_forum, :created_at)";
         $response = $pdo->prepare($request);
-        $response->execute(self::htmlspecialchars($data));
+        try {
+            $response->execute(self::htmlspecialchars($data));
+        } catch (Exception $e) {
+            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
+            $err = new Err($e->getMessage());
+            throw $err;
+        }
 
         return $pdo->lastInsertId();
     }
@@ -40,7 +46,6 @@ class Topic extends Db
         try {
             $response->execute();
         } catch (Exception $e) {
-            // TODO : remove the vardump and die, replace it by an error 404 for example
             $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
             $err = new Err($e->getMessage());
             throw $err;
@@ -60,7 +65,13 @@ class Topic extends Db
     {
         $request = "SELECT * FROM topic WHERE id=:id";
         $response = self::getDb()->prepare($request);
-        $response->execute(self::htmlspecialchars($id));
+        try {
+            $response->execute(self::htmlspecialchars($id));
+        } catch (Exception $e) {
+            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
+            $err = new Err($e->getMessage());
+            throw $err;
+        }
 
         return $response->fetch(PDO::FETCH_ASSOC);
     }
@@ -79,7 +90,13 @@ class Topic extends Db
 
         $request = "DELETE FROM topic WHERE id = :id";
         $response = $pdo->prepare($request);
-        $response->execute(self::htmlspecialchars($id));
+        try {
+            $response->execute(self::htmlspecialchars($id));
+        } catch (Exception $e) {
+            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
+            $err = new Err($e->getMessage());
+            throw $err;
+        }
 
         return $response;
     }
