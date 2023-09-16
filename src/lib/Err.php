@@ -14,7 +14,7 @@ class Err
      * Report the error by an error message display on the screen 
      * (only in development) and an error log.
      * 
-     * @param Exception $e the catched exception
+     * @param Exception $e the caught exception
      */
     public static function err_report(Exception $e)
     {

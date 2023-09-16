@@ -236,6 +236,16 @@ _optional_
   - CSS attacks
 - Password hashing
 
+## Error handling
+
+- Form edgecases: ...
+- Fatal error: ...
+- Non-fatal error:
+  - disturbing the display:
+  - non-disturbing the display:
+- PDO exceptions:
+-
+
 ## Technologies Used
 
 <!-- List the technologies and frameworks used in your project. -->

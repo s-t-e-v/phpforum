@@ -24,7 +24,8 @@ class Topic extends Db
         try {
             $response->execute(self::htmlspecialchars($data));
         } catch (Exception $e) {
-            throw $e;
+            $_SESSION['messages']['danger'][] = "An error occured when adding the topic. If the issue persists, please contact the admin staff.";
+            Err::err_report($e);
         }
 
         return $pdo->lastInsertId();
