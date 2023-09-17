@@ -54,9 +54,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
 try {
     $dotenv->load();
 } catch (Exception $e) {
-    $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
-    $err = new Err($e->getMessage());
-    throw $err;
+    throw $e;
 }
 
 // Define the constants

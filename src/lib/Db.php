@@ -28,10 +28,7 @@ class Db
             );
             return $bdd;
         } catch (Exception $e) {
-            // TODO : remove the vardump and die, replace it by an error 404 for example
-            $_SESSION['messages']['danger'][] = "An unexpected error occurred in the application.";
-            $err = new Err($e->getMessage());
-            throw $err;
+            throw $e;
         }
     }
 
