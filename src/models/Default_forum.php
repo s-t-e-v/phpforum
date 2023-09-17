@@ -5,7 +5,7 @@
  * @Date: 2023-09-09 15:41:10 
  * @Last Modified by: Steven Bandaogo
  * @Last Modified time: 2023-09-09 17:07:54
- * @Description: Default forum database management
+ * @Description: Default forums database management
  */
 
 class Default_forum extends Db

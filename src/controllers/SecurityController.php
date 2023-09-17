@@ -65,7 +65,7 @@ class SecurityController extends Security
                 try {
                     // Check if the image is valid
                     if (!empty($_FILES['pp']['name']) && !self::valid_image())
-                        throw new Err("The image format doesn't belong to those accepted (.jpg, .png, .webp, .gif) and/or the image is too large (>= 3 mo)", Err::NOTICE);
+                        throw new Err("The image format doesn't belong to those accepted (.jpg, .png, .webp, .gif) and/or the image is too large (>= 3 mo)", Err::ERROR_TYPE_NOTICE);
                     // File upload handling
                     $filename = "";
                     if (!empty($_FILES['pp']['name'])) {
@@ -86,12 +86,12 @@ class SecurityController extends Security
 
                         // Check if the temp file is readable
                         if (!is_readable($tempFilePath)) {
-                            throw new Err("Web server can't read the uploaded file", Err::CRITICAL);
+                            throw new Err("Web server can't read the uploaded file", Err::ERROR_TYPE_CRITICAL);
                         }
 
                         // Check if the destination directory is writable
                         if (!is_writable($destinationDir)) {
-                            throw new Err("Web server can't write to the destination directory", Err::CRITICAL);
+                            throw new Err("Web server can't write to the destination directory", Err::ERROR_TYPE_CRITICAL);
                         }
 
                         $destinationFile = $destinationDir . $filename;

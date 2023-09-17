@@ -16,6 +16,6 @@ try {
     require_once(__DIR__ . '/../config/config.php');
     require_once(__DIR__ . '/../config/router.php');
 } catch (Exception $e) {
-    Err::err_report($e);
+    Err::reportError($e);
     require_once PUBLIC_FOLDER . 'error.php';
 }
