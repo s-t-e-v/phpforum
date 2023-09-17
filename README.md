@@ -26,13 +26,13 @@ The forum provides a platform for users to engage in meaningful discussions, see
 **Demo:**
 Check out the live demo [here](https://your-demo-link.com).
 
-## Development planning ![](https://geps.dev/progress/47)
+## Development planning ![](https://geps.dev/progress/53)
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
 **Core**
 
-![](https://geps.dev/progress/90)
+![](https://geps.dev/progress/100)
 
 - [x] 0. Minimal project setup + README first version
 - [x] 1. Database setup
@@ -45,7 +45,7 @@ Check out the live demo [here](https://your-demo-link.com).
 - [x] 6. List of all topics on home page
 - [x] 7. Topic deletion
 - [x] 8. Chat page ~~+ message deletion~~
-- [ ] 9. Robust error handling (GET parameters URL checks and handling, etc.)
+- [x] 9. Robust error handling (GET parameters URL checks and handling, etc.)
 
 **Extra**
 
