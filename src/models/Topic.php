@@ -21,7 +21,12 @@ class Topic extends Db
         $pdo = self::getDb();
         $request = "INSERT INTO topic (title, id_user, id_forum, created_at) VALUES (:title, :id_user, :id_forum, :created_at)";
         $response = $pdo->prepare($request);
-        $response->execute(self::htmlspecialchars($data));
+        try {
+            $response->execute(self::htmlspecialchars($data));
+        } catch (Exception $e) {
+            $_SESSION['messages']['danger'][] = "An error occured when adding the topic. If the issue persists, please contact the admin staff.";
+            Err::reportError($e);
+        }
 
         return $pdo->lastInsertId();
     }
@@ -37,7 +42,11 @@ class Topic extends Db
     {
         $request = "SELECT topic.*, user.nickname, user.picture_profil FROM topic INNER JOIN user ON topic.id_user = user.id ORDER BY topic.created_at DESC";
         $response = self::getDb()->prepare($request);
-        $response->execute();
+        try {
+            $response->execute();
+        } catch (Exception $e) {
+            throw $e;
+        }
 
         return $response->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -53,7 +62,11 @@ class Topic extends Db
     {
         $request = "SELECT * FROM topic WHERE id=:id";
         $response = self::getDb()->prepare($request);
-        $response->execute(self::htmlspecialchars($id));
+        try {
+            $response->execute(self::htmlspecialchars($id));
+        } catch (Exception $e) {
+            throw $e;
+        }
 
         return $response->fetch(PDO::FETCH_ASSOC);
     }
@@ -72,7 +85,11 @@ class Topic extends Db
 
         $request = "DELETE FROM topic WHERE id = :id";
         $response = $pdo->prepare($request);
-        $response->execute(self::htmlspecialchars($id));
+        try {
+            $response->execute(self::htmlspecialchars($id));
+        } catch (Exception $e) {
+            throw $e;
+        }
 
         return $response;
     }

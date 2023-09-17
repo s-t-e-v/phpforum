@@ -24,7 +24,11 @@ class User extends Db
         else
             $request = "INSERT INTO user (email, password, nickname) VALUES (:email, :password, :nickname)";
         $response = $pdo->prepare($request);
-        $response->execute(self::htmlspecialchars($data));
+        try {
+            $response->execute(self::htmlspecialchars($data));
+        } catch (Exception $e) {
+            throw $e;
+        }
 
         return $pdo->lastInsertId();
     }
@@ -40,8 +44,11 @@ class User extends Db
     {
         $request = "SELECT * FROM user WHERE email=:email";
         $response = self::getDb()->prepare($request);
-        $response->execute(self::htmlspecialchars($email));
-
+        try {
+            $response->execute(self::htmlspecialchars($email));
+        } catch (Exception $e) {
+            throw $e;
+        }
         return $response->fetch(PDO::FETCH_ASSOC);
     }
 }

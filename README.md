@@ -26,15 +26,14 @@ The forum provides a platform for users to engage in meaningful discussions, see
 **Demo:**
 Check out the live demo [here](https://your-demo-link.com).
 
-## Development planning ![](https://geps.dev/progress/47)
+## Development planning ![](https://geps.dev/progress/53)
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
-
-
 **Core**
 
-![](https://geps.dev/progress/90)
+![](https://geps.dev/progress/100)
+
 - [x] 0. Minimal project setup + README first version
 - [x] 1. Database setup
   - paying attention to constraints (can help for cascading deletion), `NULL` by default (or not), etc.
@@ -46,11 +45,12 @@ Check out the live demo [here](https://your-demo-link.com).
 - [x] 6. List of all topics on home page
 - [x] 7. Topic deletion
 - [x] 8. Chat page ~~+ message deletion~~
-- [ ] 9. Robust error handling (GET parameters URL checks and handling, etc.)
+- [x] 9. Robust error handling (GET parameters URL checks and handling, etc.)
 
 **Extra**
 
 ![](https://geps.dev/progress/0)
+
 - [ ] 10. Forum creation page
 - [ ] 11. List of all forum on home page (with the more dropdown button)
 - [ ] 12. Forum deletion
@@ -77,7 +77,12 @@ Check out the live demo [here](https://your-demo-link.com).
 1.  Install XAMPP
 2.  clone the project within **htdocs/**
 3.  create the database from `dbmodel.sql`. Set it up with your own credentatials.
-4.  Ensure the web server user, normally `daemon`, has the permission of read & write for the folder `public/upload`. This is important for the profil picture upload feature. You can follow those steps:
+4.  Ensure the web server user, normally `daemon`, has the permission of read & write for the folders:
+
+    - `public/upload` . This is important for the profil picture upload feature.
+    - `error_log` . This is important for errors log.
+
+    You can follow those steps:
 
     - **Identify the webserver user**:
       Use PHP to identify the web server user by using the posix_getpwuid function:
@@ -109,7 +114,9 @@ Check out the live demo [here](https://your-demo-link.com).
       Change the group ownership of the upload directory to the new group (mygroup):
 
       ```bash
+      sudo chown :phpforum public # maybe not necessary
       sudo chown :phpforum public/upload
+      sudo chown -R :phpforum error_log
       ```
 
       **NB**: if you are running xampp for some reason, restart it to make the changes effective after the latter step.
@@ -229,6 +236,16 @@ _optional_
   - CSS attacks
 - Password hashing
 
+## Error handling
+
+- Form edgecases: ...
+- Fatal error: ...
+- Non-fatal error:
+  - disturbing the display:
+  - non-disturbing the display:
+- PDO exceptions:
+-
+
 ## Technologies Used
 
 <!-- List the technologies and frameworks used in your project. -->
@@ -260,6 +277,7 @@ This code structure is directly taken from a course I followed at Doranco on PHP
 **Additions**
 
 - `.env` file at the root of the project containing sensitive information like database credentials. The environment are loaded thanks to `vlucas/phpdotenv` library.
+- `error_log/` folder at the root of the project containing errors log.
 
 ## Database architecture
 

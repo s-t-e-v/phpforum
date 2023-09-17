@@ -5,7 +5,7 @@
  * @Date: 2023-09-07 22:21:22 
  * @Last Modified by: Steven Bandaogo
  * @Last Modified time: 2023-09-09 17:07:19
- * @Description: Security methods
+ * @Description: Security utility functions.
  */
 
 class Security

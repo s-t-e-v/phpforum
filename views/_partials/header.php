@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:28:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 23:13:20
+ * @Last Modified time: 2023-09-15 03:04:16
  * @Description: This is the header part of the webpages. Contains meta data, navbar and session message display.
  */
 ?>
@@ -23,7 +23,7 @@
 <html lang="en">
 
 <head>
-  <title><?= CONFIG['app']['name'] ?></title>
+  <title><?= APP_NAME ?></title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,6 +33,18 @@
 </head>
 
 <body>
+  <?php
+  // Display additional error details for development
+  if (isset($_SESSION['debug'])) {
+    echo "<div class='bg-dark text-light p-3'>";
+    echo "<pre>";
+    echo "<p class='h3 pb-2'>Error details</p>";
+    var_dump($_SESSION['debug']);
+    echo "</pre>";
+    echo "</div>";
+    unset($_SESSION['debug']);
+  }
+  ?>
   <div class="d-flex flex-column" style="min-height: 100vh;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
@@ -73,11 +85,11 @@
     <div class="container mt-5">
 
       <?php if (isset($_SESSION['messages'])) :
-        foreach ($_SESSION['messages'] as $type => $messages) :
-          foreach ($messages as $message) :
+        foreach ($_SESSION['messages'] as $type => $msgs) :
+          foreach ($msgs as $msg) :
       ?>
 
-            <div class="w-50 text-center mx-auto alert alert-<?= $type; ?>"> <?= $message; ?> </div>
+            <div class="w-50 text-center mx-auto alert alert-<?= $type; ?>"> <?= $msg; ?> </div>
 
 
       <?php endforeach;

@@ -61,6 +61,7 @@
             <div class="py-2 pp_input">
                 <label for="pp" class="form-label">Profil picture</label>
                 <input type="file" class="form-control rounded" name="pp" id="pp" aria-describedby="fileHelp">
+                <small class="text_error"><?= $error['pp'] ?? ""; ?></small>
             </div>
             <button type="submit" class="mt-4 btn btn-primary rounded">Submit</button>
         </form>

@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:13:49 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-11 23:36:53
+ * @Last Modified time: 2023-09-14 17:57:50
  * @Description: Manage login/signup features
  */
 
@@ -50,20 +50,60 @@ class SecurityController extends Security
             // -- Pseudo
             if (empty($_POST['pseudo'])) {
                 $error['pseudo'] = "The <em>pseudo</em> pseudo filed is required";
+            } elseif (strlen($_POST['pseudo']) > 255) {
+                $error['pseudo'] = "The <em>pseudo</em> input exceeds maximum length of 255 characters.";
             }
+            // -- Profil picture
+            if (strlen($_FILES['pp']['name']) > 255) {
+                $error['pp'] = "The file name must not exceeds maximum length of 255 characters.";
+            }
+
 
             /* Submitted data processing */
             if (empty($error)) {
-                // If the uploaded image is valid
-                if (empty($_FILES['pp']['name']) || self::valid_image()) {
 
+                try {
+                    // Check if the image is valid
+                    if (!empty($_FILES['pp']['name']) && !self::valid_image())
+                        throw new Err("The image format doesn't belong to those accepted (.jpg, .png, .webp, .gif) and/or the image is too large (>= 3 mo)", Err::ERROR_TYPE_NOTICE);
+                    // File upload handling
                     $filename = "";
                     if (!empty($_FILES['pp']['name'])) {
                         /** Upload */
                         $filename = date('dmYHis') . $_FILES['pp']['name'];
                         $filename = str_replace(' ', '_', $filename); // we replace spaces by undescores
-                        copy($_FILES['pp']['tmp_name'], PUBLIC_FOLDER . "upload" . DIRECTORY_SEPARATOR . $filename); // transfer from temp -> upload folder
+
+                        // Check if the file upload was successful
+                        if ($_FILES['pp']['error'] !== UPLOAD_ERR_OK) {
+                            // Handle the error
+                            $err = new Err("File upload failed with error code " . $_FILES['pp']['error']);
+                            $err->setUserMessage("An error occured during upload. If the issue persits, please contact the admin staff.");
+                            throw $err;
+                        }
+
+                        $tempFilePath = $_FILES['pp']['tmp_name'];
+                        $destinationDir = PUBLIC_FOLDER . "upload" . DIRECTORY_SEPARATOR;
+
+                        // Check if the temp file is readable
+                        if (!is_readable($tempFilePath)) {
+                            throw new Err("Web server can't read the uploaded file", Err::ERROR_TYPE_CRITICAL);
+                        }
+
+                        // Check if the destination directory is writable
+                        if (!is_writable($destinationDir)) {
+                            throw new Err("Web server can't write to the destination directory", Err::ERROR_TYPE_CRITICAL);
+                        }
+
+                        $destinationFile = $destinationDir . $filename;
+
+                        // Now copy the file
+                        if (!copy($tempFilePath, $destinationFile)) {
+                            $err = new Err("Web server failed to copy file from $tempFilePath to $destinationFile.");
+                            $err->setUserMessage("An error occured during upload. If the issue persits, please contact the admin staff.");
+                            throw $err;
+                        }
                     }
+
 
                     /** Password encryption */
                     $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -78,30 +118,46 @@ class SecurityController extends Security
                     if ($filename)
                         $data['picture_profil'] = $filename;
 
-                    User::add($data);
+                    $success_add_user = User::add($data);
                     // -- Default forum
                     $user =  User::findByEmail(['email' => $_POST['email']]);
                     $data = [
                         'id_user' => $user['id'],
                     ];
-                    if (isset($_GET['id']) && isset($_GET['id_forum']))
+                    if (isset($_GET['id_forum']) && isset($_GET['id_forum']))
                         $data['id_forum'] = $_GET['id_forum'];
-                    Default_forum::update_db($data);
+                    $success_up_default_forum = Default_forum::update_db($data);
 
                     /** Success message */
-                    $_SESSION['messages']['success'][] = "Congratulations ! You are registered in our forum. Now you can log in!";
+                    $success = $success_add_user && $success_up_default_forum;
+                    if ($success) {
+                        $_SESSION['messages']['success'][] = "Congratulations! You are registered in our forum. Now you can log in!";
+                    }
 
                     /** Redirection */
                     header("location:" . BASE);
                     exit();
-                } else {
-                    /** Failure message */
-                    $_SESSION['messages']['danger'][] = "The image format doesn't belong to those accepted (.jpg, .png, .webp, .gif) and/or the image is too large (>= 3 mo)";
+                } catch (Err $e) {
+                    // Handle the error based on severity
+                    if ($e->isCriticalError()) {
+                        throw $e; // Redirect to dedicated error page
+                    } else {
+                        // Display user-friendly error message
+                        $_SESSION['messages']['danger'][] = $e->getUserMessage();
+
+                        if ($e->isSeriousError()) {
+                            // Log the error
+                            error_log($e->getMessage());
+                        }
+                    }
+                } catch (Exception $e) {
+                    // Handle the exception as needed
+                    throw $e;
                 }
             }
         }
 
-        // Page load
+        // View load
         include(VIEWS . 'security/signup.php');
     }
 

@@ -19,6 +19,8 @@ class TopicController
         /** Error raising */
         if (empty($_POST['title'])) {
             $_SESSION['error']['title'] = "The <em>topic</em> field is required.";
+        } elseif (strlen($_POST['title']) > 255) {
+            $_SESSION['error']['title'] = "The <em>topic name</em> input exceeds maximum length of 255 characters.";
         }
 
         /* Submitted data processing */
@@ -34,10 +36,11 @@ class TopicController
             // var_dump($data);
             // echo "</pre>";
 
-            Topic::add($data);
+            $success = Topic::add($data);
 
             /** Success message */
-            $_SESSION['messages']['success'][] = "Your topic has been successfully created!";
+            if ($success)
+                $_SESSION['messages']['success'][] = "Your topic has been successfully created!";
 
             /** Redirection */
             header("location:" . BASE);
@@ -51,11 +54,21 @@ class TopicController
     public static function delete()
     {
         if (isset($_GET['id']) && isset($_GET['id'])) {
-            /** Topic deletion */
-            Topic::delete(['id' => $_GET['id']]);
 
-            /** Success message */
-            $_SESSION['messages']['success'][] = "Your topic has been successfully deleted!";
+            $topic = Topic::findById(['id' => $_GET['id']]);
+
+            if ($topic && ($topic['id_user'] === $_SESSION['user']['id'])) {
+                /** Topic deletion */
+                $success = Topic::delete(['id' => $_GET['id']]);
+
+                /** Success message */
+                if ($success)
+                    $_SESSION['messages']['success'][] = "Your topic has been successfully deleted!";
+            } else {
+                /** Redirection to home page*/
+                header('location:' . BASE);
+                exit();
+            }
         }
 
         /** Redirection */
@@ -75,15 +88,29 @@ class TopicController
 
         //* if topic has been correctly transmitted
         if (isset($_GET['id']) && !empty($_GET['id'])) {
-            /** Message sending */
-            if (!empty($_POST)) {
-                MessageController::add_message();
-            }
             /** Get topic information */
             $topic = Topic::findById(['id' => $_GET['id']]);
-            /** Messages listing */
-            $messages = Message::findByTopic(['id_topic' => $_GET['id']]);
 
+            if ($topic) {
+                /** Message sending */
+                if (!empty($_POST)) {
+                    MessageController::add_message();
+                }
+                /** Messages listing */
+                $messages = Message::findByTopic(['id_topic' => $_GET['id']]);
+                // echo "YO!!!";
+                // echo "<pre>";
+                // var_dump($messages);
+                // echo "</pre>";
+                // die;
+            } else {
+                $_SESSION['messages']['danger'][] = "The requested page doesn't exist";
+
+                /** Redirection to home page*/
+                header('location:' . BASE);
+                exit();
+            }
+            // view load
             include(VIEWS . "app/chat.php");
         }
     }

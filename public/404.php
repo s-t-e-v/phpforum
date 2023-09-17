@@ -5,7 +5,7 @@
  * @Date: 2023-09-04 13:36:53 
  * @Last Modified by: Steven Bandaogo
  * @Last Modified time: 2023-09-04 13:37:48
- * @Description: Redirect to the home page with an error message .
+ * @Description: Error 404 - Redirect to the home page with an error message .
  */
 
 if (!session_status()) session_start();

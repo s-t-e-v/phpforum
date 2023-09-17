@@ -5,7 +5,7 @@
  * @Date: 2023-09-09 15:41:10 
  * @Last Modified by: Steven Bandaogo
  * @Last Modified time: 2023-09-09 17:07:54
- * @Description: Default forum database management
+ * @Description: Default forums database management
  */
 
 class Default_forum extends Db
@@ -32,7 +32,11 @@ class Default_forum extends Db
                 $request = "INSERT INTO default_forum (id_user) VALUE (:id_user)";
         }
         $response = $pdo->prepare($request);
-        $response->execute(self::htmlspecialchars($data));
+        try {
+            $response->execute(self::htmlspecialchars($data));
+        } catch (Exception $e) {
+            throw $e;
+        }
 
         return $pdo->lastInsertId(); // TODO: This or just return responses?
     }
@@ -48,7 +52,11 @@ class Default_forum extends Db
     {
         $request = "SELECT * FROM default_forum WHERE id=:id";
         $response = self::getDb()->prepare($request);
-        $response->execute(self::htmlspecialchars($id));
+        try {
+            $response->execute(self::htmlspecialchars($id));
+        } catch (Exception $e) {
+            throw $e;
+        }
 
         return $response->fetch(PDO::FETCH_ASSOC);
     }

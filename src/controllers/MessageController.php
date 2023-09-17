@@ -20,6 +20,8 @@ class MessageController
         /** Error raising */
         if (empty($_POST['message']))
             $_SESSION['error']['message'] = "The field <em>answer</em> is required.";
+        else if (strlen($_POST['message']) > 65535)
+            $_SESSION['error']['message'] = "The <em>answer</em> input exceeds maximum length of 65,535 characters.";
 
         /* Submitted data processing */
         if (empty($_SESSION['error'])) {
@@ -31,6 +33,7 @@ class MessageController
             ];
 
             Message::add($data);
+
 
             // Chat page redirection
             header("location:" . BASE . 'topic/chat?id=' . $_GET['id']);
