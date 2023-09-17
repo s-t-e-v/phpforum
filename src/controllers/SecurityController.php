@@ -63,6 +63,7 @@ class SecurityController extends Security
             if (empty($error)) {
 
                 try {
+                    // Check if the image is valid
                     if (!empty($_FILES['pp']['name']) && !self::valid_image())
                         throw new Err("The image format doesn't belong to those accepted (.jpg, .png, .webp, .gif) and/or the image is too large (>= 3 mo)", Err::NOTICE);
                     // File upload handling
