@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:28:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-15 03:04:16
+ * @Last Modified time: 2023-09-20 21:35:51
  * @Description: This is the header part of the webpages. Contains meta data, navbar and session message display.
  */
 ?>
@@ -82,22 +82,25 @@
       </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="<?= App::addClassIfHomePage('bg-dark'); ?>">
 
-      <?php if (isset($_SESSION['messages'])) :
-        foreach ($_SESSION['messages'] as $type => $msgs) :
-          foreach ($msgs as $msg) :
-      ?>
+      <div class="container mt-5">
 
-            <div class="w-50 text-center mx-auto alert alert-<?= $type; ?>"> <?= $msg; ?> </div>
+        <?php if (isset($_SESSION['messages'])) :
+          foreach ($_SESSION['messages'] as $type => $msgs) :
+            foreach ($msgs as $msg) :
+        ?>
+
+              <div class="w-50 text-center mx-auto alert alert-<?= $type; ?>"> <?= $msg; ?> </div>
 
 
-      <?php endforeach;
-        endforeach;
-        //* removing every messages saved of the current session.
-        unset($_SESSION['messages']);
-      endif;
-      ?>
+        <?php endforeach;
+          endforeach;
+          //* removing every messages saved of the current session.
+          unset($_SESSION['messages']);
+        endif;
+        ?>
+      </div>
 
 
     </div>
