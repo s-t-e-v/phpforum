@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 13:43:20 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-20 20:16:34
+ * @Last Modified time: 2023-09-20 21:23:12
  * @Description: AppController is a class containing the core methods to manage the app.
  */
 
@@ -15,6 +15,8 @@ class AppController
      */
     public static function index()
     {
+        //* Indicate that we are at home page for conditional displays
+        $_SESSION['is_home_page'] = true;
         //* removing every errors saved of the current session.
         unset($_SESSION['error']);
 
