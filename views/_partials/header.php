@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:28:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-15 03:04:16
+ * @Last Modified time: 2023-09-20 20:47:16
  * @Description: This is the header part of the webpages. Contains meta data, navbar and session message display.
  */
 ?>
@@ -82,6 +82,7 @@
       </div>
     </nav>
 
+
     <div class="container mt-5">
 
       <?php if (isset($_SESSION['messages'])) :
@@ -98,6 +99,4 @@
         unset($_SESSION['messages']);
       endif;
       ?>
-
-
     </div>

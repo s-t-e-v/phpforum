@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:35:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-09 18:00:40
+ * @Last Modified time: 2023-09-20 20:52:54
  * @Description: Home page.
  */
 ?>
@@ -14,8 +14,25 @@
 <?php include(VIEWS . '_partials/header.php'); ?>
 
 <main class="flex-grow-1">
-    <div class="container mb-5">
 
+    <!-- Other forums -->
+    <div class="mb-5 bg-dark">
+        <div class="container py-3">
+            <!-- Forum title -->
+            <h2 class="text-light mb-5">[Forum title]</h2>
+            <div class="d-flex justify-content-between">
+                <h3 class="text-light h4">Other forums</h3>
+                <?php if (!isset($_SESSION['user'])) : ?>
+                    <a href="<?= BASE . 'login'; ?>" class="btn btn-primary mx-2 rounded">Login to create</a>
+                <?php else : ?>
+                    <a href="<?= BASE . "add"; ?>" class="btn btn-secondary px-5 rounded">Create</a>
+                <?php endif; ?>
+            </div>
+            <!-- Forums listing -->
+        </div>
+    </div>
+
+    <div class="container mb-5">
         <div class="mb-5">
             <!-- Topic creation form -->
             <?php if (isset($_SESSION['user'])) : ?>
