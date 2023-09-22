@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-20 20:14:32
+ * @Last Modified time: 2023-09-21 00:21:34
  * @Description: App configuration
  */
 
@@ -31,7 +31,7 @@ const APP_PROJECT_BASE_URL = 'http://localhost/phpforum';
  * Constants for quick access to important MVC folders
  */
 // url constant (to be used in href=/src=)
-const BASE = APP_PROJECT_BASE_URL . '/public/index.php/';
+const BASE = APP_PROJECT_BASE_URL . '/public/';
 // directory constants (to be used in requires/includes)
 const BASE_DIR = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
 const PUBLIC_FOLDER = BASE_DIR . 'public/';

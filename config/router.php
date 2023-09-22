@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 13:13:11 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-14 17:20:30
+ * @Last Modified time: 2023-09-21 00:27:47
  * @Description: Classes autoloading and router management 
  */
 
@@ -14,8 +14,9 @@
  */
 $currentUrl = $_SERVER['REQUEST_URI'];                  // We retrieve the current URI
 
+
 $requestedRoute = ''; // By default, home page
-$urlExploded = explode('index.php', $currentUrl);
+$urlExploded = explode(DIRECTORY_SEPARATOR . APP_NAME . DIRECTORY_SEPARATOR . 'public', $currentUrl);
 if (count($urlExploded) > 1) {
     $requestedRoute = $urlExploded[1]; // We retrive everything after index.php
     $requestedRoute = explode('?', $requestedRoute)[0]; // We remove the GET parameters
