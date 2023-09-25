@@ -13,13 +13,22 @@
 
 <?php include(VIEWS . '_partials/header.php'); ?>
 
+<?php
+// echo "<pre>";
+// var_dump($forum);
+// echo "<br>";
+// var_dump($forum['name']);
+// echo "</pre>";
+?>
+
 <main class="flex-grow-1">
 
     <!-- Other forums -->
     <div class="mb-5 bg-dark">
         <div class="container py-3">
             <!-- Forum title -->
-            <h2 class="text-light mb-5"><?= $_SESSION['forum'] ?? "PHP forum"; ?></h2>
+
+            <h2 class="text-light mb-5"><?= $current_forum["name"] ?? "PHP forum"; ?></h2>
             <div class="d-flex justify-content-between">
                 <h3 class="text-light h4">Other forums</h3>
                 <?php if (!isset($_SESSION['user'])) : ?>

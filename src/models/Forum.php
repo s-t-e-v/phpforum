@@ -37,12 +37,11 @@ class Forum extends Db
         $request = "SELECT * FROM forum WHERE url_name=:url_name";
         $response = self::getDb()->prepare($request);
         try {
-
             $response->execute(self::htmlspecialchars($url_name));
         } catch (Exception $e) {
             throw $e;
         }
 
-        return $response->fetchAll(PDO::FETCH_ASSOC);
+        return $response->fetch(PDO::FETCH_ASSOC);
     }
 }
