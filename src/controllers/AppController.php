@@ -29,6 +29,10 @@ class AppController
         }
         /** topics listing */
         $topics = Topic::findAll(); // Retrieve topics
+        /** Forum name */
+        $current_forum = null;
+        if (isset($_SESSION['forum']))
+            $current_forum = Forum::findByURLName(['url_name' => $_SESSION['forum']]);
 
         include(VIEWS . 'app/index.php');
     }

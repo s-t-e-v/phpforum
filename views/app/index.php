@@ -13,13 +13,22 @@
 
 <?php include(VIEWS . '_partials/header.php'); ?>
 
+<?php
+// echo "<pre>";
+// var_dump($forum);
+// echo "<br>";
+// var_dump($forum['name']);
+// echo "</pre>";
+?>
+
 <main class="flex-grow-1">
 
     <!-- Other forums -->
     <div class="mb-5 bg-dark">
         <div class="container py-3">
             <!-- Forum title -->
-            <h2 class="text-light mb-5">[Forum title]</h2>
+
+            <h2 class="text-light mb-5"><?= $current_forum["name"] ?? "PHP forum"; ?></h2>
             <div class="d-flex justify-content-between">
                 <h3 class="text-light h4">Other forums</h3>
                 <?php if (!isset($_SESSION['user'])) : ?>
@@ -57,7 +66,7 @@
         <!-- Topics listing -->
         <?php foreach ($topics as $topic) : ?>
             <div class="mt-2">
-                <a href="<?= BASE . 'topic/chat?id=' . $topic['id']; ?>" class="btn btn-primary rounded text-center text-light p-2 mb-2 w-100">
+                <a href="<?= BASE . $forum_url . 'topic/chat?id=' . $topic['id']; ?>" class="btn btn-primary rounded text-center text-light p-2 mb-2 w-100">
                     <img src="<?= $topic['picture_profil'] ? UPLOAD . $topic['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle profile_picture-75">
                     <h3><?= $topic['title']; ?></h3>
                     <p>by: <?= $topic['nickname']; ?></p>
@@ -65,7 +74,7 @@
                 </a>
 
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['id'] === $topic['id_user']) : ?>
-                    <a onclick="return confirm('Are you sure to delete this topic?')" href="<?= BASE . 'topic/delete?id=' . $topic['id']; ?>" class="btn btn-danger rounded">Delete</a>
+                    <a onclick="return confirm('Are you sure to delete this topic?')" href="<?= BASE . $forum_url . 'topic/delete?id=' . $topic['id']; ?>" class="btn btn-danger rounded">Delete</a>
                 <?php endif; ?>
 
             </div>

@@ -36,7 +36,8 @@ class MessageController
 
 
             // Chat page redirection
-            header("location:" . BASE . 'topic/chat?id=' . $_GET['id']);
+            $forum_url = isset($_SESSION['forum']) ? "f/" . $_SESSION['forum'] . "/" : "";
+            header("location:" . BASE . $forum_url . 'topic/chat?id=' . $_GET['id']);
             exit();
         }
     }

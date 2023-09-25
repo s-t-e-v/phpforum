@@ -4,21 +4,42 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 13:13:11 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-14 17:20:30
- * @Description: Classes autoloading and router management 
+ * @Last Modified time: 2023-09-21 00:27:47
+ * @Description: Router management 
  */
 
 
 /**
  * ROUTER MANAGEMENT
  */
-$currentUrl = $_SERVER['REQUEST_URI'];                  // We retrieve the current URI
 
-$requestedRoute = ''; // By default, home page
-$urlExploded = explode('index.php', $currentUrl);
-if (count($urlExploded) > 1) {
-    $requestedRoute = $urlExploded[1]; // We retrive everything after index.php
-    $requestedRoute = explode('?', $requestedRoute)[0]; // We remove the GET parameters
+// Retrieve the current URI from the server
+$currentUrl = $_SERVER['REQUEST_URI'];
+$parsed_url = parse_url($currentUrl);
+
+// Extract the path segments from the parsed URL
+$path_segments = explode('/', $parsed_url['path']);
+
+// Handle forum URLs
+if ($path_segments[1] == 'f') {
+    // Set forum session and extract requested route
+    $_SESSION['forum'] = $path_segments[2];
+    $requestedRoute = implode('/', array_slice($path_segments, 3));
+} else {
+    // Extract requested route (non-forum)
+    $requestedRoute = implode('/', array_slice($path_segments, 1));
+    if ($requestedRoute === '')
+        unset($_SESSION['forum']);
+}
+
+/** 
+ * If the forum url name extracted exist among the registered ones, error 404.
+ */
+if (isset($_SESSION['forum']) && !Forum::findByURLName(['url_name' => $_SESSION['forum']])) {
+    // Unset the forum session, require 404 page, and terminate script
+    unset($_SESSION['forum']);
+    require_once PUBLIC_FOLDER  . '404.php';
+    die;
 }
 
 /**
@@ -31,11 +52,14 @@ $paths = array_keys($routes); // List of declared paths
  * If the route (tested without its GET params) doesn't exist among the declared routes, error 404.
  */
 if (!in_array($requestedRoute, $paths)) {
+    // Require 404 page and terminate script
     require_once PUBLIC_FOLDER  . '404.php';
     die;
 }
 
 /**
+ * Invoke the method corresponding to the requested route
+ * 
  * If the route is found, we call the class' method correponding the requested route
  * Example: '' => ['AppController', 'index'] => we call AppController::index()
  */

@@ -24,4 +24,28 @@ class App
     {
         return (isset($_SESSION['is_home_page']) && $_SESSION['is_home_page']) ? $class : '';
     }
+
+    /**
+     * Converts a string to a URL-friendly ASCII representation.
+     *
+     * @param string $str The input string to be converted.
+     * @return string The URL-friendly ASCII representation of the input string.
+     */
+    public static function convertToURLFriendly($str): string
+    {
+        // Transliterate non-ASCII characters to ASCII
+        $transliterator = Transliterator::create('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove');
+        $str = $transliterator->transliterate($str);
+
+        // Convert to lowercase
+        $str = mb_strtolower($str, 'UTF-8');
+
+        // Remove special characters and non-URL-friendly characters
+        $str = preg_replace('/[^a-z0-9\-]/', '', $str);
+
+        // Replace spaces with dashes
+        $str = str_replace(' ', '-', $str);
+
+        return $str;
+    }
 }
