@@ -16,11 +16,21 @@ $currentUrl = $_SERVER['REQUEST_URI'];                  // We retrieve the curre
 
 
 $requestedRoute = ''; // By default, home page
-$urlExploded = explode(DIRECTORY_SEPARATOR . APP_NAME . DIRECTORY_SEPARATOR . 'public', $currentUrl);
-if (count($urlExploded) > 1) {
-    $requestedRoute = $urlExploded[1]; // We retrive everything after index.php
-    $requestedRoute = explode('?', $requestedRoute)[0]; // We remove the GET parameters
-}
+$urlExploded = explode(BASE, $currentUrl);
+// var_dump($requestedRoute);
+// echo "<br>";
+// var_dump($urlExploded);
+// echo "<br>";
+// echo count($urlExploded);
+$requestedRoute = $urlExploded[0]; // We retrive everything after index.php
+$requestedRoute = explode('?', $requestedRoute)[0]; // We remove the GET parameters
+// echo "<br>";
+// var_dump($requestedRoute);
+// die;
+// if (count($urlExploded) > 1) {
+//     $requestedRoute = $urlExploded[1]; // We retrive everything after index.php
+//     $requestedRoute = explode('?', $requestedRoute)[0]; // We remove the GET parameters
+// }
 
 /**
  * We test if the requested route $requestedRoute exist within the tables of routes

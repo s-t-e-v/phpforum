@@ -25,21 +25,21 @@ spl_autoload_register(function ($class) {
  * GENERAL APP CONFIGURATION
  */
 const APP_NAME = 'phpforum';
-const APP_PROJECT_BASE_URL = 'http://localhost/phpforum';
+const APP_PROJECT_BASE_URL = 'http://phpforum';
 
 /**
  * Constants for quick access to important MVC folders
  */
 // url constant (to be used in href=/src=)
-const BASE = APP_PROJECT_BASE_URL . '/public/';
+const BASE = APP_PROJECT_BASE_URL . DIRECTORY_SEPARATOR;
 // directory constants (to be used in requires/includes)
 const BASE_DIR = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
 const PUBLIC_FOLDER = BASE_DIR . 'public/';
 const VIEWS = BASE_DIR . 'views/';
 const MODELS = BASE_DIR . 'src/models/';
 const CONTROLLERS = BASE_DIR . 'src/controllers/';
-const UPLOAD = APP_PROJECT_BASE_URL . '/public/upload/';
-const ASSETS = APP_PROJECT_BASE_URL . '/public/assets/';
+const UPLOAD = APP_PROJECT_BASE_URL . '/upload/';
+const ASSETS = APP_PROJECT_BASE_URL . '/assets/';
 
 /**
  * Database parameters
