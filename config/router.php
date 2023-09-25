@@ -12,18 +12,59 @@
 /**
  * ROUTER MANAGEMENT
  */
+
+
+// $requestedRoute = ''; // By default, home page
+// $urlExploded = explode(BASE, $currentUrl);
+// // var_dump($requestedRoute);
+// // echo "<br>";
+// // var_dump($urlExploded);
+// // echo "<br>";
+// // echo count($urlExploded);
+// $requestedRoute = $urlExploded[0]; // We retrive everything after phpforum/public
+// $requestedRoute = explode('?', $requestedRoute)[0]; // We remove the GET parameters
+// $urlParts = explode('/', $requestedRoute);
+// $forumName = $urlParts[array_search('f', $urlParts) + 1];
+
 $currentUrl = $_SERVER['REQUEST_URI'];                  // We retrieve the current URI
 
 
-$requestedRoute = ''; // By default, home page
-$urlExploded = explode(BASE, $currentUrl);
-// var_dump($requestedRoute);
+// var_dump($currentUrl);
 // echo "<br>";
-// var_dump($urlExploded);
+
+$parsed_url = parse_url($currentUrl);
+
+// var_dump($parsed_url);
 // echo "<br>";
-// echo count($urlExploded);
-$requestedRoute = $urlExploded[0]; // We retrive everything after index.php
-$requestedRoute = explode('?', $requestedRoute)[0]; // We remove the GET parameters
+// die;
+
+$path_segments = explode('/', $parsed_url['path']);
+
+
+// var_dump($path_segments);
+// echo "<br>";
+// die;
+
+if ($path_segments[1] == 'f') {
+    $forumName = $path_segments[2]; // This will be 'exodia' in your example
+    $requestedRoute = implode('/', array_slice($path_segments, 3)); // This will be 'topic/chat?id=16' in your example
+} else {
+    $requestedRoute = implode('/', array_slice($path_segments, 1)); // This will be 'topic/chat?id=16' in your example
+}
+
+if (isset($forumName)) {
+    var_dump($forumName);
+    echo "<br>";
+}
+var_dump($requestedRoute);
+echo "<br>";
+// die;
+
+// var_dump($urlParts);
+// echo "<br>";
+// var_dump($forumName);
+// echo "<br>";
+// die;
 // echo "<br>";
 // var_dump($requestedRoute);
 // die;

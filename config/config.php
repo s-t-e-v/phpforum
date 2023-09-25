@@ -78,14 +78,13 @@ const DB = [
  * List of possible actions/methodes (Routes configuration)
  */
 $routes = [
-    ''                  => ['AppController', 'index'],
-    '/'                 => ['AppController', 'index'],
-    '/signup'           => ['SecurityController', 'signup'],
-    '/login'            => ['SecurityController', 'login'],
-    '/logout'           => ['SecurityController', 'logout'],
-    '/topic/delete'     => ['TopicController', 'delete'],
-    '/topic/chat'       => ['TopicController', 'chat'],
-    '/add'              => ['AppController', 'create_forum'],
+    ''                 => ['AppController', 'index'],
+    'signup'           => ['SecurityController', 'signup'],
+    'login'            => ['SecurityController', 'login'],
+    'logout'           => ['SecurityController', 'logout'],
+    'topic/delete'     => ['TopicController', 'delete'],
+    'topic/chat'       => ['TopicController', 'chat'],
+    'add'              => ['AppController', 'create_forum'],
 
 
 
