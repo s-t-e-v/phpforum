@@ -25,6 +25,7 @@ class ForumController
         if (empty($_SESSION['error'])) {
             $data = [
                 'name' => $_POST['forum'],
+                'url_name' => App::convertToURLFriendly($_POST['forum']),
                 'id_user' => $_SESSION['user']['id'],
                 'created_at' => date_format(new DateTime(), 'Y-m-d H:i:s'),
             ];

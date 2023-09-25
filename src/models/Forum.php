@@ -19,7 +19,7 @@ class Forum extends Db
     public static function add($data): string
     {
         $pdo = self::getDb();
-        $request = "INSERT INTO forum (name, id_user, created_at) VALUES (:name, :id_user, :created_at)";
+        $request = "INSERT INTO forum (name, url_name, id_user, created_at) VALUES (:name, :url_name, :id_user, :created_at)";
         $response = $pdo->prepare($request);
         try {
             $response->execute(self::htmlspecialchars($data));

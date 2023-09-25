@@ -13,18 +13,21 @@
  * ROUTER MANAGEMENT
  */
 
-
-$currentUrl = $_SERVER['REQUEST_URI'];                  // We retrieve the current URI
-
+// Retrieve the current URI from the server
+$currentUrl = $_SERVER['REQUEST_URI'];
 $parsed_url = parse_url($currentUrl);
 
+// Extract the path segments from the parsed URL
 $path_segments = explode('/', $parsed_url['path']);
 
+// Handle forum URLs
 if ($path_segments[1] == 'f') {
-    $_SESSION['forum'] = $path_segments[2]; // This will be 'exodia' in your example
-    $requestedRoute = implode('/', array_slice($path_segments, 3)); // This will be 'topic/chat?id=16' in your example
+    // Set forum session and extract requested route
+    $_SESSION['forum'] = $path_segments[2];
+    $requestedRoute = implode('/', array_slice($path_segments, 3));
 } else {
-    $requestedRoute = implode('/', array_slice($path_segments, 1)); // This will be 'topic/chat?id=16' in your example
+    // Extract requested route (non-forum)
+    $requestedRoute = implode('/', array_slice($path_segments, 1));
     if ($requestedRoute === '')
         unset($_SESSION['forum']);
 }
@@ -33,6 +36,7 @@ if ($path_segments[1] == 'f') {
  * If the forum url name extracted exist among the registered ones, error 404.
  */
 if (isset($_SESSION['forum']) && !Forum::findByURLName(['url_name' => $_SESSION['forum']])) {
+    // Unset the forum session, require 404 page, and terminate script
     unset($_SESSION['forum']);
     require_once PUBLIC_FOLDER  . '404.php';
     die;
@@ -48,11 +52,14 @@ $paths = array_keys($routes); // List of declared paths
  * If the route (tested without its GET params) doesn't exist among the declared routes, error 404.
  */
 if (!in_array($requestedRoute, $paths)) {
+    // Require 404 page and terminate script
     require_once PUBLIC_FOLDER  . '404.php';
     die;
 }
 
 /**
+ * Invoke the method corresponding to the requested route
+ * 
  * If the route is found, we call the class' method correponding the requested route
  * Example: '' => ['AppController', 'index'] => we call AppController::index()
  */

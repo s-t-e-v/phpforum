@@ -76,7 +76,7 @@ Check out the live demo [here](https://your-demo-link.com).
 
 1.  Install XAMPP
 2.  clone the project within **htdocs/**
-3.  create the database from `dbmodel.sql`. Set it up with your own credentatials.
+3.  create the database from `phpforum.sql`. Set it up with your own credentatials.
 4.  Ensure the web server user, normally `daemon`, has the permission of read & write for the folders:
 
     - `public/upload` . This is important for the profil picture upload feature.
@@ -309,8 +309,7 @@ The database contains **5 tables**:
 
 Here are the main routes:
 
-- `phpforum/` is the root of the website. This route serves the default forum as homepage
-- `phpforum/index.php/` route is equivalent to the route above. Further information: it displays a list of all the topics in the current forum, ordered by the most recent creation date. A list of all accessible forums is also displayed, above the topic list. When a forum ID is passed as a parameter, this refer to the default forum of the connected user. The adequate forum is then displayed.
+- `phpforum/` is the root of the website. This route serves the default forum as homepage. Further information: it displays a list of all the topics in the current forum, ordered by the most recent creation date. A list of all accessible forums is also displayed, above the topic list. When a forum ID is passed as a parameter, this refer to the default forum of the connected user. The adequate forum is then displayed.
 - `phpforum/chat/`route displays the messages for a specific topic. The topic ID is passed to this route as a parameter.
 - `phpforum/user/profil` route displays the user information, such as the topics it created, the forum it created, its default forum, etc. The user ID is passed to this route as a parameter.
 - `phpforum/user/setting` route displays the user profile setting version. The page becomes a form.

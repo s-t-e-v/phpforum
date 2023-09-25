@@ -24,4 +24,28 @@ class App
     {
         return (isset($_SESSION['is_home_page']) && $_SESSION['is_home_page']) ? $class : '';
     }
+
+
+    /**
+     * 
+     * @param string $forumName
+     * @return string The cekln 
+     */
+    public static function convertToURLFriendly($str)
+    {
+        // Transliterate non-ASCII characters to ASCII
+        $transliterator = Transliterator::create('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove');
+        $str = $transliterator->transliterate($str);
+
+        // Convert to lowercase
+        $str = mb_strtolower($str, 'UTF-8');
+
+        // Remove special characters and non-URL-friendly characters
+        $str = preg_replace('/[^a-z0-9\-]/', '', $str);
+
+        // Replace spaces with dashes
+        $str = str_replace(' ', '-', $str);
+
+        return $str;
+    }
 }
