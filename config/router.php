@@ -46,18 +46,21 @@ $path_segments = explode('/', $parsed_url['path']);
 // die;
 
 if ($path_segments[1] == 'f') {
-    $forumName = $path_segments[2]; // This will be 'exodia' in your example
+    $_SESSION['forum'] = $path_segments[2]; // This will be 'exodia' in your example
     $requestedRoute = implode('/', array_slice($path_segments, 3)); // This will be 'topic/chat?id=16' in your example
 } else {
+    unset($_SESSION['forum']);
     $requestedRoute = implode('/', array_slice($path_segments, 1)); // This will be 'topic/chat?id=16' in your example
 }
 
-if (isset($forumName)) {
-    var_dump($forumName);
-    echo "<br>";
-}
-var_dump($requestedRoute);
-echo "<br>";
+// echo "<div style='color: white;'>";
+// echo "<pre >";
+// var_dump($_SESSION);
+// echo "</pre>";
+// echo "<br>";
+// var_dump($requestedRoute);
+// echo "<br>";
+// echo "</div>";
 // die;
 
 // var_dump($urlParts);
