@@ -49,11 +49,12 @@ if ($path_segments[1] == 'f') {
     $_SESSION['forum'] = $path_segments[2]; // This will be 'exodia' in your example
     $requestedRoute = implode('/', array_slice($path_segments, 3)); // This will be 'topic/chat?id=16' in your example
 } else {
-    unset($_SESSION['forum']);
     $requestedRoute = implode('/', array_slice($path_segments, 1)); // This will be 'topic/chat?id=16' in your example
+    if ($requestedRoute === '')
+        unset($_SESSION['forum']);
 }
 
-// echo "<div style='color: white;'>";
+// echo "<div style='color: yellow;'>";
 // echo "<pre >";
 // var_dump($_SESSION);
 // echo "</pre>";

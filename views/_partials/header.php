@@ -17,6 +17,7 @@
 // echo "<pre style='color: white;'>";
 // var_dump($error);
 // echo "</pre>";
+$forum_url = isset($_SESSION['forum']) ? "f/" . $_SESSION['forum'] . "/" : "";
 ?>
 
 <!doctype html>
@@ -55,7 +56,7 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="<?= BASE; ?>">Home
+              <a class="nav-link active" href="<?= BASE . $forum_url; ?>">Home
                 <span class="visually-hidden">(current)</span>
               </a>
             </li>

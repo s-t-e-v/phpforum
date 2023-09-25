@@ -52,7 +52,7 @@ Check out the live demo [here](https://your-demo-link.com).
 ![](https://geps.dev/progress/0)
 
 - [ ] 10. Forum creation page
-- [ ] 11. List of all forum on home page (with the more dropdown button)
+- [ ] 11. List of all forum on home page (with the more dropdown button - don't display current forum)
 - [ ] 12. Forum deletion
 - [ ] 13. User profil
 - [ ] 14. User profil management
