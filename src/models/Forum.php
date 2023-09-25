@@ -51,4 +51,19 @@ class Forum extends Db
 
         return $response->fetch(PDO::FETCH_ASSOC);
     }
+
+
+
+    public static function findAll(): mixed
+    {
+        $request = "SELECT * FROM forum";
+        $response = self::getDb()->prepare($request);
+        try {
+            $response->execute();
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        return $response->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

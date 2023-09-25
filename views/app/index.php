@@ -9,6 +9,9 @@
  */
 ?>
 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+
 <?php !isset($_SESSION['error']) ?: $error = $_SESSION['error']; ?>
 
 <?php include(VIEWS . '_partials/header.php'); ?>
@@ -19,6 +22,7 @@
 // echo "<br>";
 // var_dump($forum['name']);
 // echo "</pre>";
+// $forums = null;
 ?>
 
 <main class="flex-grow-1">
@@ -38,6 +42,35 @@
                 <?php endif; ?>
             </div>
             <!-- Forums listing -->
+            <div class="py-3 mx-3">
+
+                <?php if (isset($forums)) : ?>
+                    <div class="row justify-content-center gap-3 pt-3">
+                        <?php foreach ($forums as $forum) : ?>
+                            <div class="cool-md-6 col-lg-4 mb-2 bg-light">
+                                <?= $forum["name"]; ?>
+                                <!-- <a class="btn btn-primary rounded h-100 w-100" href="</?= BASE . "f/" . $forum['url_name']; ?>"></?= $forum['name']; ?></a> -->
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else : ?>
+                    <div class="d-flex justify-content-center">
+                        <img class="logo-50" src="<?= ASSETS . "img/forum.svg"; ?>" alt="Forum logo">
+                    </div>
+                    <p class="text-center text-light">No forums yet</p>
+                <?php endif; ?>
+            </div>
+
+            <p class="text-center">
+                <button class="btn btn-info rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    More
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                </div>
+            </div>
         </div>
     </div>
 

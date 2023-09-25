@@ -33,6 +33,8 @@ class AppController
         $current_forum = null;
         if (isset($_SESSION['forum']))
             $current_forum = Forum::findByURLName(['url_name' => $_SESSION['forum']]);
+        /** forums listing */
+        $forums = Forum::findAll();
 
         include(VIEWS . 'app/index.php');
     }
