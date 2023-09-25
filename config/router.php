@@ -5,7 +5,7 @@
  * @Date: 2023-09-04 13:13:11 
  * @Last Modified by: Steven Bandaogo
  * @Last Modified time: 2023-09-21 00:27:47
- * @Description: Classes autoloading and router management 
+ * @Description: Router management 
  */
 
 
@@ -14,36 +14,11 @@
  */
 
 
-// $requestedRoute = ''; // By default, home page
-// $urlExploded = explode(BASE, $currentUrl);
-// // var_dump($requestedRoute);
-// // echo "<br>";
-// // var_dump($urlExploded);
-// // echo "<br>";
-// // echo count($urlExploded);
-// $requestedRoute = $urlExploded[0]; // We retrive everything after phpforum/public
-// $requestedRoute = explode('?', $requestedRoute)[0]; // We remove the GET parameters
-// $urlParts = explode('/', $requestedRoute);
-// $forumName = $urlParts[array_search('f', $urlParts) + 1];
-
 $currentUrl = $_SERVER['REQUEST_URI'];                  // We retrieve the current URI
-
-
-// var_dump($currentUrl);
-// echo "<br>";
 
 $parsed_url = parse_url($currentUrl);
 
-// var_dump($parsed_url);
-// echo "<br>";
-// die;
-
 $path_segments = explode('/', $parsed_url['path']);
-
-
-// var_dump($path_segments);
-// echo "<br>";
-// die;
 
 if ($path_segments[1] == 'f') {
     $_SESSION['forum'] = $path_segments[2]; // This will be 'exodia' in your example
@@ -54,28 +29,14 @@ if ($path_segments[1] == 'f') {
         unset($_SESSION['forum']);
 }
 
-// echo "<div style='color: yellow;'>";
-// echo "<pre >";
-// var_dump($_SESSION);
-// echo "</pre>";
-// echo "<br>";
-// var_dump($requestedRoute);
-// echo "<br>";
-// echo "</div>";
-// die;
-
-// var_dump($urlParts);
-// echo "<br>";
-// var_dump($forumName);
-// echo "<br>";
-// die;
-// echo "<br>";
-// var_dump($requestedRoute);
-// die;
-// if (count($urlExploded) > 1) {
-//     $requestedRoute = $urlExploded[1]; // We retrive everything after index.php
-//     $requestedRoute = explode('?', $requestedRoute)[0]; // We remove the GET parameters
-// }
+/** 
+ * If the forum url name extracted exist among the registered ones, error 404.
+ */
+if (isset($_SESSION['forum']) && !Forum::findByURLName(['url_name' => $_SESSION['forum']])) {
+    unset($_SESSION['forum']);
+    require_once PUBLIC_FOLDER  . '404.php';
+    die;
+}
 
 /**
  * We test if the requested route $requestedRoute exist within the tables of routes

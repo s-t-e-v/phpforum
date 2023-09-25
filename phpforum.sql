@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS user(
 -- forum table
 CREATE TABLE IF NOT EXISTS forum(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    url_name VARCHAR(255) NOT NULL UNIQUE,
     created_at DATETIME NOT NULL,
     id_user INT NOT NULL, 
     CONSTRAINT fk_id_user_forum
