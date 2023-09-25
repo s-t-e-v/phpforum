@@ -26,7 +26,7 @@ The forum provides a platform for users to engage in meaningful discussions, see
 **Demo:**
 Check out the live demo [here](https://your-demo-link.com).
 
-## Development planning ![](https://geps.dev/progress/53)
+## Development planning ![](https://geps.dev/progress/58)
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
@@ -49,9 +49,9 @@ Check out the live demo [here](https://your-demo-link.com).
 
 **Extra**
 
-![](https://geps.dev/progress/0)
+![](https://geps.dev/progress/11)
 
-- [ ] 10. Forum creation page
+- [x] 10. Forum creation page
 - [ ] 11. List of all forum on home page (with the more dropdown button - don't display current forum)
 - [ ] 12. Forum deletion
 - [ ] 13. User profil
@@ -75,8 +75,8 @@ Check out the live demo [here](https://your-demo-link.com).
 **Guide for local install**
 
 1.  Install XAMPP
-2.  clone the project within **htdocs/**
-3.  create the database from `phpforum.sql`. Set it up with your own credentatials.
+2.  Clone the project within **htdocs/**
+3.  Create the database from `phpforum.sql`. Set it up with your own credentatials.
 4.  Ensure the web server user, normally `daemon`, has the permission of read & write for the folders:
 
     - `public/upload` . This is important for the profil picture upload feature.
@@ -119,11 +119,44 @@ Check out the live demo [here](https://your-demo-link.com).
       sudo chown -R :phpforum error_log
       ```
 
-      **NB**: if you are running xampp for some reason, restart it to make the changes effective after the latter step.
+5.  Ensure VirtualHosts are enabled in Apache
 
-5.  Launch by running the following steps:
-    - Ensure you have xampp running. You can start the process with `/opt/lampp/lampp start`
-    - go to http://localhost and go to the **htdocs/** folder, the projects folder. In the project folder, access the **public/** folder. This is the folder where the `index.php` is. The website should load automatically after accessing the **public/** folder.
+    - Open the `httpd.conf` file, which is typically located in `/opt/lampp/etc/httpd.conf`.
+    - Search for the line that includes the `httpd-vhosts.conf` file. It should look something like this:
+      ```
+      Include etc/extra/httpd-vhosts.conf
+      ```
+    - If the line is commented out (i.e., it starts with a #), remove the # to enable it.
+
+      - Save the httpd.conf file.
+
+6.  Check Your VirtualHost Configuration
+
+    - Open your `httpd-vhosts.conf` file, which is typically located in `/opt/lampp/etc/extra/`.
+    - Make sure you have a VirtualHost block for your phpforum project and that the `DocumentRoot` and `Directory` directives point to the public directory of your project. It should look something like this:
+
+      ```
+      <VirtualHost *:80>
+          ServerName phpforum
+          DocumentRoot "/opt/lampp/htdocs/phpforum/public"
+          <Directory "/opt/lampp/htdocs/phpforum/public">
+              Options Indexes FollowSymLinks
+              AllowOverride All
+              Require all granted
+          </Directory>
+      </VirtualHost>
+      ```
+
+7.  Check Your Hosts File
+
+    - Open your hosts file, which is typically located at `/etc/hosts`.
+    - Make sure you have a line that maps the phpforum domain name to your local IP address. It should look like this:
+
+      ```
+      127.0.0.1    phpforum
+      ```
+
+      **NB**: if you are already running xampp for some reason, restart it to make the changes effective after the latter step. You can do it by running `/opt/lampp/lampp restart`.
 
 ## Usage
 
@@ -135,8 +168,9 @@ Check out the live demo [here](https://your-demo-link.com).
 
 ### Website launching
 
-- if you cloned the project on your local machine, ensure you followed the install steps
-- launch xampp and access in your browser the following url: https://localhost/your_project_folder_name/public/
+- If you cloned the project on your local machine, ensure you followed the install steps
+- Ensure you have xampp running. You can start the process with `/opt/lampp/lampp start`
+- go to http://phpforum in your browser
 - you can also access the website on live demo throught the following link: [link to demo](https://example.com)
 
 ### Navigation
