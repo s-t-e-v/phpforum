@@ -25,13 +25,13 @@ class App
         return (isset($_SESSION['is_home_page']) && $_SESSION['is_home_page']) ? $class : '';
     }
 
-
     /**
-     * 
-     * @param string $forumName
-     * @return string The cekln 
+     * Converts a string to a URL-friendly ASCII representation.
+     *
+     * @param string $str The input string to be converted.
+     * @return string The URL-friendly ASCII representation of the input string.
      */
-    public static function convertToURLFriendly($str)
+    public static function convertToURLFriendly($str): string
     {
         // Transliterate non-ASCII characters to ASCII
         $transliterator = Transliterator::create('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove');

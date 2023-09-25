@@ -32,6 +32,13 @@ class Forum extends Db
     }
 
 
+    /**
+     * Get the requested forum by url name.
+     * 
+     * @param array $url_name: url_name (associative array)
+     * @return mixed: associative array if no failure. If there is no rows, an
+     * empty array is returned. If there is failure, False is returned.
+     */
     public static function findByURLName($url_name): mixed
     {
         $request = "SELECT * FROM forum WHERE url_name=:url_name";
