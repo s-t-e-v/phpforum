@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-26 20:49:11
+ * @Last Modified time: 2023-09-26 22:46:34
  * @Description: App configuration
  */
 
@@ -13,7 +13,7 @@
  */
 spl_autoload_register(function ($class) {
 
-    foreach (['src/controllers/', 'src/models/', 'src/lib/', 'src/api/'] as $folder) {
+    foreach (['src/controllers/', 'src/models/', 'src/lib/'] as $folder) {
         $file = '../' . $folder . $class . '.php';
         if (file_exists($file)) {
             require_once($file);

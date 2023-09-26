@@ -68,11 +68,6 @@ body {
     height: 50px;
 }
 
-/* Forums */
-.forum_link {
-    max-width: 20rem;
-}
-
 @media screen and (min-width: 576px)  {
     
     .pp_input {

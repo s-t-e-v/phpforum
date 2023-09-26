@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:35:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-26 20:36:00
+ * @Last Modified time: 2023-09-26 22:23:20
  * @Description: Home page.
  */
 ?>
@@ -45,11 +45,11 @@
             <div class="py-3 mx-3">
 
                 <?php if (isset($forums)) : ?>
-                    <div class="row justify-content-center pt-3">
+                    <div class="forum_list row justify-content-center pt-3">
                         <?php $i = 0; ?>
                         <?php foreach ($forums as $forum) : ?>
                             <?php if ($i == 6) break; ?>
-                            <div class="col-md-6 col-lg-4 bg-light p-3">
+                            <div class="col-md-6 col-lg-4 bg-light p-3 forum_link">
                                 <a class="btn btn-primary rounded h-100 w-100 d-flex align-items-center justify-content-center" href="<?= BASE . "f/" . $forum['url_name']; ?>">
                                     <?= $forum['name']; ?>
                                 </a>
