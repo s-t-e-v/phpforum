@@ -45,11 +45,10 @@
             <div class="py-3 mx-3">
 
                 <?php if (isset($forums)) : ?>
-                    <div class="row justify-content-center gap-3 pt-3">
+                    <div class="row justify-content-center pt-3">
                         <?php foreach ($forums as $forum) : ?>
-                            <div class="cool-md-6 col-lg-4 mb-2 bg-light">
-                                <?= $forum["name"]; ?>
-                                <!-- <a class="btn btn-primary rounded h-100 w-100" href="</?= BASE . "f/" . $forum['url_name']; ?>"></?= $forum['name']; ?></a> -->
+                            <div class="col-md-6 col-lg-4 bg-light p-3">
+                                <a class="btn btn-primary rounded h-100 w-100" href="<?= BASE . "f/" . $forum['url_name']; ?>"><?= $forum['name']; ?></a>
                             </div>
                         <?php endforeach; ?>
                     </div>
