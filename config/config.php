@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-21 00:21:34
+ * @Last Modified time: 2023-09-26 20:49:11
  * @Description: App configuration
  */
 
@@ -13,7 +13,7 @@
  */
 spl_autoload_register(function ($class) {
 
-    foreach (['src/controllers/', 'src/models/', 'src/lib/'] as $folder) {
+    foreach (['src/controllers/', 'src/models/', 'src/lib/', 'src/api/'] as $folder) {
         $file = '../' . $folder . $class . '.php';
         if (file_exists($file)) {
             require_once($file);
@@ -79,12 +79,13 @@ const DB = [
  */
 $routes = [
     ''                 => ['AppController', 'index'],
+    'add'              => ['AppController', 'create_forum'],
     'signup'           => ['SecurityController', 'signup'],
     'login'            => ['SecurityController', 'login'],
     'logout'           => ['SecurityController', 'logout'],
     'topic/delete'     => ['TopicController', 'delete'],
     'topic/chat'       => ['TopicController', 'chat'],
-    'add'              => ['AppController', 'create_forum'],
+    'api/forums'       => ['Api', 'get_forums'],
 
 
 

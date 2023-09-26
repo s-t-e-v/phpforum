@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:35:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-20 20:52:54
+ * @Last Modified time: 2023-09-26 20:36:00
  * @Description: Home page.
  */
 ?>
@@ -46,12 +46,15 @@
 
                 <?php if (isset($forums)) : ?>
                     <div class="row justify-content-center pt-3">
+                        <?php $i = 0; ?>
                         <?php foreach ($forums as $forum) : ?>
+                            <?php if ($i == 6) break; ?>
                             <div class="col-md-6 col-lg-4 bg-light p-3">
                                 <a class="btn btn-primary rounded h-100 w-100 d-flex align-items-center justify-content-center" href="<?= BASE . "f/" . $forum['url_name']; ?>">
                                     <?= $forum['name']; ?>
                                 </a>
                             </div>
+                            <?php $i++; ?>
                         <?php endforeach; ?>
                     </div>
                 <?php else : ?>
@@ -63,7 +66,7 @@
             </div>
 
             <p class="text-center">
-                <button class="btn btn-info rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-info rounded more" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     More
                 </button>
             </p>
