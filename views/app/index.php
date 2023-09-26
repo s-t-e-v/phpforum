@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:35:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-26 23:19:54
+ * @Last Modified time: 2023-09-27 00:23:55
  * @Description: Home page.
  */
 ?>
@@ -65,26 +65,28 @@
                 <?php endif; ?>
             </div>
 
-            <p class="text-center">
-                <button class="btn btn-info rounded more" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    More
-                </button>
-            </p>
-            <div class="collapse mx-3" id="collapseExample">
-                <div class="row justify-content-center">
-                    <?php $i = 0; ?>
-                    <?php foreach ($forums as $forum) : ?>
-                        <?php if ($i >= 3) :; ?>
-                            <div class="col-md-6 col-lg-4 bg-light p-3 more_forum_link">
-                                <a class="btn btn-primary rounded h-100 w-100 d-flex align-items-center justify-content-center" href="<?= BASE . "f/" . $forum['url_name']; ?>">
-                                    <?= $forum['name']; ?>
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                        <?php $i++; ?>
-                    <?php endforeach; ?>
+            <?php if (count($forums) > 6) : ?>
+                <p class="text-center">
+                    <button class="btn btn-info rounded more" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        More
+                    </button>
+                </p>
+                <div class="collapse mx-3" id="collapseExample">
+                    <div class="row justify-content-center">
+                        <?php $i = 0; ?>
+                        <?php foreach ($forums as $forum) : ?>
+                            <?php if ($i >= 3) :; ?>
+                                <div class="col-md-6 col-lg-4 bg-light p-3 more_forum_link">
+                                    <a class="btn btn-primary rounded h-100 w-100 d-flex align-items-center justify-content-center" href="<?= BASE . "f/" . $forum['url_name']; ?>">
+                                        <?= $forum['name']; ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                            <?php $i++; ?>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 
