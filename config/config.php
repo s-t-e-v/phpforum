@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-26 22:46:34
+ * @Last Modified time: 2023-09-26 22:58:14
  * @Description: App configuration
  */
 
@@ -85,7 +85,6 @@ $routes = [
     'logout'           => ['SecurityController', 'logout'],
     'topic/delete'     => ['TopicController', 'delete'],
     'topic/chat'       => ['TopicController', 'chat'],
-    'api/forums'       => ['Api', 'get_forums'],
 
 
 
