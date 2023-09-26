@@ -48,7 +48,9 @@
                     <div class="row justify-content-center pt-3">
                         <?php foreach ($forums as $forum) : ?>
                             <div class="col-md-6 col-lg-4 bg-light p-3">
-                                <a class="btn btn-primary rounded h-100 w-100" href="<?= BASE . "f/" . $forum['url_name']; ?>"><?= $forum['name']; ?></a>
+                                <a class="btn btn-primary rounded h-100 w-100 d-flex align-items-center justify-content-center" href="<?= BASE . "f/" . $forum['url_name']; ?>">
+                                    <?= $forum['name']; ?>
+                                </a>
                             </div>
                         <?php endforeach; ?>
                     </div>
