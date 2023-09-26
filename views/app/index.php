@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:35:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-26 22:23:20
+ * @Last Modified time: 2023-09-26 23:19:54
  * @Description: Home page.
  */
 ?>
@@ -45,7 +45,7 @@
             <div class="py-3 mx-3">
 
                 <?php if (isset($forums)) : ?>
-                    <div class="forum_list row justify-content-center pt-3">
+                    <div class="row justify-content-center pt-3">
                         <?php $i = 0; ?>
                         <?php foreach ($forums as $forum) : ?>
                             <?php if ($i == 6) break; ?>
@@ -70,9 +70,19 @@
                     More
                 </button>
             </p>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            <div class="collapse mx-3" id="collapseExample">
+                <div class="row justify-content-center">
+                    <?php $i = 0; ?>
+                    <?php foreach ($forums as $forum) : ?>
+                        <?php if ($i >= 3) :; ?>
+                            <div class="col-md-6 col-lg-4 bg-light p-3 more_forum_link">
+                                <a class="btn btn-primary rounded h-100 w-100 d-flex align-items-center justify-content-center" href="<?= BASE . "f/" . $forum['url_name']; ?>">
+                                    <?= $forum['name']; ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 "use strict"
 const forumList = document.querySelectorAll('.forum_link');
+const moreForumList = document.querySelectorAll('.more_forum_link');
 // const BASE = "http://phpforum/";
 
 const forum_listing = () => {
@@ -23,6 +24,15 @@ const forum_listing = () => {
             forum.hidden = false;
         } else {
             forum.hidden = true;
+        }
+        i++;
+    });
+    i = 0;
+    moreForumList.forEach((forum) => {
+        if (i < numForumsToDisplay - 3) {
+            forum.hidden = true;
+        } else {
+            forum.hidden = false;
         }
         i++;
     });

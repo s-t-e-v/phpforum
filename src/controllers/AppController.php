@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 13:43:20 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-20 23:43:06
+ * @Last Modified time: 2023-09-27 00:20:27
  * @Description: AppController is a class containing the core methods to manage the app.
  */
 
@@ -35,6 +35,16 @@ class AppController
             $current_forum = Forum::findByURLName(['url_name' => $_SESSION['forum']]);
         /** forums listing */
         $forums = Forum::findAll();
+        // remove current forum from listing
+        if ($current_forum) {
+            foreach ($forums as $key => $forum) {
+                if ($forum['id'] === $current_forum['id']) {
+                    unset($forums[$key]); // Remove the forum that matches the condition
+                    break;
+                }
+            }
+        }
+
 
         include(VIEWS . 'app/index.php');
     }
