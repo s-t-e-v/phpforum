@@ -4,10 +4,13 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:35:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-20 20:52:54
+ * @Last Modified time: 2023-09-27 01:47:32
  * @Description: Home page.
  */
 ?>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 
 <?php !isset($_SESSION['error']) ?: $error = $_SESSION['error']; ?>
 
@@ -19,6 +22,7 @@
 // echo "<br>";
 // var_dump($forum['name']);
 // echo "</pre>";
+// $forums = null;
 ?>
 
 <main class="flex-grow-1">
@@ -38,6 +42,51 @@
                 <?php endif; ?>
             </div>
             <!-- Forums listing -->
+            <div class="mt-3 mx-3">
+
+                <?php if (isset($forums)) : ?>
+                    <div class="row justify-content-center pt-3">
+                        <?php $i = 0; ?>
+                        <?php foreach ($forums as $forum) : ?>
+                            <?php if ($i == 6) break; ?>
+                            <div class="col-md-6 col-lg-4 p-3 forum_link">
+                                <a class="btn btn-primary rounded h-100 w-100 d-flex align-items-center justify-content-center" href="<?= BASE . "f/" . $forum['url_name']; ?>">
+                                    <?= $forum['name']; ?>
+                                </a>
+                            </div>
+                            <?php $i++; ?>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else : ?>
+                    <div class="d-flex justify-content-center">
+                        <img class="logo-50" src="<?= ASSETS . "img/forum.svg"; ?>" alt="Forum logo">
+                    </div>
+                    <p class="text-center text-light">No forums yet</p>
+                <?php endif; ?>
+            </div>
+
+            <?php if (count($forums) > 3) : ?>
+                <div class="collapse mx-3" id="collapseExample">
+                    <div class="row justify-content-center">
+                        <?php $i = 0; ?>
+                        <?php foreach ($forums as $forum) : ?>
+                            <?php if ($i >= 3) :; ?>
+                                <div class="col-md-6 col-lg-4 p-3 more_forum_link">
+                                    <a class="btn btn-primary rounded h-100 w-100 d-flex align-items-center justify-content-center" href="<?= BASE . "f/" . $forum['url_name']; ?>">
+                                        <?= $forum['name']; ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                            <?php $i++; ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <button class="btn btn-info rounded" type="button" id="more_forum_button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        More
+                    </button>
+                </p>
+            <?php endif; ?>
         </div>
     </div>
 

@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-21 00:21:34
+ * @Last Modified time: 2023-09-26 22:58:14
  * @Description: App configuration
  */
 
@@ -79,12 +79,12 @@ const DB = [
  */
 $routes = [
     ''                 => ['AppController', 'index'],
+    'add'              => ['AppController', 'create_forum'],
     'signup'           => ['SecurityController', 'signup'],
     'login'            => ['SecurityController', 'login'],
     'logout'           => ['SecurityController', 'logout'],
     'topic/delete'     => ['TopicController', 'delete'],
     'topic/chat'       => ['TopicController', 'chat'],
-    'add'              => ['AppController', 'create_forum'],
 
 
 

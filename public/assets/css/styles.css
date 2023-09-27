@@ -62,6 +62,12 @@ body {
     /* o0bject-fit: cover; /* scale the image to cover the element */
 }
 
+/* Logo */
+.logo-50 {
+    width: 50px;
+    height: 50px;
+}
+
 @media screen and (min-width: 576px)  {
     
     .pp_input {

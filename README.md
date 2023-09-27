@@ -26,7 +26,7 @@ The forum provides a platform for users to engage in meaningful discussions, see
 **Demo:**
 Check out the live demo [here](https://your-demo-link.com).
 
-## Development planning ![](https://geps.dev/progress/58)
+## Development planning ![](https://geps.dev/progress/63)
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
@@ -49,11 +49,11 @@ Check out the live demo [here](https://your-demo-link.com).
 
 **Extra**
 
-![](https://geps.dev/progress/11)
+![](https://geps.dev/progress/22)
 
 - [x] 10. Forum creation page
-- [ ] 11. List of all forum on home page (with the more dropdown button - don't display current forum)
-- [ ] 12. Forum deletion
+- [x] 11. List of all forum on home page (with the more dropdown button - don't display current forum)
+- [ ] 12. Topic listing for subforums & Forum deletion
 - [ ] 13. User profil
 - [ ] 14. User profil management
   - [ ] Topic deletion
