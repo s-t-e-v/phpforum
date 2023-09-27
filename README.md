@@ -53,7 +53,7 @@ Check out the live demo [here](https://your-demo-link.com).
 
 - [x] 10. Forum creation page
 - [x] 11. List of all forum on home page (with the more dropdown button - don't display current forum)
-- [ ] 12. Topic listing for subforums & Forum deletion
+- [x] 12. Topic listing for subforums
 - [ ] 13. User profil
 - [ ] 14. User profil management
   - [ ] Topic deletion
