@@ -23,18 +23,27 @@ class TopicController
             $_SESSION['error']['title'] = "The <em>topic name</em> input exceeds maximum length of 255 characters.";
         }
 
+
         /* Submitted data processing */
         if (empty($_SESSION['error'])) {
+            var_dump($_SESSION);
+
+            /** Forum name */
+            if (isset($_SESSION['forum'])) {
+                $current_forum = Forum::findByURLName(['url_name' => $_SESSION['forum']]);
+            }
+
             $data = [
                 'title' => $_POST['title'],
                 'id_user' => $_SESSION['user']['id'],
-                'id_forum' => $_SESSION['default_forum']['id_forum'],
+                'id_forum' => $current_forum['id'] ?? null,
                 'created_at' => date_format(new DateTime(), 'Y-m-d H:i:s'),
             ];
 
             // echo "<pre>";
             // var_dump($data);
             // echo "</pre>";
+            // die;
 
             $success = Topic::add($data);
 
@@ -43,7 +52,8 @@ class TopicController
                 $_SESSION['messages']['success'][] = "Your topic has been successfully created!";
 
             /** Redirection */
-            header("location:" . BASE);
+            $forum_url = isset($_SESSION['forum']) ? "f/" . $_SESSION['forum'] . "/" : "";
+            header("location:" . BASE . $forum_url);
             exit();
         }
     }

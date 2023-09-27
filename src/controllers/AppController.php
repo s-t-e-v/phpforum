@@ -27,12 +27,15 @@ class AppController
             // echo "</pre>";
             TopicController::create();
         }
-        /** topics listing */
-        $topics = Topic::findAll(); // Retrieve topics
         /** Forum name */
         $current_forum = null;
-        if (isset($_SESSION['forum']))
+        $current_forum_id = null;
+        if (isset($_SESSION['forum'])) {
             $current_forum = Forum::findByURLName(['url_name' => $_SESSION['forum']]);
+            $current_forum_id = $current_forum['id'];
+        }
+        /** topics listing */
+        $topics = Topic::findByForum(['id_forum' => $current_forum_id]); // Retrieve topics
         /** forums listing */
         $forums = Forum::findAll();
         // remove current forum from listing
@@ -44,7 +47,6 @@ class AppController
                 }
             }
         }
-
 
         include(VIEWS . 'app/index.php');
     }

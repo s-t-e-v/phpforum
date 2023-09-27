@@ -52,6 +52,36 @@ class Topic extends Db
     }
 
     /**
+     * Get the list of all topics corresponding to the requested forum. 
+     * Each topics data are combined with their corresponding creator id 
+     * and nickname.
+     * 
+     * @param array: $forum: forum id (associative array)
+     * @return mixed: associative array if no failure. If there is no rows, an
+     * empty array is returned. If there is failure, False is returned.
+     */
+    public static function findByForum($forum): mixed
+    {
+        if ($forum['id_forum'] === NULL) {
+            $request = "SELECT topic.*, user.nickname, user.picture_profil FROM topic INNER JOIN user ON topic.id_user = user.id WHERE topic.id_forum IS NULL ORDER BY topic.created_at DESC";
+        } else {
+            $request = "SELECT topic.*, user.nickname, user.picture_profil FROM topic INNER JOIN user ON topic.id_user = user.id WHERE topic.id_forum=:id_forum ORDER BY topic.created_at DESC";
+        }
+        $response = self::getDb()->prepare($request);
+        try {
+
+            if ($forum['id_forum'] === NULL)
+                $response->execute();
+            else
+                $response->execute(self::htmlspecialchars($forum));
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        return $response->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
      * Get the requested topic.
      * 
      * @param array $id: topic id (associative array)
