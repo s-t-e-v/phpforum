@@ -15,6 +15,11 @@ class UserController
         //* removing every errors saved of the current session.
         unset($_SESSION['error']);
 
+
+        // Retrieve the user by email
+        $user = User::findByEmail(['email' => $_SESSION['user']['email']]);
+
+
         include(VIEWS . 'user/profile.php');
     }
 
@@ -22,6 +27,10 @@ class UserController
     {
         //* removing every errors saved of the current session.
         unset($_SESSION['error']);
+
+
+
+        // Update user SESSION and default_forum SESSION
 
         include(VIEWS . 'user/profile.php');
     }

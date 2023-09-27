@@ -127,5 +127,6 @@
         <?php endforeach; ?>
     </div>
 </main>
+<script src="<?= ASSETS . "js/script.js"; ?>"></script>
 
 <?php include(VIEWS . '_partials/footer.php'); ?>

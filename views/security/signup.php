@@ -29,7 +29,7 @@
 
 <main class="flex-grow-1 bg-main p-5">
 
-    <div class="form_container container p-5 rounded mx-auto bg-content text-primary ">
+    <div class="form_container container p-5 rounded mx-auto bg-content text-primary">
 
         <h2 class="form_title text-center mb-5">Sign Up</h2>
 
