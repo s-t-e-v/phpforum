@@ -5,7 +5,7 @@
  * @Date: 2023-09-27 17:37:18 
  * @Last Modified by: Steven Bandaogo
  * @Last Modified time: 2023-09-27 17:55:56
- * @Description: User profile page
+ * @Description: User profile view page
  */
 ?>
 

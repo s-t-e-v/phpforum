@@ -20,7 +20,7 @@ class UserController
         $user = User::findByEmail(['email' => $_SESSION['user']['email']]);
 
 
-        include(VIEWS . 'user/profile.php');
+        include(VIEWS . 'user/profileView.php');
     }
 
     public static function edit()
@@ -29,9 +29,11 @@ class UserController
         unset($_SESSION['error']);
 
 
+        // Retrieve the user by email
+        $user = User::findByEmail(['email' => $_SESSION['user']['email']]);
 
         // Update user SESSION and default_forum SESSION
 
-        include(VIEWS . 'user/profile.php');
+        include(VIEWS . 'user/profileEdit.php');
     }
 }
