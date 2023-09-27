@@ -1,12 +1,10 @@
 "use strict"
 const forumList = document.querySelectorAll('.forum_link');
 const moreForumList = document.querySelectorAll('.more_forum_link');
-// const BASE = "http://phpforum/";
+const moreButton = document.querySelector('#more_forum_button');
 
 const forum_listing = () => {
     const viewportWidth = window.innerWidth;
-    // console.log(viewportWidth);
-    // console.log(forumList);
     let numForumsToDisplay;
     let i;
     if (viewportWidth >= 992) { // lg breakpoint
@@ -17,8 +15,6 @@ const forum_listing = () => {
         numForumsToDisplay = 3;
     }
     i = 0;
-    // console.log(i);
-    // console.log(numForumsToDisplay);
     forumList.forEach((forum) => {
         if (i < numForumsToDisplay) {
             forum.hidden = false;
@@ -36,6 +32,12 @@ const forum_listing = () => {
         }
         i++;
     });
+    // if everything is hidden, we ensure to not show the more button
+    if ([...moreForumList].every((forum) => {return forum.hidden == true})) {
+        moreButton.hidden = true;
+    } else {
+        moreButton.hidden = false;
+    }
 }
 
 forum_listing();
