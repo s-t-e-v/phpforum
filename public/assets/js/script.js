@@ -1,4 +1,6 @@
-"use strict"
+"use strict"; // Enable strict mode
+
+// Select forum elements and the "more" button
 const forumList = document.querySelectorAll('.forum_link');
 const moreForumList = document.querySelectorAll('.more_forum_link');
 const moreButton = document.querySelector('#more_forum_button');
@@ -7,39 +9,37 @@ const forum_listing = () => {
     const viewportWidth = window.innerWidth;
     let numForumsToDisplay;
     let i;
-    if (viewportWidth >= 992) { // lg breakpoint
-        numForumsToDisplay = 6;
-    } else if (viewportWidth >= 768) { // md breakpoint
+
+    // Determine the number of forums to display based on viewport width
+    if (viewportWidth >= 992) // lg breakpoint
+        numForumsToDisplay = 6; 
+    else if (viewportWidth >= 768) // md breakpoint
         numForumsToDisplay = 4;
-    } else {
+    else
         numForumsToDisplay = 3;
-    }
+
     i = 0;
+
+    // Toggle visibility for main forum list
     forumList.forEach((forum) => {
-        if (i < numForumsToDisplay) {
-            forum.hidden = false;
-        } else {
-            forum.hidden = true;
-        }
+        forum.hidden = i >= numForumsToDisplay;
         i++;
     });
+
     i = 0;
+
+    // Toggle visibility for "more" forum list
     moreForumList.forEach((forum) => {
-        if (i < numForumsToDisplay - 3) {
-            forum.hidden = true;
-        } else {
-            forum.hidden = false;
-        }
+        forum.hidden = i < numForumsToDisplay - 3;
         i++;
     });
-    // if everything is hidden, we ensure to not show the more button
-    if ([...moreForumList].every((forum) => {return forum.hidden == true})) {
-        moreButton.hidden = true;
-    } else {
-        moreButton.hidden = false;
-    }
+
+    // Toggle "more" button visibility
+    moreButton.hidden = [...moreForumList].every((forum) => forum.hidden);
 }
 
+// Initially set forum visibility based on the viewport width
 forum_listing();
 
+// Update forum display on window resize
 window.addEventListener('resize', forum_listing);

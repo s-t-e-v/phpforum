@@ -3,8 +3,8 @@
  * @Author: Steven Bandaogo 
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-20 23:10:19 
- * @Last Modified by:   undefined 
- * @Last Modified time: 2023-09-20 23:10:19
+ * @Last Modified by: Steven Bandaogo
+ * @Last Modified time: 2023-09-27 02:53:32
  * @Description: Forum database management
  */
 
@@ -53,7 +53,13 @@ class Forum extends Db
     }
 
 
-
+    /**
+     * 
+     * Get the list of all forums.
+     * 
+     * @return mixed: associative array if no failure. If there is no rows, an
+     * empty array is returned. If there is failure, False is returned.
+     */
     public static function findAll(): mixed
     {
         $request = "SELECT * FROM forum";
