@@ -26,7 +26,7 @@ The forum provides a platform for users to engage in meaningful discussions, see
 **Demo:**
 Check out the live demo [here](https://your-demo-link.com).
 
-## Development planning ![](https://geps.dev/progress/60)
+## Development planning ![](https://geps.dev/progress/65)
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
@@ -49,7 +49,7 @@ Check out the live demo [here](https://your-demo-link.com).
 
 **Extra**
 
-![](https://geps.dev/progress/20)
+![](https://geps.dev/progress/30)
 
 - [x] 10. Forum creation page
 - [x] 11. List of all forum on home page (with the more dropdown button - don't display current forum)
