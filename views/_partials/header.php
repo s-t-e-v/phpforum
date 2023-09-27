@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:28:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-20 21:35:51
+ * @Last Modified time: 2023-09-27 17:59:18
  * @Description: This is the header part of the webpages. Contains meta data, navbar and session message display.
  */
 ?>
@@ -60,16 +60,15 @@ $forum_url = isset($_SESSION['forum']) ? "f/" . $_SESSION['forum'] . "/" : "";
                 <span class="visually-hidden">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">Articles</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">BACK OFFICE</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="">Ajouter un téléphone</a>
-                <a class="dropdown-item" href="">Gestion téléphone</a>
-              </div>
-            </li>
+            <?php if (isset($_SESSION['user'])) : ?>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="<?= BASE . "user/profile"; ?>">View</a>
+                  <a class="dropdown-item" href="<?= BASE . "user/profile/edit"; ?>">Edit</a>
+                </div>
+              </li>
+            <?php endif; ?>
           </ul>
           <div class="navbar-nav ms-auto">
             <?php if (!isset($_SESSION['user'])) : ?>

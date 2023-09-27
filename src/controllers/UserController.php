@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-27 17:43:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-27 17:45:52
+ * @Last Modified time: 2023-09-27 17:56:40
  * @Description: Controlls display and edition of the user profil
  */
 
@@ -15,7 +15,7 @@ class UserController
         //* removing every errors saved of the current session.
         unset($_SESSION['error']);
 
-        include(VIEWS . 'user/profil.php');
+        include(VIEWS . 'user/profile.php');
     }
 
     public static function edit()
@@ -23,6 +23,6 @@ class UserController
         //* removing every errors saved of the current session.
         unset($_SESSION['error']);
 
-        include(VIEWS . 'user/profil.php');
+        include(VIEWS . 'user/profile.php');
     }
 }

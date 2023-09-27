@@ -4,8 +4,8 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-27 17:37:18 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-27 17:50:19
- * @Description: User profil page
+ * @Last Modified time: 2023-09-27 17:55:56
+ * @Description: User profile page
  */
 ?>
 
