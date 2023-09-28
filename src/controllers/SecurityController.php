@@ -106,13 +106,13 @@ class SecurityController extends Security
 
 
                     /** Password encryption */
-                    $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $pswd = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
                     /** Database processing */
                     // -- User
                     $data = [
                         'email' => $_POST['email'],
-                        'password' => $mdp,
+                        'password' => $pswd,
                         'nickname' => $_POST['pseudo'],
                     ];
                     if ($filename)
@@ -123,9 +123,8 @@ class SecurityController extends Security
                     $user =  User::findByEmail(['email' => $_POST['email']]);
                     $data = [
                         'id_user' => $user['id'],
+                        'id_forum' => 1,
                     ];
-                    if (isset($_GET['id_forum']) && isset($_GET['id_forum']))
-                        $data['id_forum'] = $_GET['id_forum'];
                     $success_up_default_forum = Default_forum::update_db($data);
 
                     /** Success message */
@@ -182,7 +181,8 @@ class SecurityController extends Security
 
             /* Error raising */
             // -- Email
-            if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            if (User::findByEmail(['email' => $_POST['email']])) {
+            } else if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $error['email'] = "The <em>email</em> field is required and the email entered must be valid";
             }
             // -- Password

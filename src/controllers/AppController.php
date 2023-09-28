@@ -28,18 +28,14 @@ class AppController
             TopicController::create();
         }
         /** Forum name */
-        $current_forum = null;
-        $current_forum_id = null;
-        if (isset($_SESSION['forum'])) {
-            $current_forum = Forum::findByURLName(['url_name' => $_SESSION['forum']]);
-            $current_forum_id = $current_forum['id'];
-        }
+        $current_forum = Forum::findByURLName(['url_name' => $_SESSION['forum']]);
         /** topics listing */
-        $topics = Topic::findByForum(['id_forum' => $current_forum_id]); // Retrieve topics
+        $topics = Topic::findByForum(['id_forum' => $current_forum['id'] ?? null]); // Retrieve topics
         /** forums listing */
         $forums = Forum::findAll();
         // remove current forum from listing
         if ($current_forum) {
+
             foreach ($forums as $key => $forum) {
                 if ($forum['id'] === $current_forum['id']) {
                     unset($forums[$key]); // Remove the forum that matches the condition

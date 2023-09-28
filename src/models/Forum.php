@@ -55,14 +55,14 @@ class Forum extends Db
 
     /**
      * 
-     * Get the list of all forums.
+     * Get the list of all forums. The original is not fetched.
      * 
      * @return mixed: associative array if no failure. If there is no rows, an
      * empty array is returned. If there is failure, False is returned.
      */
     public static function findAll(): mixed
     {
-        $request = "SELECT * FROM forum";
+        $request = "SELECT * FROM forum WHERE NOT (id = 1)";
         $response = self::getDb()->prepare($request);
         try {
             $response->execute();

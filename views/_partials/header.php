@@ -17,7 +17,7 @@
 // echo "<pre style='color: white;'>";
 // var_dump($error);
 // echo "</pre>";
-$forum_url = isset($_SESSION['forum']) ? "f/" . $_SESSION['forum'] . "/" : "";
+$forum_url = $_SESSION['forum'] ? "f/" . $_SESSION['forum'] . "/" : "";
 ?>
 
 <!doctype html>
