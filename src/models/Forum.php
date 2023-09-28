@@ -74,8 +74,23 @@ class Forum extends Db
     }
 
 
-    public static function findByUser(array $user)
+    /**
+     * Get the list of forum created by the user.
+     * 
+     * @param array $user: id_user (associative array)
+     * @return mixed: associative array if no failure. If there is no rows, an
+     * empty array is returned. If there is failure, False is returned.
+     */
+    public static function findByUser(array $user): mixed
     {
-        // SELECT * FROM forum WHERE id_user = 2;
+        $request = "SELECT * FROM forum WHERE id_user = :id_user";
+        $response = self::getDb()->prepare($request);
+        try {
+            $response->execute(self::htmlspecialchars($user));
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        return $response->fetchAll(PDO::FETCH_ASSOC);
     }
 }

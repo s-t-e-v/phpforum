@@ -39,16 +39,18 @@
         </div>
 
         <!-- User forums list -->
-        <div class="py-3">
-            <h3 class="form-label pb-3">Forums</h3>
-            <ul class="list-group">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item position-relative">A second item <span class="badge bg-secondary position-absolute end-0 me-3">Default</span></li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And fifth one</li>
-            </ul>
-        </div>
+        <?php if ($forums) : ?>
+            <?php var_dump($forums) ?>
+            <div class="py-3">
+                <h3 class="form-label pb-3">Forums</h3>
+                <ul class="list-group">
+                    <?php foreach ($forums as $forum) : ?>
+                        <li class="list-group-item"><?= $forum["name"]; ?></li>
+                    <?php endforeach; ?>
+                    <li class="list-group-item position-relative">A second item <span class="badge bg-secondary position-absolute end-0 me-3">Default</span></li>
+                </ul>
+            </div>
+        <?php endif; ?>
 
         <!-- User topics list -->
         <div class="py-3">

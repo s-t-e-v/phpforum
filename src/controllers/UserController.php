@@ -19,6 +19,7 @@ class UserController
         /** Retrieve the user session data */
         $user = $_SESSION['user']; // main user data
         $default_forum = $_SESSION['default_forum']; // default forum
+        $forums = Forum::findByUser(['id_user' => $user['id']]);
 
 
         // TODO: rearange $topics array into an array of array (associative ?). 
