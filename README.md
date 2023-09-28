@@ -62,9 +62,13 @@ Check out the live demo [here](https://your-demo-link.com).
   - [ ] responsive
   - [ ] style, color, appearance
 - [ ] 14. User profil management
+
   - [ ] Topic deletion
   - [ ] Forum deletion
   - [ ] default forum
+
+  usefull ressources: [Bootstrap Checks and radios](https://getbootstrap.com/docs/5.3/forms/checks-radios/), [Bootstrap Button group](https://getbootstrap.com/docs/5.3/components/button-group/), [PHP post checkbox value](https://stackoverflow.com/questions/14781270/post-checkbox-value), [How to Delete a Row in SQL – Example Query](https://www.freecodecamp.org/news/how-to-delete-a-row-in-sql-example-query/), [How to bind an array to an IN() condition in PHP ?](https://www.geeksforgeeks.org/how-to-bind-an-array-to-an-in-condition-in-php/).
+
 - [ ] 15. Prevent unauthorized access to pages
 - [ ] 16. Make default forum loaded when the user is connected
 - [ ] 17. Limit account creations from the same IP address (and chose the limit)
