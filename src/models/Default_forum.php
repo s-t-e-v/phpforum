@@ -50,7 +50,7 @@ class Default_forum extends Db
      */
     public static function findByUserId(array $id): mixed
     {
-        $request = "SELECT * FROM default_forum WHERE id=:id";
+        $request = "SELECT default_forum.*, forum.name, forum.url_name FROM default_forum INNER JOIN forum ON default_forum.id_forum = forum.id WHERE default_forum.id_user = :id";
         $response = self::getDb()->prepare($request);
         try {
             $response->execute(self::htmlspecialchars($id));

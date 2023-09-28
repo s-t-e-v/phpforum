@@ -34,7 +34,7 @@
         <div class="py-3">
             <h3 class="form-label pb-3">Default forum</h3>
             <ul class="list-group">
-                <li class="list-group-item">A second item</li>
+                <li class="list-group-item"><?= $default_forum['name'] ?? "<span class='fst-italic'>No default forum</span>"; ?></li>
             </ul>
         </div>
 
@@ -57,7 +57,7 @@
                 <div class="accordion-item">
                     <h4 class="accordion-header">
                         <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            Topic #1
+                            Forum #1: <span class="text-warning ms-1">PHP forum</span>
                             <span class="badge bg-secondary position-absolute me-5 end-0">5</span>
                         </button>
                     </h4>
@@ -76,7 +76,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-                            Topic #2
+                            Forum #2
                             <span class="badge bg-secondary position-absolute me-5 end-0">2</span>
                         </button>
                     </h2>
@@ -92,7 +92,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
-                            Topic #3
+                            Forum #3
                             <span class="badge bg-secondary position-absolute me-5 end-0">3</span>
                         </button>
                     </h2>

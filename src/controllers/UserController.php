@@ -16,9 +16,9 @@ class UserController
         unset($_SESSION['error']);
 
 
-        // Retrieve the user by email
-        $user = User::findByEmail(['email' => $_SESSION['user']['email']]);
-
+        /** Retrieve the user session data */
+        $user = $_SESSION['user']; // main user data
+        $default_forum = $_SESSION['default_forum']; // default forum
 
         include(VIEWS . 'user/profileView.php');
     }
@@ -33,6 +33,7 @@ class UserController
         $user = User::findByEmail(['email' => $_SESSION['user']['email']]);
 
         // Update user SESSION and default_forum SESSION
+        // ...
 
         include(VIEWS . 'user/profileEdit.php');
     }
