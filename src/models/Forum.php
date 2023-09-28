@@ -72,4 +72,10 @@ class Forum extends Db
 
         return $response->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public static function findByUser(array $user)
+    {
+        // SELECT * FROM forum WHERE id_user = 2;
+    }
 }

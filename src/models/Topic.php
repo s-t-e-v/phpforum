@@ -101,6 +101,13 @@ class Topic extends Db
         return $response->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function findByUser(array $user)
+    {
+        // SELECT topic.*, forum.name, forum.url_name FROM topic INNER JOIN forum ON topic.id_forum = forum.id WHERE topic.id_user = 1 ORDER BY id_forum ASC;
+        // problem: ignore topics with the original forum, maybe try to use IS NULL something like that and concantenate the results
+        // the resulting array will be rearrange in the controller for easier manipulation for display
+    }
+
     /**
      * Deletes the requested forum.
      * When a topic is deleted, all the related messages are deleted: 'message' 
