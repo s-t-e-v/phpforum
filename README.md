@@ -157,6 +157,19 @@ Check out the live demo [here](https://your-demo-link.com).
           </Directory>
       </VirtualHost>
       ```
+    - To be able to continue accessing regular websites via `http://localhost` (i.e. accessing your websites via `/opt/lampp/htdocs/`) , you should also add those lines:
+  
+      ```
+      <VirtualHost *:80>
+          DocumentRoot "/opt/lampp/htdocs"
+          ServerName localhost
+          <Directory "/opt/lampp/htdocs">
+              Options Indexes FollowSymLinks
+              AllowOverride All
+              Require all granted
+          </Directory>
+      </VirtualHost>
+      ```
 
 7.  Check Your Hosts File
 
