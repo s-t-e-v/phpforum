@@ -103,9 +103,21 @@ class Topic extends Db
 
     public static function findByUser(array $user)
     {
-        // SELECT topic.*, forum.name, forum.url_name FROM topic INNER JOIN forum ON topic.id_forum = forum.id WHERE topic.id_user = 1 ORDER BY id_forum ASC;
-        // problem: ignore topics with the original forum, maybe try to use IS NULL something like that and concantenate the results
-        // the resulting array will be rearrange in the controller for easier manipulation for display
+        $request = "
+        (SELECT topic.*, forum.name, forum.url_name FROM topic INNER JOIN forum ON topic.id_forum = forum.id WHERE topic.id_user = :id_user AND topic.id_forum IS NOT NULL)
+        UNION
+        (SELECT topic.*, forum.name, forum.url_name FROM topic INNER JOIN forum ON topic.id_forum = forum.id WHERE topic.id_user = :id_user AND topic.id_forum IS NULL)
+        ORDER BY id_forum ASC
+        ";
+
+        $response = self::getDb()->prepare($request);
+        try {
+            $response->execute(self::htmlspecialchars($user));
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        return $response->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**

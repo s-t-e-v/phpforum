@@ -55,6 +55,13 @@
         <?php endif; ?>
 
         <!-- User topics list -->
+        <?php
+        echo "<div class='text-light'>";
+        echo "<pre>";
+        var_dump($topics);
+        echo "</pre>";
+        echo "</div>";
+        ?>
         <div class="py-3">
             <h3 class="form-label pb-3">Topics</h3>
             <div class="accordion" id="accordionPanelsStayOpenExample">
