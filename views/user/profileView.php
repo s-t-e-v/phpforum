@@ -40,14 +40,16 @@
 
         <!-- User forums list -->
         <?php if ($forums) : ?>
-            <?php var_dump($forums) ?>
             <div class="py-3">
                 <h3 class="form-label pb-3">Forums</h3>
                 <ul class="list-group">
                     <?php foreach ($forums as $forum) : ?>
-                        <li class="list-group-item"><?= $forum["name"]; ?></li>
+                        <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
+                            <li class="list-group-item position-relative"><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 me-3">Default</span></li>
+                        <?php else : ?>
+                            <li class="list-group-item"><?= $forum["name"]; ?></li>
+                        <?php endif; ?>
                     <?php endforeach; ?>
-                    <li class="list-group-item position-relative">A second item <span class="badge bg-secondary position-absolute end-0 me-3">Default</span></li>
                 </ul>
             </div>
         <?php endif; ?>
