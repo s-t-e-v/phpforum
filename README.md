@@ -157,8 +157,9 @@ Check out the live demo [here](https://your-demo-link.com).
           </Directory>
       </VirtualHost>
       ```
+
     - To be able to continue accessing regular websites via `http://localhost` (i.e. accessing your websites via `/opt/lampp/htdocs/`) , you should also add those lines:
-  
+
       ```
       <VirtualHost *:80>
           DocumentRoot "/opt/lampp/htdocs"
@@ -181,6 +182,13 @@ Check out the live demo [here](https://your-demo-link.com).
       ```
 
       **NB**: if you are already running xampp for some reason, restart it to make the changes effective after the latter step. You can do it by running `/opt/lampp/lampp restart`.
+
+8.  **VERY IMPORTANT**: An admin user is set up by default. For security reason, you should update the password immediately after launching the website. The default credential are:
+
+    ```
+    email:admin
+    password:admin
+    ```
 
 ## Usage
 
