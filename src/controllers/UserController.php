@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-27 17:43:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-27 17:56:40
+ * @Last Modified time: 2023-09-29 00:20:20
  * @Description: Controlls display and edition of the user profil
  */
 

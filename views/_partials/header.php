@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:28:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-27 17:59:18
+ * @Last Modified time: 2023-09-29 00:00:03
  * @Description: This is the header part of the webpages. Contains meta data, navbar and session message display.
  */
 ?>
@@ -66,6 +66,7 @@ $forum_url = $_SESSION['forum'] ? "f/" . $_SESSION['forum'] . "/" : "";
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="<?= BASE . "user/profile"; ?>">View</a>
                   <a class="dropdown-item" href="<?= BASE . "user/profile/edit"; ?>">Edit</a>
+                  <a class="dropdown-item" href="<?= BASE . "user/profile/security"; ?>">Security</a>
                 </div>
               </li>
             <?php endif; ?>
