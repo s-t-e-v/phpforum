@@ -9,8 +9,6 @@
  */
 ?>
 
-<?php !isset($_SESSION['error']) ?: $error = $_SESSION['error']; ?>
-
 <?php include(VIEWS . '_partials/header.php'); ?>
 
 <main class="flex-grow-1 bg-main p-3">
@@ -55,70 +53,34 @@
         <?php endif; ?>
 
         <!-- User topics list -->
-        <?php
-        echo "<div class='text-light'>";
-        echo "<pre>";
-        var_dump($topics);
-        echo "</pre>";
-        echo "</div>";
-        ?>
-        <div class="py-3">
-            <h3 class="form-label pb-3">Topics</h3>
-            <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item">
-                    <h4 class="accordion-header">
-                        <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            Forum #1: <span class="text-warning ms-1">PHP forum</span>
-                            <span class="badge bg-secondary position-absolute me-5 end-0">5</span>
-                        </button>
-                    </h4>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And fifth one</li>
-                            </ul>
+        <?php if ($topicsByForum) : ?>
+            <div class="py-3">
+                <h3 class="form-label pb-3">Topics</h3>
+                <div class="accordion">
+                    <?php $i = 1; ?>
+                    <?php foreach ($topicsByForum as $forumName => $topics) : ?>
+                        <div class="accordion-item">
+                            <h4 class="accordion-header">
+                                <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#panel<?= $i; ?>" aria-expanded="true" aria-controls="panel<?= $i; ?>">
+                                    Forum #<?= $i; ?>:<span class="<?= $topics[0]['id_forum'] !== 1 ?: "text-warning"; ?> ms-1 fw-bold"> <?= $forumName; ?></span>
+                                    <span class="badge bg-secondary position-absolute me-5 end-0"><?= count($topics); ?></span>
+                                </button>
+                            </h4>
+                            <div id="panel<?= $i; ?>" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    <ul class="list-group">
+                                        <?php foreach ($topics as $topic) : ?>
+                                            <li class="list-group-item"><?= $topic['title']; ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-                            Forum #2
-                            <span class="badge bg-secondary position-absolute me-5 end-0">2</span>
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
-                            Forum #3
-                            <span class="badge bg-secondary position-absolute me-5 end-0">3</span>
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                            </ul>
-                        </div>
-                    </div>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
 
         <!-- Edit page button -->
         <div class="pt-3 text-center">

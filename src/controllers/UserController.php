@@ -10,24 +10,28 @@
 
 class UserController
 {
+    /**
+     * Display user profile view.
+     */
     public static function view()
     {
-        //* removing every errors saved of the current session.
-        unset($_SESSION['error']);
-
-
-        /** Retrieve the user session data */
-        $user = $_SESSION['user']; // main user data
-        $default_forum = $_SESSION['default_forum']; // default forum
+        // Retrieve user session data
+        $user = $_SESSION['user'];
+        $default_forum = $_SESSION['default_forum'];
         $forums = Forum::findByUser(['id_user' => $user['id']]);
         $topics = Topic::findByUser(['id_user' => $user['id']]);
 
-        // TODO: rearange $topics array into an array of array (associative ?). 
-        // Subarrays correspond to the list of topics for a particular forum 
-        // => will facilitate data display, especially the count of topics for each forum.
+        // Rearrange topics into an array grouped by forum for easier display
+        $topicsByForum = [];
+
+        foreach ($topics as $topic) {
+            $forumName = $topic['name'];
+            $topicsByForum[$forumName][] = $topic;
+        }
 
         include(VIEWS . 'user/profileView.php');
     }
+
 
     public static function edit()
     {
