@@ -113,7 +113,7 @@
         <?php foreach ($topics as $topic) : ?>
             <div class="mt-2">
                 <a href="<?= BASE . $forum_url . 'topic/chat?id=' . $topic['id']; ?>" class="btn btn-primary rounded text-center text-light p-2 mb-2 w-100">
-                    <img src="<?= $topic['picture_profil'] ? UPLOAD . $topic['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle profile_picture-75">
+                    <img src="<?= $topic['picture_profil'] ? UPLOAD . $topic['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle s-75">
                     <h3><?= $topic['title']; ?></h3>
                     <p>by: <?= $topic['nickname']; ?></p>
                     <p><?= date('d/m/Y H:i:s', strtotime($topic['created_at'])); ?></p>

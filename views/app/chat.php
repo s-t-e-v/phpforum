@@ -50,7 +50,7 @@
                         ?>
                     </div>
                     <div class="bg-<?= isset($_SESSION['user']) ? ($_SESSION['user']['id'] === $message['id_user'] ? "info" : "secondary") : "secondary"; ?> text-dark rounded mb-3 p-2">
-                        <img src="<?= $message['picture_profil'] ? UPLOAD . $message['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle profile_picture-50">
+                        <img src="<?= $message['picture_profil'] ? UPLOAD . $message['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle s-50">
                         <p>par : <?= $message['nickname']; ?></p>
                         <p class="fs-5"><?= $message['content']; ?></p>
                         <small><?= date('d/m/Y H:i:s', strtotime($message['created_at'])); ?></small>

@@ -29,6 +29,7 @@ class UserController
             $topicsByForum[$forumName][] = $topic;
         }
 
+        // Load the page
         include(VIEWS . 'user/profileView.php');
     }
 

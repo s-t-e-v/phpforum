@@ -24,7 +24,7 @@
         <form method="post" enctype="multipart/form-data">
             <!-- User primary information -->
             <div class="text-center pt-3 form-label">
-                <img src="<?= $user['picture_profil'] ? UPLOAD . $user['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle profile_picture-75">
+                <img src="<?= $user['picture_profil'] ? UPLOAD . $user['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle s-200">
                 <div class="fs-5"><?= $user["nickname"]; ?></div>
                 <div><span class="fw-bold">e-mail: </span><?= $user["email"]; ?></div>
             </div>
