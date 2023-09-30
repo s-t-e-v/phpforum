@@ -47,6 +47,11 @@ body {
     height: 44px;
 }
 
+/* User profile style */
+.profile_content {
+    max-width: 900px;
+}
+
 /* Square size */
 .s-50 {
     width: 50px;
