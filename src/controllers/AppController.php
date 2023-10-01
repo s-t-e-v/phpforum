@@ -33,13 +33,12 @@ class AppController
         $topics = Topic::findByForum(['id_forum' => $current_forum['id'] ?? null]); // Retrieve topics
         /** forums listing */
         $forums = Forum::findAll();
-        // remove current forum from listing
+        // remove current forum & orginal forum from listing 
         if ($current_forum) {
 
             foreach ($forums as $key => $forum) {
-                if ($forum['id'] === $current_forum['id']) {
+                if ($forum['id'] === $current_forum['id'] || $forum['id'] === 1) {
                     unset($forums[$key]); // Remove the forum that matches the condition
-                    break;
                 }
             }
         }

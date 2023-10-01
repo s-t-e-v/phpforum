@@ -62,7 +62,7 @@ class Forum extends Db
      */
     public static function findAll(): mixed
     {
-        $request = "SELECT * FROM forum WHERE NOT (id = 1)";
+        $request = "SELECT * FROM forum";
         $response = self::getDb()->prepare($request);
         try {
             $response->execute();

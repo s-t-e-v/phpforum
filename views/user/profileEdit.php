@@ -56,12 +56,9 @@
                             <label for="default_forum" class="form-label pb-3 h3">Default forum</label>
                             <select name="default_forum" id="default_forum" class="form-control">
                                 <?php foreach ($forums as $forum) : ?>
-                                    <option <?= ($forum['id'] == $default_forum['id']) ? "selected" : ""; ?> value="<?= $forum['id']; ?>"><?= $forum['id'] == 1 ?  "<span class='fst-italic'>No default forum</span>" : $forum['name']; ?></option>
+                                    <option <?= ($forum['id'] == $default_forum['id_forum']) ? "selected" : ""; ?> value="<?= $forum['id']; ?>"><?= $forum['id'] == 1 ?  "<span class='fst-italic'>No default forum</span>" : $forum['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <ul class="list-group">
-                                <li class="list-group-item"><?= $default_forum['name'] ?? "<span class='fst-italic'>No default forum</span>"; ?></li>
-                            </ul>
                         </div>
 
                         <!-- User forums list -->
