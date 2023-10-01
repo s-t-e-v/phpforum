@@ -39,12 +39,19 @@ class UserController
         //* removing every errors saved of the current session.
         unset($_SESSION['error']);
 
+        // Retrieve user session data
+        $user = $_SESSION['user'];
+        $default_forum = $_SESSION['default_forum'];
+        $forums = Forum::findByUser(['id_user' => $user['id']]);
+        $topics = Topic::findByUser(['id_user' => $user['id']]);
 
-        // Retrieve the user by email
-        $user = User::findByEmail(['email' => $_SESSION['user']['email']]);
+        // Rearrange topics into an array grouped by forum for easier display
+        $topicsByForum = [];
 
-        // Update user SESSION and default_forum SESSION
-        // ...
+        foreach ($topics as $topic) {
+            $forumName = $topic['name'];
+            $topicsByForum[$forumName][] = $topic;
+        }
 
         include(VIEWS . 'user/profileEdit.php');
     }
