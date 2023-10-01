@@ -84,6 +84,9 @@ body {
   border-color: #ccc;
 }
 
+.dark_red {
+    color: #790000;
+}
 
 /* Square size */
 .s-50 {
