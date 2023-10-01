@@ -33,8 +33,8 @@
         <h2 class="text-light text-center text-md-start"><?= $topic['title']; ?></h2>
 
         <div class="row mt-3">
+            <!-- Messages -->
             <div class="col-12 col-md-8">
-                <!-- Messages -->
                 <?php foreach ($messages as $message) : ?>
                     <div class="text-light">
 
@@ -57,8 +57,8 @@
                     </div>
                 <?php endforeach; ?>
             </div>
+            <!-- Message form -->
             <div class="col-12 col-md-4">
-                <!-- Message form -->
                 <form method="post">
                     <label for="message" class="form-label text-light">Answer</label>
                     <?php if (isset($_SESSION['user'])) : ?>

@@ -28,8 +28,8 @@
     <div class="mb-5 bg-dark">
         <div class="container py-3">
             <!-- Forum title -->
-
             <h2 class="text-light mb-5"><?= $current_forum["name"] ?? "PHP forum"; ?></h2>
+            <!-- Create button -->
             <div class="d-flex justify-content-between">
                 <h3 class="text-light h4">Other forums</h3>
                 <?php if (!isset($_SESSION['user'])) : ?>

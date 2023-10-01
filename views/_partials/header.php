@@ -47,6 +47,7 @@ $forum_url = $_SESSION['forum'] ? "f/" . $_SESSION['forum'] . "/" : "";
   }
   ?>
   <div class="d-flex flex-column" style="min-height: 100vh;">
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="<?= BASE; ?>">PHP forum</a>
@@ -83,6 +84,7 @@ $forum_url = $_SESSION['forum'] ? "f/" . $_SESSION['forum'] . "/" : "";
       </div>
     </nav>
 
+    <!-- Session messages -->
     <div class="<?= App::addClassIfHomePage('bg-dark'); ?>">
 
       <div class="container mt-5">

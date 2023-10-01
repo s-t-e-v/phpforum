@@ -107,7 +107,7 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Apply changes button -->
             <button type="submit" class="btn btn-info rounded">Apply changes</a>
         </form>
     </div>

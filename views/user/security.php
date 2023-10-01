@@ -20,24 +20,28 @@
 
         <h2 class="form_title text-center mb-5">Security</h2>
 
-        <!-- Sign Up form -->
+        <!-- Change password form -->
         <form method="post" enctype="multipart/form-data">
             <h3 class="mt-3">Password</h3>
+            <!-- Old password  -->
             <div class="py-2">
                 <label for="old_pswd" class="form-label">Old password</label>
                 <input type="password" class="form-control rounded mb-1" name="old_pswd" id="old_pswd" value="<?= $_POST["old_pswd"] ?? ""; ?>">
                 <small class="text_error"><?= $error['old_pswd'] ?? ""; ?></small>
             </div>
+            <!-- New password -->
             <div class="py-2">
                 <label for="new_pswd" class="form-label">New password</label>
                 <input type="password" class="form-control rounded mb-1" name="new_pswd" id="new_pswd">
                 <small class="text_error"><?= $error['new_pswd'] ?? ""; ?></small>
             </div>
+            <!-- New password confirmation -->
             <div class="py-2">
                 <label for="confirm_new_pswd" class="form-label">New password confirmation</label>
                 <input type="password" class="form-control rounded mb-1" name="confirm_new_pswd" id="confirm_new_pswd">
                 <small class="text_error"><?= $error['confirm_new_pswd'] ?? ""; ?></small>
             </div>
+            <!-- Submit button -->
             <button type="submit" class="mt-4 btn btn-primary rounded">Submit</button>
         </form>
 
