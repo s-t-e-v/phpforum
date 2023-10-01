@@ -10,7 +10,7 @@
 ?>
 
 <?php include(VIEWS . '_partials/header.php'); ?>
-<?php $only_primary_info = !$topicsByForum && !$forums; ?>
+<?php $only_primary_info = !$topicsByForum && !$user_forums; ?>
 
 <main class="flex-grow-1 bg-main p-3">
 
@@ -53,18 +53,23 @@
 
                         <!-- User default forum -->
                         <div class="py-3">
-                            <h3 class="form-label pb-3">Default forum</h3>
+                            <label for="default_forum" class="form-label pb-3 h3">Default forum</label>
+                            <select name="default_forum" id="default_forum" class="form-control">
+                                <?php foreach ($forums as $forum) : ?>
+                                    <option <?= ($forum['id'] == $default_forum['id']) ? "selected" : ""; ?> value="<?= $forum['id']; ?>"><?= $forum['id'] == 1 ?  "<span class='fst-italic'>No default forum</span>" : $forum['name']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                             <ul class="list-group">
                                 <li class="list-group-item"><?= $default_forum['name'] ?? "<span class='fst-italic'>No default forum</span>"; ?></li>
                             </ul>
                         </div>
 
                         <!-- User forums list -->
-                        <?php if ($forums && $topicsByForum) : ?>
+                        <?php if ($user_forums && $topicsByForum) : ?>
                             <div class="py-3">
                                 <h3 class="form-label pb-3">Forums</h3>
                                 <ul class="list-group">
-                                    <?php foreach ($forums as $forum) : ?>
+                                    <?php foreach ($user_forums as $forum) : ?>
                                         <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
                                             <li class="list-group-item position-relative"><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 me-3">Default</span></li>
                                         <?php else : ?>
@@ -78,11 +83,11 @@
                         <?php if (!$only_primary_info) : ?>
                             <div class="col-lg-6 px-4 px-lg-5">
                                 <!-- User forums list -->
-                                <?php if ($forums && !$topicsByForum) : ?>
+                                <?php if ($user_forums && !$topicsByForum) : ?>
                                     <div class="py-3">
                                         <h3 class="form-label pb-3">Forums</h3>
                                         <ul class="list-group">
-                                            <?php foreach ($forums as $forum) : ?>
+                                            <?php foreach ($user_forums as $forum) : ?>
                                                 <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
                                                     <li class="list-group-item position-relative"><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 me-3">Default</span></li>
                                                 <?php else : ?>

@@ -42,13 +42,14 @@ class UserController
         // Retrieve user session data
         $user = $_SESSION['user'];
         $default_forum = $_SESSION['default_forum'];
-        $forums = Forum::findByUser(['id_user' => $user['id']]);
-        $topics = Topic::findByUser(['id_user' => $user['id']]);
+        $forums = Forum::findAll();
+        $user_forums = Forum::findByUser(['id_user' => $user['id']]);
+        $user_topics = Topic::findByUser(['id_user' => $user['id']]);
 
         // Rearrange topics into an array grouped by forum for easier display
         $topicsByForum = [];
 
-        foreach ($topics as $topic) {
+        foreach ($user_topics as $topic) {
             $forumName = $topic['name'];
             $topicsByForum[$forumName][] = $topic;
         }
