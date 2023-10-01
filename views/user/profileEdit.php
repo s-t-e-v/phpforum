@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-27 17:37:18 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-10-02 00:27:56
+ * @Last Modified time: 2023-10-02 01:11:34
  * @Description: User profile edition page
  */
 ?>
@@ -66,8 +66,12 @@
                                 <h3 class="form-label pb-3">Forums</h3>
                                 <div class="btn-group-vertical w-100 forum_list" role="group" aria-label="Basic checkbox toggle Vertical button group">
                                     <?php foreach ($user_forums as $forum) : ?>
-                                        <input type="checkbox" class="btn-check forum_item" id="btncheck<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
-                                        <label class="btn btn-del text-start" for="btncheck<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?></label>
+                                        <input type="checkbox" class="btn-check forum_item" name="user_forums" id="btncheck<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
+                                        <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
+                                            <label class="btn btn-del text-start position-relative" for="btncheck<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 top-50 translate-middle-y me-3">Default</span></label>
+                                        <?php else : ?>
+                                            <label class="btn btn-del text-start" for="btncheck<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?></label>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
@@ -79,10 +83,14 @@
                                 <?php if ($user_forums && !$topicsByForum) : ?>
                                     <div class="py-3">
                                         <h3 class="form-label pb-3">Forums</h3>
-                                        <div class="btn-group-vertical w-100" role="group" aria-label="Basic checkbox toggle Vertical button group">
+                                        <div class="btn-group-vertical w-100 forum_list" role="group" aria-label="Basic checkbox toggle Vertical button group">
                                             <?php foreach ($user_forums as $forum) : ?>
-                                                <input type="checkbox" class="btn-check" id="btncheck<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
-                                                <label class="btn btn-outline-primary" for="btncheck<?= $forum['id']; ?>"><?= $forum["name"]; ?></label>
+                                                <input type="checkbox" class="btn-check forum_item" name="user_forums" id="btncheck<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
+                                                <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
+                                                    <label class="btn btn-del text-start position-relative" for="btncheck<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 top-50 translate-middle-y me-3">Default</span></label>
+                                                <?php else : ?>
+                                                    <label class="btn btn-del text-start" for="btncheck<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?></label>
+                                                <?php endif; ?>
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
