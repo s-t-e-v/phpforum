@@ -64,13 +64,6 @@ class UserController
             } elseif (strlen($_POST['pseudo']) > 255) {
                 $error['pseudo'] = "The <em>pseudo</em> input exceeds maximum length of 255 characters.";
             }
-            // -- Email
-            if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                $error['email'] = "The <em>email</em> field is required and the email entered must be valid";
-            } elseif ($_SESSION['user']['email'] != $_POST['email'] && User::findByEmail(['email' => $_POST['email']])) { // Checking if the email already exist 
-                $error['findByEmail'] = true;
-                $_SESSION['messages']['danger'][] = "An account with the entered email already exists.";
-            }
             // -- Profil picture
             if (strlen($_FILES['pp']['name']) > 200) {
                 $error['pp'] = "The file name must not exceeds maximum length of 200 characters.";

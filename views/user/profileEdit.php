@@ -47,16 +47,15 @@
                             </div>
                             <!-- Email address -->
                             <label for="email" class="form-label">Email address</label>
-                            <input type="text" class="form-control rounded mb-1" name="email" id="email" value="<?= $_POST["email"] ?? $user["email"]; ?>" aria-describedby="emailHelp">
-                            <small class="text_error"><?= $error['email'] ?? ""; ?></small>
+                            <input type="text" class="form-control rounded mb-1" id="email" value="<?= $_POST["email"] ?? $user["email"]; ?>" aria-describedby="emailHelp" disabled>
                         </div>
 
                         <!-- User default forum -->
                         <div class="py-3">
                             <label for="default_forum" class="form-label pb-3 h3">Default forum</label>
-                            <select name="default_forum" id="default_forum" class="form-control">
+                            <select name="default_forum" id="default_forum" class="form-select">
                                 <?php foreach ($forums as $forum) : ?>
-                                    <option <?= ($forum['id'] == $default_forum['id_forum']) ? "selected" : ""; ?> value="<?= $forum['id']; ?>"><?= $forum['id'] == 1 ?  "<span class='fst-italic'>No default forum</span>" : $forum['name']; ?></option>
+                                    <option <?= ($forum['id'] == $default_forum['id_forum']) ? "selected" : ""; ?> value="<?= $forum['id']; ?>"><?= $forum['id'] == 1 ?  "No default forum" : $forum['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -65,15 +64,12 @@
                         <?php if ($user_forums && $topicsByForum) : ?>
                             <div class="py-3">
                                 <h3 class="form-label pb-3">Forums</h3>
-                                <ul class="list-group">
+                                <div class="btn-group-vertical w-100" role="group" aria-label="Basic checkbox toggle Vertical button group">
                                     <?php foreach ($user_forums as $forum) : ?>
-                                        <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
-                                            <li class="list-group-item position-relative"><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 me-3">Default</span></li>
-                                        <?php else : ?>
-                                            <li class="list-group-item"><?= $forum["name"]; ?></li>
-                                        <?php endif; ?>
+                                        <input type="checkbox" class="btn-check" id="btncheck<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
+                                        <label class="btn btn-del text-start" for="btncheck<?= $forum['id']; ?>"><?= $forum["name"]; ?></label>
                                     <?php endforeach; ?>
-                                </ul>
+                                </div>
                             </div>
                         <?php endif; ?>
                         </div>
@@ -83,15 +79,12 @@
                                 <?php if ($user_forums && !$topicsByForum) : ?>
                                     <div class="py-3">
                                         <h3 class="form-label pb-3">Forums</h3>
-                                        <ul class="list-group">
+                                        <div class="btn-group-vertical w-100" role="group" aria-label="Basic checkbox toggle Vertical button group">
                                             <?php foreach ($user_forums as $forum) : ?>
-                                                <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
-                                                    <li class="list-group-item position-relative"><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 me-3">Default</span></li>
-                                                <?php else : ?>
-                                                    <li class="list-group-item"><?= $forum["name"]; ?></li>
-                                                <?php endif; ?>
+                                                <input type="checkbox" class="btn-check" id="btncheck<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
+                                                <label class="btn btn-outline-primary" for="btncheck<?= $forum['id']; ?>"><?= $forum["name"]; ?></label>
                                             <?php endforeach; ?>
-                                        </ul>
+                                        </div>
                                     </div>
                                 <?php endif; ?>
                                 <!-- User topics list -->
