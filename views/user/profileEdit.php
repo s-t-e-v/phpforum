@@ -29,10 +29,26 @@
                         <h2 class="text-center form_title pt-5">Edit profile</h2>
 
                         <!-- User primary information -->
-                        <div class="text-center pt-3 form-label">
-                            <img src="<?= $user['picture_profil'] ? UPLOAD . $user['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle s-200">
-                            <div class="fs-5"><?= $user["nickname"]; ?></div>
-                            <div><span class="fw-bold">e-mail: </span><?= $user["email"]; ?></div>
+                        <div class="pt-3 form-label">
+                            <!-- Profile picture -->
+                            <div class="py-2 pp_input w-100">
+                                <label for="pp" class="form-label">Profil picture</label>
+                                <div class="d-flex align-items-center">
+                                    <img src="<?= $user['picture_profil'] ? UPLOAD . $user['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle s-100">
+                                    <input type="file" class="form-control rounded ms-3" name="pp" id="pp" aria-describedby="fileHelp">
+                                </div>
+                                <small class="text_error"><?= $error['pp'] ?? ""; ?></small>
+                            </div>
+                            <!-- Pseudo -->
+                            <div class="py-2">
+                                <label for="pseudo" class="form-label">Pseudo</label>
+                                <input type="text" class="form-control rounded mb-1" name="pseudo" id="pseudo" value="<?= $_POST["pseudo"] ?? $user["nickname"]; ?>" aria-describedby="pseudoHelp">
+                                <small class="text_error"><?= $error['pseudo'] ?? ""; ?></small>
+                            </div>
+                            <!-- Email address -->
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="text" class="form-control rounded mb-1" name="email" id="email" value="<?= $_POST["email"] ?? $user["email"]; ?>" aria-describedby="emailHelp">
+                            <small class="text_error"><?= $error['email'] ?? ""; ?></small>
                         </div>
 
                         <!-- User default forum -->

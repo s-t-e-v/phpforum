@@ -54,8 +54,8 @@ class SecurityController extends Security
                 $error['pseudo'] = "The <em>pseudo</em> input exceeds maximum length of 255 characters.";
             }
             // -- Profil picture
-            if (strlen($_FILES['pp']['name']) > 255) {
-                $error['pp'] = "The file name must not exceeds maximum length of 255 characters.";
+            if (strlen($_FILES['pp']['name']) > 200) {
+                $error['pp'] = "The file name must not exceeds maximum length of 200 characters.";
             }
 
 
