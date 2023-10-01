@@ -26,7 +26,7 @@ The forum provides a platform for users to engage in meaningful discussions, see
 **Demo:**
 Check out the live demo [here](https://your-demo-link.com).
 
-## Development planning ![](https://geps.dev/progress/65)
+## Development planning ![](https://geps.dev/progress/70)
 
 <!-- TODO: if you can, make this section in two columns for more readability -->
 
@@ -49,18 +49,17 @@ Check out the live demo [here](https://your-demo-link.com).
 
 **Extra**
 
-![](https://geps.dev/progress/30)
+![](https://geps.dev/progress/40)
 
 - [x] 10. Forum creation page
 - [x] 11. List of all forum on home page (with the more dropdown button - don't display current forum)
 - [x] 12. Topic listing for subforums
-- [ ] 13. User profil
+- [x] 13. User profil
   - [x] forums listing
   - [x] topics by forum listing
   - [x] special color display for original forum in _topics by forum listing_
   - [x] make display nothing (including the subtitle) when data non-fetchable
-  - [ ] responsive
-  - [ ] style, color, appearance
+  - [x] responsive
 - [ ] 14. User profil management
 
   - [ ] Topic deletion
@@ -73,7 +72,7 @@ Check out the live demo [here](https://your-demo-link.com).
 - [ ] 16. Make default forum loaded when the user is connected
 - [ ] 17. Limit account creations from the same IP address (and chose the limit)
 - [ ] 18. Choose the limit of users, forums and messages
-- [ ] 19. Update README
+- [ ] 19. Update README & simplify style, color, appearance
 
 ## Dependancies
 
