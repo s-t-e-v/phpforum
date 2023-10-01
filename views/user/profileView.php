@@ -39,7 +39,7 @@
                 </div>
 
                 <!-- User forums list -->
-                <?php if ($forums) : ?>
+                <?php if ($forums && $topicsByForum) : ?>
                     <div class="py-3">
                         <h3 class="form-label pb-3">Forums</h3>
                         <ul class="list-group">
@@ -55,6 +55,21 @@
                 <?php endif; ?>
             </div>
             <div class="col-lg-6 px-4 px-lg-5">
+                <!-- User forums list -->
+                <?php if ($forums && !$topicsByForum) : ?>
+                    <div class="py-3">
+                        <h3 class="form-label pb-3">Forums</h3>
+                        <ul class="list-group">
+                            <?php foreach ($forums as $forum) : ?>
+                                <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
+                                    <li class="list-group-item position-relative"><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 me-3">Default</span></li>
+                                <?php else : ?>
+                                    <li class="list-group-item"><?= $forum["name"]; ?></li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
                 <!-- User topics list -->
                 <?php if ($topicsByForum) : ?>
                     <div class="py-3">
