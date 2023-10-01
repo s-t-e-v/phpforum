@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-27 17:37:18 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-10-02 01:11:34
+ * @Last Modified time: 2023-10-02 01:28:55
  * @Description: User profile edition page
  */
 ?>
@@ -66,11 +66,11 @@
                                 <h3 class="form-label pb-3">Forums</h3>
                                 <div class="btn-group-vertical w-100 forum_list" role="group" aria-label="Basic checkbox toggle Vertical button group">
                                     <?php foreach ($user_forums as $forum) : ?>
-                                        <input type="checkbox" class="btn-check forum_item" name="user_forums" id="btncheck<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
+                                        <input type="checkbox" class="btn-check forum_item" name="user_forums" id="btncheck_forum<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
                                         <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
-                                            <label class="btn btn-del text-start position-relative" for="btncheck<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 top-50 translate-middle-y me-3">Default</span></label>
+                                            <label class="btn btn-del text-start position-relative" for="btncheck_forum<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 top-50 translate-middle-y me-3">Default</span></label>
                                         <?php else : ?>
-                                            <label class="btn btn-del text-start" for="btncheck<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?></label>
+                                            <label class="btn btn-del text-start" for="btncheck_forum<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?></label>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
@@ -85,11 +85,11 @@
                                         <h3 class="form-label pb-3">Forums</h3>
                                         <div class="btn-group-vertical w-100 forum_list" role="group" aria-label="Basic checkbox toggle Vertical button group">
                                             <?php foreach ($user_forums as $forum) : ?>
-                                                <input type="checkbox" class="btn-check forum_item" name="user_forums" id="btncheck<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
+                                                <input type="checkbox" class="btn-check forum_item" name="user_forums" id="btncheck_forum<?= $forum['id']; ?>" name="user_forum" autocomplete="off" value="<?= $forum['id']; ?>">
                                                 <?php if ($default_forum && $forum['id'] === $default_forum['id_forum']) : ?>
-                                                    <label class="btn btn-del text-start position-relative" for="btncheck<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 top-50 translate-middle-y me-3">Default</span></label>
+                                                    <label class="btn btn-del text-start position-relative" for="btncheck_forum<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?><span class="badge bg-secondary position-absolute end-0 top-50 translate-middle-y me-3">Default</span></label>
                                                 <?php else : ?>
-                                                    <label class="btn btn-del text-start" for="btncheck<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?></label>
+                                                    <label class="btn btn-del text-start" for="btncheck_forum<?= $forum['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $forum["name"]; ?></label>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
                                         </div>
@@ -99,7 +99,7 @@
                                 <?php if ($topicsByForum) : ?>
                                     <div class="py-3">
                                         <h3 class="form-label pb-3">Topics</h3>
-                                        <div class="accordion">
+                                        <div class="accordion topic_list">
                                             <?php $i = 1; ?>
                                             <?php foreach ($topicsByForum as $forumName => $topics) : ?>
                                                 <div class="accordion-item">
@@ -111,11 +111,12 @@
                                                     </h4>
                                                     <div id="panel<?= $i; ?>" class="accordion-collapse collapse show">
                                                         <div class="accordion-body">
-                                                            <ul class="list-group">
+                                                            <div class="btn-group-vertical w-100 forum_list" role="group" aria-label="Basic checkbox toggle Vertical button group">
                                                                 <?php foreach ($topics as $topic) : ?>
-                                                                    <li class="list-group-item"><?= $topic['title']; ?></li>
+                                                                    <input type="checkbox" class="btn-check forum_item" name="user_topics" id="btncheck_topic<?= $topic['id']; ?>" name="user_forum" autocomplete="off" value="<?= $topic['id']; ?>">
+                                                                    <label class="btn btn-del text-start" for="btncheck_topic<?= $topic['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $topic["title"]; ?></label>
                                                                 <?php endforeach; ?>
-                                                            </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
