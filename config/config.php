@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-01 17:34:57 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-26 22:58:14
+ * @Last Modified time: 2023-09-29 01:32:40
  * @Description: App configuration
  */
 
@@ -78,15 +78,16 @@ const DB = [
  * List of possible actions/methodes (Routes configuration)
  */
 $routes = [
-    ''                 => ['AppController', 'index'],
-    'add'              => ['AppController', 'create_forum'],
-    'signup'           => ['SecurityController', 'signup'],
-    'login'            => ['SecurityController', 'login'],
-    'logout'           => ['SecurityController', 'logout'],
-    'topic/delete'     => ['TopicController', 'delete'],
-    'topic/chat'       => ['TopicController', 'chat'],
-
-
+    ''                          => ['AppController', 'index'],
+    'add'                       => ['AppController', 'create_forum'],
+    'signup'                    => ['SecurityController', 'signup'],
+    'login'                     => ['SecurityController', 'login'],
+    'logout'                    => ['SecurityController', 'logout'],
+    'topic/delete'              => ['TopicController', 'delete'],
+    'topic/chat'                => ['TopicController', 'chat'],
+    'user/profile'              => ['UserController', 'view'],
+    'user/profile/edit'         => ['UserController', 'edit'],
+    'user/profile/security'     => ['SecurityController', 'change_pswd'],
 
 
 ];

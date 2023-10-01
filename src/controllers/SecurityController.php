@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-07 00:13:49 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-14 17:57:50
+ * @Last Modified time: 2023-09-29 02:00:23
  * @Description: Manage login/signup features
  */
 
@@ -106,13 +106,13 @@ class SecurityController extends Security
 
 
                     /** Password encryption */
-                    $mdp = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $pswd = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
                     /** Database processing */
                     // -- User
                     $data = [
                         'email' => $_POST['email'],
-                        'password' => $mdp,
+                        'password' => $pswd,
                         'nickname' => $_POST['pseudo'],
                     ];
                     if ($filename)
@@ -123,9 +123,8 @@ class SecurityController extends Security
                     $user =  User::findByEmail(['email' => $_POST['email']]);
                     $data = [
                         'id_user' => $user['id'],
+                        'id_forum' => 1,
                     ];
-                    if (isset($_GET['id_forum']) && isset($_GET['id_forum']))
-                        $data['id_forum'] = $_GET['id_forum'];
                     $success_up_default_forum = Default_forum::update_db($data);
 
                     /** Success message */
@@ -182,7 +181,8 @@ class SecurityController extends Security
 
             /* Error raising */
             // -- Email
-            if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            if (User::findByEmail(['email' => $_POST['email']])) {
+            } else if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $error['email'] = "The <em>email</em> field is required and the email entered must be valid";
             }
             // -- Password
@@ -243,5 +243,71 @@ class SecurityController extends Security
         // Redirection home page
         header("location:" . BASE);
         exit();
+    }
+
+    /**
+     * Change the user password.
+     */
+    public static function change_pswd()
+    {
+        //* removing every errors saved of the current session.
+        unset($_SESSION['error']);
+
+        if (!empty($_POST)) { // < Data submitted > 
+
+            $error = []; // stores error messages
+
+            /* Error raising */
+            // -- Password
+            if (empty($_POST['old_pswd'])) {
+                $error['old_pswd'] = "The <em>old password</em> field is required";
+            }
+            // -- New password
+            if (empty($_POST['new_pswd']) || !self::valid_pass($_POST['new_pswd'])) {
+                $error['new_pswd'] = "The <em>password</em> field is required and the entered password must contain at least 5 characteres, whom at least 1 lowercase, 1 uppercase, 1 digit and 1 special character";
+            }
+            // -- Confirm new password
+            if (empty($_POST['confirm_new_pswd'])) {
+                $error['confirm_new_pswd'] = "The <em>confirm new password</em> field is required";
+            } elseif ($_POST['confirm_new_pswd'] !== $_POST['new_pswd']) {
+                $error['confirm_new_pswd'] = "The password must match with the one entered above";
+            }
+
+            /* Submitted data processing */
+            if (empty($error)) {
+
+                // If the old password is valid
+                if (password_verify($_POST['old_pswd'], $_SESSION['user']['password'])) // verify encrypted password
+                {
+                    $pswd = password_hash($_POST['new_pswd'], PASSWORD_DEFAULT);
+
+                    /** Database processing */
+                    // -- User
+                    $data = [
+                        'id' => $_SESSION['user']['id'],
+                        'password' => $pswd,
+                    ];
+
+                    $success = User::pswd_update($data);
+
+                    // Update the user session
+                    $_SESSION['user'] = User::findByEmail(['email' => $_SESSION['user']['email']]);; // Update the session
+
+                    /** Success message */
+                    if ($success)
+                        $_SESSION['messages']['success'][] = "The password has been succesfully changed!!";
+
+                    // Redirection home page
+                    header('location:' . BASE . 'user/profile/security');
+                    exit();
+                } else // The password isn't valid
+                {
+                    // Failure message
+                    $_SESSION['messages']['danger'][] = "Error in the old password";
+                }
+            }
+        }
+
+        include(VIEWS . 'user/security.php');
     }
 }

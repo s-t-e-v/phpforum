@@ -22,6 +22,9 @@ CREATE TABLE IF NOT EXISTS user(
     picture_profil VARCHAR(255)
 ) ENGINE=INNODB;
 
+-- Insert default admin user
+INSERT INTO user (nickname, email, password) VALUES ('admin', 'admin', '$2y$10$KPvty66I3oYo3FwPioMC1eGEYkSyz85MVo8TV3nxtL1gdwgeEt8Zy');
+
 -- forum table
 CREATE TABLE IF NOT EXISTS forum(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -35,11 +38,14 @@ CREATE TABLE IF NOT EXISTS forum(
         ON DELETE CASCADE
 ) ENGINE=INNODB;
 
+-- Insert default original forum
+INSERT INTO forum (name, url_name, created_at, id_user) VALUES ('PHP Forum', '', NOW(), 1);
+
 -- default_forum table
 CREATE TABLE IF NOT EXISTS default_forum(
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_user INT NOT NULL UNIQUE,
-    id_forum INT, -- NULL value refers to the original forum 
+    id_forum INT NOT NULL DEFAULT 1, 
     CONSTRAINT fk_id_user_default_forum
     FOREIGN KEY (id_user)
         REFERENCES user(id)
@@ -48,6 +54,9 @@ CREATE TABLE IF NOT EXISTS default_forum(
     FOREIGN KEY (id_forum)
         REFERENCES forum(id)
 ) ENGINE=INNODB;
+
+-- Insert default original forum
+INSERT INTO default_forum (id_user) VALUES (1);
 
 -- topic table
 CREATE TABLE IF NOT EXISTS topic(

@@ -33,8 +33,8 @@
         <h2 class="text-light text-center text-md-start"><?= $topic['title']; ?></h2>
 
         <div class="row mt-3">
+            <!-- Messages -->
             <div class="col-12 col-md-8">
-                <!-- Messages -->
                 <?php foreach ($messages as $message) : ?>
                     <div class="text-light">
 
@@ -50,15 +50,15 @@
                         ?>
                     </div>
                     <div class="bg-<?= isset($_SESSION['user']) ? ($_SESSION['user']['id'] === $message['id_user'] ? "info" : "secondary") : "secondary"; ?> text-dark rounded mb-3 p-2">
-                        <img src="<?= $message['picture_profil'] ? UPLOAD . $message['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle profile_picture-50">
+                        <img src="<?= $message['picture_profil'] ? UPLOAD . $message['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle s-50">
                         <p>par : <?= $message['nickname']; ?></p>
                         <p class="fs-5"><?= $message['content']; ?></p>
                         <small><?= date('d/m/Y H:i:s', strtotime($message['created_at'])); ?></small>
                     </div>
                 <?php endforeach; ?>
             </div>
+            <!-- Message form -->
             <div class="col-12 col-md-4">
-                <!-- Message form -->
                 <form method="post">
                     <label for="message" class="form-label text-light">Answer</label>
                     <?php if (isset($_SESSION['user'])) : ?>

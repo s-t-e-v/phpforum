@@ -62,18 +62,10 @@ class Topic extends Db
      */
     public static function findByForum($forum): mixed
     {
-        if ($forum['id_forum'] === NULL) {
-            $request = "SELECT topic.*, user.nickname, user.picture_profil FROM topic INNER JOIN user ON topic.id_user = user.id WHERE topic.id_forum IS NULL ORDER BY topic.created_at DESC";
-        } else {
-            $request = "SELECT topic.*, user.nickname, user.picture_profil FROM topic INNER JOIN user ON topic.id_user = user.id WHERE topic.id_forum=:id_forum ORDER BY topic.created_at DESC";
-        }
+        $request = "SELECT topic.*, user.nickname, user.picture_profil FROM topic INNER JOIN user ON topic.id_user = user.id WHERE topic.id_forum=:id_forum ORDER BY topic.created_at DESC";
         $response = self::getDb()->prepare($request);
         try {
-
-            if ($forum['id_forum'] === NULL)
-                $response->execute();
-            else
-                $response->execute(self::htmlspecialchars($forum));
+            $response->execute(self::htmlspecialchars($forum));
         } catch (Exception $e) {
             throw $e;
         }
@@ -99,6 +91,19 @@ class Topic extends Db
         }
 
         return $response->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function findByUser(array $user)
+    {
+        $request = "SELECT topic.*, forum.name, forum.url_name FROM topic INNER JOIN forum ON topic.id_forum = forum.id WHERE topic.id_user = :id_user ORDER BY id_forum ASC";
+        $response = self::getDb()->prepare($request);
+        try {
+            $response->execute(self::htmlspecialchars($user));
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        return $response->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**

@@ -4,13 +4,10 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-04 19:35:07 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-09-27 01:47:32
+ * @Last Modified time: 2023-09-27 17:39:44
  * @Description: Home page.
  */
 ?>
-
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 
 <?php !isset($_SESSION['error']) ?: $error = $_SESSION['error']; ?>
 
@@ -31,8 +28,8 @@
     <div class="mb-5 bg-dark">
         <div class="container py-3">
             <!-- Forum title -->
-
             <h2 class="text-light mb-5"><?= $current_forum["name"] ?? "PHP forum"; ?></h2>
+            <!-- Create button -->
             <div class="d-flex justify-content-between">
                 <h3 class="text-light h4">Other forums</h3>
                 <?php if (!isset($_SESSION['user'])) : ?>
@@ -116,7 +113,7 @@
         <?php foreach ($topics as $topic) : ?>
             <div class="mt-2">
                 <a href="<?= BASE . $forum_url . 'topic/chat?id=' . $topic['id']; ?>" class="btn btn-primary rounded text-center text-light p-2 mb-2 w-100">
-                    <img src="<?= $topic['picture_profil'] ? UPLOAD . $topic['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle profile_picture-75">
+                    <img src="<?= $topic['picture_profil'] ? UPLOAD . $topic['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle s-75">
                     <h3><?= $topic['title']; ?></h3>
                     <p>by: <?= $topic['nickname']; ?></p>
                     <p><?= date('d/m/Y H:i:s', strtotime($topic['created_at'])); ?></p>
@@ -130,5 +127,6 @@
         <?php endforeach; ?>
     </div>
 </main>
+<script src="<?= ASSETS . "js/script.js"; ?>"></script>
 
 <?php include(VIEWS . '_partials/footer.php'); ?>

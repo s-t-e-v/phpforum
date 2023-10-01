@@ -23,11 +23,13 @@
 
         <!-- Sign Up form -->
         <form method="post">
+            <!-- Forum name -->
             <div class="py-2">
                 <label for="forum" class="form-label">Forum name</label>
                 <input type="text" class="form-control rounded mb-1" name="forum" id="forum" value="<?= $_POST["forum"] ?? ""; ?>" aria-describedby="emailHelp">
                 <small class="text_error"><?= $error['forum'] ?? ""; ?></small>
             </div>
+            <!-- Create button -->
             <button type="submit" class="mt-4 btn btn-primary rounded">Create</button>
         </form>
 

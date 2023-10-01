@@ -21,6 +21,7 @@ $parsed_url = parse_url($currentUrl);
 $path_segments = explode('/', $parsed_url['path']);
 
 // Handle forum URLs
+$_SESSION['forum'] = "";
 if ($path_segments[1] == 'f') {
     // Set forum session and extract requested route
     $_SESSION['forum'] = $path_segments[2];
@@ -28,16 +29,13 @@ if ($path_segments[1] == 'f') {
 } else {
     // Extract requested route (non-forum)
     $requestedRoute = implode('/', array_slice($path_segments, 1));
-    if ($requestedRoute === '')
-        unset($_SESSION['forum']);
 }
 
 /** 
- * If the forum url name extracted exist among the registered ones, error 404.
+ * If the forum url name extracted doesn't exist among the registered ones, error 404.
  */
-if (isset($_SESSION['forum']) && !Forum::findByURLName(['url_name' => $_SESSION['forum']])) {
+if (!Forum::findByURLName(['url_name' => $_SESSION['forum']])) {
     // Unset the forum session, require 404 page, and terminate script
-    unset($_SESSION['forum']);
     require_once PUBLIC_FOLDER  . '404.php';
     die;
 }

@@ -21,15 +21,9 @@ class Default_forum extends Db
     {
         $pdo = self::getDb();
         if (self::findByUserId(['id' => $data['id_user']])) {
-            if (isset($data['id_forum']))
-                $request = "UPDATE default_forum SET id_forum = :id_forum WHERE id_user = :id_user";
-            else
-                $request = "UPDATE default_forum SET id_forum = NULL WHERE id_user = :id_user";
+            $request = "UPDATE default_forum SET id_forum = :id_forum WHERE id_user = :id_user";
         } else {
-            if (isset($data['id_forum']))
-                $request = "INSERT INTO default_forum (id_user, id_forum) VALUE (:id_user, :id_forum)";
-            else
-                $request = "INSERT INTO default_forum (id_user) VALUE (:id_user)";
+            $request = "INSERT INTO default_forum (id_user, id_forum) VALUE (:id_user, :id_forum)";
         }
         $response = $pdo->prepare($request);
         try {
@@ -50,7 +44,7 @@ class Default_forum extends Db
      */
     public static function findByUserId(array $id): mixed
     {
-        $request = "SELECT * FROM default_forum WHERE id=:id";
+        $request = "SELECT default_forum.*, forum.name, forum.url_name FROM default_forum INNER JOIN forum ON default_forum.id_forum = forum.id WHERE default_forum.id_user = :id";
         $response = self::getDb()->prepare($request);
         try {
             $response->execute(self::htmlspecialchars($id));

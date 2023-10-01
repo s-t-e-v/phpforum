@@ -19,16 +19,19 @@
 
         <!-- Sign Up form -->
         <form method="post">
+            <!-- Email address -->
             <div class="py-2">
                 <label for="email" class="form-label">Email address</label>
                 <input type="text" class="form-control rounded mb-1" name="email" id="email" value="<?= $_POST["email"] ?? ""; ?>" aria-describedby="emailHelp">
                 <small class="text_error"><?= $error['email'] ?? ""; ?></small>
             </div>
+            <!-- Password -->
             <div class="py-2">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control rounded mb-1" name="password" id="password">
                 <small class="text_error"><?= $error['password'] ?? ""; ?></small>
             </div>
+            <!-- Login button -->
             <button type="submit" class="mt-4 btn btn-primary rounded">Login</button>
         </form>
 
