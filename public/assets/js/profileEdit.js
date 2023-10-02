@@ -24,6 +24,9 @@ const setTopicListState = (e) => {
     }
 }
 
+// TODO: initialize del ico display at load depending on the state (foreach loop forumListm topicList)
+// ...
+
 // Event listener
 if (forumList)
     forumList.addEventListener('change', toggleDelIco);
