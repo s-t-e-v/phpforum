@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-27 17:37:18 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-10-02 02:50:33
+ * @Last Modified time: 2023-10-02 03:29:06
  * @Description: User profile edition page
  */
 ?>
@@ -31,10 +31,10 @@
                         <!-- User primary information -->
                         <div class="pt-3 form-label">
                             <!-- Profile picture -->
-                            <div class="py-2 pp_input w-100">
+                            <div class="py-2 w-100">
                                 <label for="pp" class="form-label">Profil picture</label>
                                 <div class="d-flex align-items-center">
-                                    <img src="<?= $user['picture_profil'] ? UPLOAD . $user['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle s-100">
+                                    <img src="<?= $user['picture_profil'] ? UPLOAD . $user['picture_profil'] : ASSETS . 'img/default_pp.png'; ?>" alt="Profil picture" class="rounded-circle s-100 flex-shrink-0">
                                     <input type="file" class="form-control rounded ms-3" name="pp" id="pp" aria-describedby="fileHelp">
                                 </div>
                                 <small class="text_error"><?= $error['pp'] ?? ""; ?></small>
