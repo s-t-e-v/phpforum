@@ -4,7 +4,7 @@
  * @Email: steven@sbandaogo.com
  * @Date: 2023-09-27 17:37:18 
  * @Last Modified by: Steven Bandaogo
- * @Last Modified time: 2023-10-02 01:28:55
+ * @Last Modified time: 2023-10-02 02:50:33
  * @Description: User profile edition page
  */
 ?>
@@ -106,15 +106,15 @@
                                                     <h4 class="accordion-header">
                                                         <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#panel<?= $i; ?>" aria-expanded="true" aria-controls="panel<?= $i; ?>">
                                                             Forum #<?= $i; ?>:<span class="<?= $topics[0]['id_forum'] !== 1 ?: "text-warning"; ?> ms-1 fw-bold"> <?= $forumName; ?></span>
-                                                            <span class="badge bg-secondary position-absolute me-5 end-0"><?= count($topics); ?></span>
+                                                            <span id="count<?= $i; ?>" class="badge bg-secondary position-absolute me-5 end-0"><span class="nb2del"></span><?= count($topics); ?></span>
                                                         </button>
                                                     </h4>
                                                     <div id="panel<?= $i; ?>" class="accordion-collapse collapse show">
                                                         <div class="accordion-body">
                                                             <div class="btn-group-vertical w-100 forum_list" role="group" aria-label="Basic checkbox toggle Vertical button group">
                                                                 <?php foreach ($topics as $topic) : ?>
-                                                                    <input type="checkbox" class="btn-check forum_item" name="user_topics" id="btncheck_topic<?= $topic['id']; ?>" name="user_forum" autocomplete="off" value="<?= $topic['id']; ?>">
-                                                                    <label class="btn btn-del text-start" for="btncheck_topic<?= $topic['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $topic["title"]; ?></label>
+                                                                    <input type="checkbox" class="btn-check topic_item" name="user_topics" id="btncheck_forum<?= $i; ?>_topic<?= $topic['id']; ?>" name="user_forum" autocomplete="off" value="<?= $topic['id']; ?>">
+                                                                    <label class="btn btn-del text-start" for="btncheck_forum<?= $i; ?>_topic<?= $topic['id']; ?>"><i class="bi bi-x-lg me-3 dark_red" hidden></i><?= $topic["title"]; ?></label>
                                                                 <?php endforeach; ?>
                                                             </div>
                                                         </div>

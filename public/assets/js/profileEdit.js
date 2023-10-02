@@ -10,6 +10,18 @@ const toggleDelIco = (e) => {
 
 const setTopicListState = (e) => {
     toggleDelIco(e);
+    const topics = e.target.parentElement.querySelectorAll(".topic_item");
+    const nbTopics2delete = [...topics].map((topic) => topic.checked).filter(Boolean).length;
+    const forumId = (e.target.id.match(/forum(\d+)/) || [])[1];
+    const topicCount = document.querySelector("#count" + forumId);
+    if (nbTopics2delete > 0) {
+        topicCount.querySelector(".nb2del").innerHTML = nbTopics2delete + "/";
+        topicCount.classList.replace("bg-secondary", "bg-danger");
+    }
+    else {
+        topicCount.querySelector(".nb2del").innerHTML = "";
+        topicCount.classList.replace("bg-danger", "bg-secondary");
+    }
 }
 
 // Event listener
